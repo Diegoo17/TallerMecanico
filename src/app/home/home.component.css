@@ -1,0 +1,44 @@
+head{
+  margin-bottom: 2rem;
+}
+
+.Titulo {
+  position:absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+  font-size: 5rem;
+
+}
+
+h3{
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+div {
+  max-width: 80rem;
+  margin: 16rem auto;
+  padding: 8rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  font-size: 1.5rem;
+  font-style: italic;
+
+}
+
+li{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+p{
+  line-height: 2rem;
+  text-align: justify;
+}
