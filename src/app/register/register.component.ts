@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 
@@ -23,7 +24,8 @@ export class RegisterComponent {
   telefonoError: string = '';
   passwordError: string = '';
 
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   onSubmit() {
     this.nombreError = '';
@@ -40,27 +42,49 @@ export class RegisterComponent {
     }
 
     if (!this.username) {
-      this.usernameError = 'El campo de username es requerido.'; 
-      isValid = false; 
+      this.usernameError = 'El campo de username es requerido.';
+      isValid = false;
     }
 
     if (!this.email) {
-      this.emailError = 'El campo de email es requerido.'; 
-      isValid = false; 
+      this.emailError = 'El campo de email es requerido.';
+      isValid = false;
     } else if (!this.email.endsWith("@gmail.com") && !this.email.endsWith("@hotmail.com")) {
       this.emailError = "Email en formato invalido.";
-      isValid = false; 
+      isValid = false;
     }
 
     if (!this.telefono) {
-      this.telefonoError = 'El campo de teléfono es requerido.'; 
-      isValid = false; 
+      this.telefonoError = 'El campo de teléfono es requerido.';
+      isValid = false;
+    } else if (this.telefono.length != 10) {
+      this.telefonoError = "El número de teléfono debe contener 10 dígitos.";
+      isValid = false;
+    } else if(/0-9/.test(this.telefono)){
+      this.telefonoError = "El telefono debe constar unicamente de numeros"
+      isValid = false;
     }
 
     if (!this.password) {
       this.passwordError = 'El campo de contraseña es requerido.';
       isValid = false;
+    } else if (this.password.length < 8) {
+      this.passwordError = 'La contraseña debe contener al menos 8 caracteres.';
+      isValid = false;
+    } else if (this.password.length > 16) {
+      this.passwordError = 'La contraseña debe contener menos de 16 caracteres.';
+      isValid = false;
+    } else if (!/[a-z]/.test(this.password)) {
+      this.passwordError = 'La contraseña debe contener al menos una letra minúscula.';
+      isValid = false;
+    } else if (!/[A-Z]/.test(this.password)) {
+      this.passwordError = 'La contraseña debe contener al menos una letra mayúscula.';
+      isValid = false;
+    } else if (!/[0-9]/.test(this.password)) {
+      this.passwordError = 'La contraseña debe contener al menos un número.';
+      isValid = false;
     }
+
     if (isValid) {
       this.verificacionEmailExistente(this.email).subscribe(emailExists => {
         if (emailExists) {
@@ -102,6 +126,11 @@ export class RegisterComponent {
     );
   }
 
+  //Funcion que hace el refresco de pantalla y envia a la otra interfaz
+  goLogin(){
+    this.router.navigate(['/login']);
+  }
+
   guardarUsuario() {
     const nuevoUsuario = {
       nombre: this.nombre,
@@ -114,12 +143,9 @@ export class RegisterComponent {
     this.http.post('http://localhost:3000/users', nuevoUsuario).subscribe({
       next: () => {
         alert("Registro exitoso!");
-        
-        
-        
-        ///ACA SE TENDRIA QUE MANDAR AL MENU DE USUARIO
 
-
+        //LOGIN DEBERIA ENVIAR AL MENU DE TURNOS
+        this.goLogin();
 
         this.limpiarFormulario();
       },
