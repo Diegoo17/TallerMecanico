@@ -3,7 +3,7 @@ form {
     max-width: 30rem;
     margin: 3rem auto;
     padding: 3rem;
-    background-color: #e0f7fa;
+    background-color: #ffffff;
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
     font-family: Arial, sans-serif;
@@ -11,11 +11,11 @@ form {
   h1 {
     color: black;
   }
-  
+
   label {
-    margin: 0.5rem 0; 
+    margin: 0.5rem 0;
   }
-  
+
   input {
     width: 100%;
     padding: 0.5rem;
@@ -23,23 +23,22 @@ form {
     border: 1px solid #ccc;
     border-radius: 0.25rem;
   }
-  
+
   button {
-    background-color: #007bff; 
+    background-color: #007bff;
     color: white;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
-    margin-top: 1rem; 
+    margin-top: 1rem;
   }
-  
+
   button:hover {
     background-color: #0056b3;
   }
-  
+
   .error {
-    color: red; 
-    margin-top: -0.5rem; 
+    color: red;
+    margin-top: -0.5rem;
   }
-  

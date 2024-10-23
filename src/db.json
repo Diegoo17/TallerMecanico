@@ -5,16 +5,16 @@
       "username": "juan123",
       "email": "juan@gmail.com",
       "telefono": "1234567890",
-      "password": "password123",
+      "password": "Password123",
       "id": "73e7"
     },
     {
-      "id": "017b",
-      "nombre": "Diego",
-      "username": "Diego",
-      "email": "diego@gmail.com",
-      "telefono": "12345",
-      "password": "12345"
+      "id": "d9dc",
+      "nombre": "luca",
+      "username": "luca12",
+      "email": "fedinfunes@gmail.com",
+      "telefono": "2235999999",
+      "password": "Fede1234"
     }
   ]
 }
