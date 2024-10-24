@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Catálogo de Insumos</h1>
+  <form (ngSubmit)="onSubmit()" #insumoForm="ngForm">
+    <div class="form-group">
+      <label for="nombre">Nombre del insumo:</label>
+      <input type="text" id="nombre" required [(ngModel)]="nuevoInsumo.nombre" name="nombre" #nombre="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="precio">Precio:</label>
+      <input type="number" id="precio" required [(ngModel)]="nuevoInsumo.precio" name="precio" #precio="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="imagen">Imagen:</label>
+      <input type="file" id="imagen" (change)="onFileSelected($event)">
+    </div>
+
+    <button type="submit" [disabled]="!insumoForm.form.valid">Agregar al Catálogo</button>
+  </form>
+
+  <div class="catalogo">
+    <div class="producto" *ngFor="let insumo of insumos; let i = index">
+      <img [src]="insumo.imagen" alt="{{ insumo.nombre }}" onerror="this.onerror=null;this.src='path/to/default-image.jpg';">
+      <h2>{{ insumo.nombre }}</h2>
+      <p>{{ insumo.precio | currency }}</p>
+      <button (click)="onEdit(i)">Editar</button>
+      <button (click)="onDelete(i)">Eliminar</button>
+    </div>
+  </div>
+</div>
