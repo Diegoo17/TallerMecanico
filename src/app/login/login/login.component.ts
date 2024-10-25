@@ -1,84 +1,69 @@
-
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrls: ['./login.component.css'],
 })
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
-export class LoginComponent {
-  username: string = '';
-  password: string = '';
-  usernameError: string = '';
-  passwordError: string = '';
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-  goMenuTurnos(){
-    this.router.navigate(['/turnos']);
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
   }
 
-  onClick(){
-    this.usernameError = '';
-    this.passwordError = '';
-
-    let isCorrect = true;
-
-    if (!this.username) {
-      this.usernameError = 'El campo de username es requerido.';
-      isCorrect = false;
+  onClick() {
+    if (this.loginForm.invalid) {
+      return;
     }
+    
+    const { username, password } = this.loginForm.value;
 
-    if (!this.password) {
-      this.passwordError = 'El campo de contraseña es requerido.';
-      isCorrect = false;
-    }
-
-    if(isCorrect){
-      this.verificacionUsernameExistente(this.username).subscribe(usernameEquals => {
-        if(!usernameEquals){
-          this.usernameError = 'El Usuario es INCORRECTO.';
-        }else {
-          this.verificacionContraseñaExistente(this.password).subscribe(passwordEquals => {
-            if(!passwordEquals){
-              this.passwordError = 'La Contraseña es INCORRECTA.';
-            }else{
-
-              //Cuando creemos los turnos esta funcion va a dirigir una vez iniciada sesion de usuario
-              //this.goMenuTurnos();
-
-            }
-          })
-        }
-      })
-    }
-
+    this.verificacionUsernameExistente(username).subscribe((usernameExists) => {
+      if (usernameExists) {
+        this.verificacionContraseñaExistente(password).subscribe((passwordExists) => {
+          if (passwordExists) {
+            //this.goMenuTurnos();
+            this.router.navigate(['/home']);
+          } else {
+            this.loginForm.get('password')?.setErrors({ incorrect: true });
+          }
+        });
+      } else {
+        this.loginForm.get('username')?.setErrors({ usernameExists: true });
+      }
+    });
   }
 
-
-  constructor(private http: HttpClient, private router: Router) {}
-
-
-
-
-  //ESTAS FUNCIONES VAN EN EL USUARIO.SERVICE.TS
   verificacionUsernameExistente(username: string): Observable<boolean> {
     return this.http.get<any[]>(`http://localhost:3000/users?username=${username}`).pipe(
       map(users => users.length > 0)
     );
   }
 
-  verificacionContraseñaExistente(password: string): Observable<boolean>{
+  verificacionContraseñaExistente(password: string): Observable<boolean> {
     return this.http.get<any[]>(`http://localhost:3000/users?password=${password}`).pipe(
       map(users => users.length > 0)
     );
   }
 
+  goMenuTurnos() {
+    this.router.navigate(['/turnos']);
+  }
 }

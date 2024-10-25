@@ -15,6 +15,14 @@
       "email": "lucassette49@hotmail.com",
       "telefono": "2233444555",
       "password": "Luca12345"
+    },
+    {
+      "id": "f888",
+      "nombre": "fdsa",
+      "username": "fds",
+      "email": "afds@gmail.com",
+      "telefono": "1111111111",
+      "password": "1235444444As"
     }
   ]
 }
