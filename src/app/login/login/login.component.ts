@@ -1,15 +1,16 @@
-import { CommonModule } from '@angular/common';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule,FormsModule, HttpClientModule],
+  imports: [FormsModule, HttpClientModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -66,6 +67,8 @@ export class LoginComponent {
 
 
 
+
+  //ESTAS FUNCIONES VAN EN EL USUARIO.SERVICE.TS
   verificacionUsernameExistente(username: string): Observable<boolean> {
     return this.http.get<any[]>(`http://localhost:3000/users?username=${username}`).pipe(
       map(users => users.length > 0)

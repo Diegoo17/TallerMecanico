@@ -1,16 +1,16 @@
-import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { map, Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  imports: [FormsModule, CommonModule, HttpClientModule],
+  imports: [FormsModule, HttpClientModule, CommonModule],
 })
 export class RegisterComponent {
   nombre: string = '';
@@ -108,27 +108,21 @@ export class RegisterComponent {
     }
   }
 
+   //ESTAS FUNCIONES VAN EN EL USUARIO.SERVICE.TS
   verificacionEmailExistente(email: string): Observable<boolean> {
     return this.http.get<any[]>(`http://localhost:3000/users?email=${email}`).pipe(
       map(users => users.length > 0)
     );
   }
-
   verificacionUsernameExistente(username: string): Observable<boolean> {
     return this.http.get<any[]>(`http://localhost:3000/users?username=${username}`).pipe(
       map(users => users.length > 0)
     );
   }
-
   verificacionTelefonoExistente(telefono: string): Observable<boolean> {
     return this.http.get<any[]>(`http://localhost:3000/users?telefono=${telefono}`).pipe(
       map(users => users.length > 0)
     );
-  }
-
-  //Funcion que hace el refresco de pantalla y envia a la otra interfaz
-  goLogin(){
-    this.router.navigate(['/login']);
   }
 
   guardarUsuario() {
@@ -162,5 +156,11 @@ export class RegisterComponent {
     this.email = '';
     this.telefono = '';
     this.password = '';
+  }
+
+  
+  //Funcion que hace el refresco de pantalla y envia a la otra interfaz
+  goLogin(){
+    this.router.navigate(['/login']);
   }
 }

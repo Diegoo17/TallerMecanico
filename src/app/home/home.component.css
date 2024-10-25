@@ -3,14 +3,12 @@ head{
 }
 
 .Titulo {
-  position:absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+  margin-left: 20rem;
   width: 100%;
   font-size: 5rem;
-
 }
 
 h3{
