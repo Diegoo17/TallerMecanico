@@ -1,42 +1,58 @@
-head{
-  margin-bottom: 2rem;
+
+head {
+    margin-bottom: 2rem;
 }
+
 
 .Titulo {
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 5rem;
-  margin-left: 20rem;
-  width: 100%;
-  font-size: 5rem;
+    display: block;
+    margin: 0 auto 5rem 20rem;
+    width: 100%;
+    font-size: 5rem;
 }
 
-h3{
-  margin-top: 1rem;
-  margin-bottom: 3rem;
+
+h3 {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
 }
 
-div {
-  max-width: 80rem;
-  margin: 16rem auto;
-  padding: 8rem;
-  background-color: #ffffff;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
-  font-family: Arial, sans-serif;
-  font-size: 1.5rem;
-  font-style: italic;
 
+#descripcion {
+    max-width: 75rem;
+    max-height: 50rem;
+    margin: 16rem auto 2rem auto;
+    padding: 8rem;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    font-size: 1.5rem;
+    font-style: italic;
 }
 
-li{
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
-  text-align: justify;
+
+li {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    text-align: justify;
 }
 
-p{
-  line-height: 2rem;
-  text-align: justify;
+
+p {
+    line-height: 2rem;
+    text-align: justify;
 }
+
+
+#mapa {
+    max-height: 30rem;
+    max-width: 75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+    margin-left: 20rem;
+    background-color: #f0f0f0;
+  }
