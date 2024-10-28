@@ -1,0 +1,59 @@
+<div class="container">
+  <h1>Catálogo de Productos</h1>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nombre">Nombre del producto:</label>
+      <input type="text" id="nombre" formControlName="nombre">
+    </div>
+
+    <div class="form-group">
+      <label for="precio">Precio:</label>
+      <input type="number" id="precio" formControlName="precio" step="1000">
+    </div>
+
+    <div class="form-group">
+      <label for="imagen">Imagen:</label>
+      <input type="file" id="imagen" (change)="onFileSelected($event, productForm)">
+    </div>
+
+    <button type="submit" [disabled]="productForm.invalid">Agregar al Catálogo</button>
+  </form>
+
+  <div *ngIf="isEditMode" class="edit-container">
+    <h2>Editar Producto</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
+      <div class="form-group">
+        <label for="editNombre">Nombre del producto:</label>
+        <input type="text" id="editNombre" formControlName="nombre">
+      </div>
+
+      <div class="form-group">
+        <label for="editPrecio">Precio:</label>
+        <input type="number" id="editPrecio" formControlName="precio" step="1000">
+      </div>
+
+      <div class="form-group">
+        <label for="editImagen">Imagen:</label>
+        <input type="file" id="editImagen" (change)="onFileSelected($event, editForm)">
+      </div>
+
+      <button type="submit" [disabled]="editForm.invalid">Guardar Cambios</button>
+    </form>
+  </div>
+
+  <div *ngIf="products.length > 0" class="catalog">
+    <div class="product" *ngFor="let product of products"
+         (mouseover)="onMouseOver(product)"
+         (mouseleave)="onMouseLeave()">
+      <img [src]="product.imagen" alt="{{ product.nombre }}"
+           onerror="this.onerror=null;this.src='path/to/default-image.jpg';">
+      <h2>{{ product.nombre }}</h2>
+      <p>{{ product.precio | currency }}</p>
+
+      <div class="actions" *ngIf="currentProduct && currentProduct.id === product.id">
+        <button (click)="onEdit(product)">Editar</button>
+        <button (click)="onDelete(product.id)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
