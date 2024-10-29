@@ -41,9 +41,11 @@ export class CatalogComponent implements OnInit {
   }
 
   loadProducts() {
+    if(this.productService.getProducts() !== null){
     this.productService.getProducts().subscribe((data: any) => {
       this.products = data;
-    });
+    }
+    );}
   }
 
   onFileSelected(event: Event, form: FormGroup): void {
