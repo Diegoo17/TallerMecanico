@@ -4,11 +4,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NavlogueadoComponent } from '../../navlogueado/navlogueado.component';
+import { NavsinlogueoComponent } from '../../navsinlogueo/navsinlogueo.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, NavlogueadoComponent,NavsinlogueoComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
