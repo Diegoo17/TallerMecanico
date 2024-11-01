@@ -2,21 +2,25 @@
 
 form {
   max-width: 30rem;
-  margin: 15rem auto;
+  margin: 4.2rem auto;
   padding: 4rem;
   background-color: #ffffff;
   border-radius: 0.5rem;
   box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
-  font-family: Arial, sans-serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  zoom: 140%;
 }
 
 h1 {
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: black;
   margin-bottom: 2rem;
+  font-size: 2.5rem;
 }
 
 div{
   margin-bottom: 0.5rem;
+  font-size: 1.15rem;
 }
 
 label {
@@ -45,8 +49,6 @@ button:hover {
   background-color: #0056b3;
   box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 14px 40px 0 rgba(0,0,0,0.19);
 }
-
-
 
 .error {
   color: red;

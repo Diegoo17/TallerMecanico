@@ -1,20 +1,24 @@
 
 form {
     max-width: 30rem;
-    margin: 10rem auto;
-    padding: 3rem;
+    margin: 4rem auto;
+    padding: 2rem;
     background-color: #ffffff;
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
-    font-family: Arial, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    zoom: 140%;
   }
+
   h1 {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: black;
     margin-bottom: 2rem;
   }
 
   div{
     margin-bottom: 0.5rem;
+    font-size: 1.15rem;
   }
 
   label {

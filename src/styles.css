@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-#principal{
-  background-color: aquamarine;
+html{
+  background: linear-gradient(rgb(28, 131, 131), rgb(179, 49, 49)80%);
+  max-height: max-content;
+  zoom: 100%;
 }
+
 
