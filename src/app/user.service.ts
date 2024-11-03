@@ -1,7 +1,7 @@
 import { User } from './Interface/user';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 
 
 @Injectable({
@@ -37,5 +37,20 @@ export class UserService {
 
   updateUsuario(id: string | null, usuario: User): Observable<User> {
     return this.http.put<User>(`${this.urlBase}/${id}`, usuario);
+  }
+
+  actualizarDatosPerfil(id: string, datosActualizados: Partial<User>): Observable<User> {
+    return this.http.get<User>(`${this.urlBase}/${id}`).pipe(
+      switchMap(usuarioActual => {
+        const usuarioActualizado: User = {
+          ...usuarioActual,
+          nombre: datosActualizados.nombre || usuarioActual.nombre,
+          email: datosActualizados.email || usuarioActual.email,
+          telefono: datosActualizados.telefono || usuarioActual.telefono,
+          password: datosActualizados.password || usuarioActual.password
+        };
+        return this.http.put<User>(`${this.urlBase}/${id}`, usuarioActualizado);
+      })
+    );
   }
 }

@@ -1,3 +1,4 @@
+
 <div class="nav-container">
   <app-navsinlogueo></app-navsinlogueo>
   <app-navlogueado></app-navlogueado>
@@ -54,9 +55,18 @@
             <button class="toggle-password" (click)="togglePassword()">
               <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
             </button>
+
+
+
           </div>
-        </div>
+        </div>            
+
       </div>
+              <div class="button-container">
+              <button class="edit-button" routerLink="/edit-profile">
+                <i class="fas fa-edit"></i> Modificar Datos
+              </button>
+            </div>
     </div>
   </div>
 </div>

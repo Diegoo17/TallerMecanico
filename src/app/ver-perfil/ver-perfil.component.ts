@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavsinlogueoComponent } from '../navsinlogueo/navsinlogueo.component';
 import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-ver-perfil',
@@ -13,7 +14,8 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     NavlogueadoComponent,
     NavsinlogueoComponent,
-    CommonModule
+    CommonModule,
+    RouterModule
 ],
   providers: [UserService],
   templateUrl: './ver-perfil.component.html',

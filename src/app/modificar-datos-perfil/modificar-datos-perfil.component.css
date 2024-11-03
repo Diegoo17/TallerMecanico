@@ -86,67 +86,31 @@
   margin-bottom: 5px;
 }
 
-.info-content p {
-  margin: 0;
+.info-content input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   font-size: 1.1em;
   color: #333;
-  font-weight: 500;
-}
-
-.password-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.toggle-password {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 20px;
-  background-color: #1976d2;
-  color: white;
-  font-size: 0.9em;
-  cursor: pointer;
+  background-color: white;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.toggle-password:hover {
-  background-color: #1565c0;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.toggle-password:active {
-  transform: translateY(0);
-}
-
-.toggle-password:focus {
+.info-content input:focus {
   outline: none;
-}
-
-.password-container p {
-  margin: 0;
-  font-family: monospace;
-  letter-spacing: 1px;
-}
-
-@media (max-width: 480px) {
-  .profile-card {
-    padding: 20px;
-  }
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
 }
 
 .button-container {
   display: flex;
-  justify-content: center;
+  gap: 15px;
   margin-top: 30px;
+  justify-content: center;
 }
 
-.edit-button {
+.save-button, .cancel-button {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -155,29 +119,43 @@
   border-radius: 20px;
   font-size: 1em;
   cursor: pointer;
-  background-color: #1976d2;
-  color: white;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.edit-button:hover {
-  background-color: #1565c0;
+.save-button {
+  background-color: #1976d2;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.save-button:hover, .cancel-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.edit-button:active {
+.save-button:hover {
+  background-color: #1565c0;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}
+
+.save-button:active, .cancel-button:active {
   transform: translateY(0);
 }
 
-.edit-button i {
-  font-size: 1.1em;
-}
-
 @media (max-width: 480px) {
-  .edit-button {
-    width: 100%;
-    justify-content: center;
+  .profile-card {
+    padding: 20px;
+  }
+  
+  .button-container {
+    flex-direction: column;
   }
 }
