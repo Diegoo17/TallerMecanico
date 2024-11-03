@@ -1,14 +1,6 @@
 {
   "users": [
     {
-      "nombre": "Juan",
-      "username": "juan123",
-      "email": "juan@gmail.com",
-      "telefono": "1234567890",
-      "password": "Password123",
-      "id": "73e7"
-    },
-    {
       "id": "ce41",
       "nombre": "Lukita Botete",
       "username": "lukitabot",
@@ -23,6 +15,14 @@
       "email": "afds@gmail.com",
       "telefono": "1111111111",
       "password": "1235444444As"
+    },
+    {
+      "id": "3ba1",
+      "nombre": "quimey d",
+      "username": "chimi",
+      "email": "chimin123@gmail.com",
+      "telefono": "2235777777",
+      "password": "Chimi777"
     }
   ],
   "products": [

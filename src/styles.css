@@ -1,8 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-html{
-  background: linear-gradient(rgb(28, 131, 131), rgb(179, 49, 49)80%);
-  max-height: max-content;
-  zoom: 100%;
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #1a1a2e 0%,
+    #16161e 50%,
+    #0f3460 100%
+  );
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
 
 

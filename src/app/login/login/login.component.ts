@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavlogueadoComponent } from '../../navlogueado/navlogueado.component';
 import { NavsinlogueoComponent } from '../../navsinlogueo/navsinlogueo.component';
+import { User } from '../../Interface/user';
 
 @Component({
   selector: 'app-login',
@@ -34,35 +35,26 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    
+
     const { username, password } = this.loginForm.value;
 
-    this.verificacionUsernameExistente(username).subscribe((usernameExists) => {
-      if (usernameExists) {
-        this.verificacionContraseñaExistente(password).subscribe((passwordExists) => {
-          if (passwordExists) {
-            //this.goMenuTurnos();
-            this.router.navigate(['/home']);
-          } else {
-            this.loginForm.get('password')?.setErrors({ incorrect: true });
-          }
-        });
+    this.verificacionUsernameExistente(username).subscribe((users) => {
+      if (users.length > 0) {
+        const user = users[0];
+        if (user.password === password) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.router.navigate(['/home']);
+        } else {
+          this.loginForm.get('password')?.setErrors({ incorrect: true });
+        }
       } else {
         this.loginForm.get('username')?.setErrors({ usernameExists: true });
       }
     });
   }
 
-  verificacionUsernameExistente(username: string): Observable<boolean> {
-    return this.http.get<any[]>(`http://localhost:3000/users?username=${username}`).pipe(
-      map(users => users.length > 0)
-    );
-  }
-
-  verificacionContraseñaExistente(password: string): Observable<boolean> {
-    return this.http.get<any[]>(`http://localhost:3000/users?password=${password}`).pipe(
-      map(users => users.length > 0)
-    );
+  verificacionUsernameExistente(username: string): Observable<User[]> {
+    return this.http.get<User[]>(`http://localhost:3000/users?username=${username}`);
   }
 
   goMenuTurnos() {

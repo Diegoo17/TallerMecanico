@@ -12,19 +12,20 @@ body {
 .container {
   background-color: #ffffff;
   margin: auto;
-  margin-top: 5rem;
-  padding: 30px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 110rem;
+  width: 90%;
+  max-width: 90rem;
 }
 
 h1 {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 3em;
+  margin-bottom: 2rem;
+  font-size: 2.5em;
 }
 
 form {
@@ -36,28 +37,28 @@ form {
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  gap: 8px;
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
 }
 
 #labelFormGroup{
-  margin-left: 24.5rem;
+  margin-left: 20rem;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 input[type="text"],
 input[type="number"],
 input[type="file"] {
-  width: 60rem;
-  padding: 10px;
+  width: 50rem;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
   margin: auto;
-  font-size: 1.6rem;
-  
+  font-size: 1.4rem;
+
 }
 
 input[type="text"]:focus,
@@ -87,17 +88,17 @@ button:hover {
 }
 
 .catalog {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 15px;
 }
 
 .product {
   background-color: #fafafa;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -114,12 +115,12 @@ button:hover {
 }
 
 .product h2 {
-  font-size: 2em;
+  font-size: 1.8em;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .product p {
-  font-size: 2em;
+  font-size: 1.8em;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -127,7 +128,7 @@ button:hover {
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
-  
+
 }
 
 .actions button {
@@ -137,4 +138,73 @@ button:hover {
 
 .actions button:hover {
   background-color: #ff4444;
+}
+
+/* Responsividad */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 85%;
+    margin-bottom: 3rem;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="file"] {
+    width: 40rem;
+  }
+
+  #labelFormGroup {
+    margin-left: 15rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 75%;
+    margin-bottom: 2.5rem;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="file"] {
+    width: 30rem;
+  }
+
+  #labelFormGroup {
+    margin-left: 10rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 65%;
+    margin-bottom: 2rem;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="file"] {
+    width: 20rem;
+  }
+
+  #labelFormGroup {
+    margin-left: 5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    max-width: 55%;
+    margin-bottom: 1.5rem;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="file"] {
+    width: 15rem;
+  }
+
+  #labelFormGroup {
+    margin-left: 3rem;
+  }
 }

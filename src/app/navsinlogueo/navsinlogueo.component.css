@@ -5,7 +5,7 @@
    text-decoration: none;
    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
  }
- 
+
  body {
     background: #34a0a4;
  }
@@ -21,10 +21,15 @@
  }
  .logo {
     float: left;
-    padding: 5px 20px 0;
+    height: 100%;
+    padding: 0 20px 0 0;
+    display: flex;
+    align-items: center;
  }
  .logo img {
-    height: 80px;
+    height: 90px;
+    width: auto;
+    object-fit: contain;
  }
  .logo img:hover {
     transform: scale(1.1);

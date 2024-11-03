@@ -2,9 +2,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    height: 90vh; /* Reducido de 100vh */
   }
 
   google-map {
     margin: auto;
+    max-width: 90%; /* Añadido para responsividad */
+  }
+
+  @media (max-width: 1200px) {
+    :host {
+        height: 80vh;
+    }
+  }
+
+  @media (max-width: 768px) {
+    :host {
+        height: 70vh;
+    }
   }
