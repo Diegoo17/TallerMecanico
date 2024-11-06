@@ -1,0 +1,18 @@
+<div class="comments-container">
+  <div class="comments-header">
+    <h2>Comentarios</h2>
+    <button class="create-button" (click)="navegarACrear()">Crear Comentario</button>
+  </div>
+
+  <div class="comments-list">
+    <div *ngFor="let comment of comments" class="comment-card">
+      <h3>{{ comment.titulo }}</h3>
+      <p>{{ comment.descripcion }}</p>
+      <small>Creado por: {{ comment.userName }}</small>
+    </div>
+  </div>
+
+  <button *ngIf="hasMore" class="load-more" (click)="cargarMas()">
+    Cargar más comentarios
+  </button>
+</div>
