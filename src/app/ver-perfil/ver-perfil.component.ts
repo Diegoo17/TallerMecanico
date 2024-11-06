@@ -41,7 +41,7 @@ export class VerPerfilComponent implements OnInit {
         (data) => {
           this.usuario = data || null;
         },
-        (error) => {
+        (error:Error) => {
           console.error('Error al cargar el perfil:', error);
           // Maneja el error, tal vez mostrando un mensaje al usuario
         }

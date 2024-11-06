@@ -44,10 +44,15 @@ export class CatalogComponent implements OnInit {
 
   loadProducts() {
     if(this.productService.getProducts() !== null){
-    this.productService.getProducts().subscribe((data: any) => {
+    this.productService.getProducts()?.subscribe({
+      next: (data: any)=> {
       this.products = data;
+    },
+      error: (err:any)=>{
+      console.error('Error al cargar productos: ', err);
+    },
     }
-    );}
+);}
   }
 
   onFileSelected(event: Event, form: FormGroup): void {
@@ -69,16 +74,26 @@ export class CatalogComponent implements OnInit {
     }
 
     if (this.isEditMode) {
-     this.productService.updateProduct(productToSave.id, productToSave).subscribe((response: any) => {
+     this.productService.updateProduct(productToSave.id, productToSave).subscribe({
+      next: (response: any) => {
        const index = this.products.findIndex(product => product.id === productToSave.id);
        this.products[index] = response;
        this.resetForm();
-      });
+      },
+      error: (err:any)=>{
+        console.error('Error al actualizar productos', err);
+      }
+    });
    } else {
-      this.productService.addProduct(productToSave).subscribe((response: any) => {
+      this.productService.addProduct(productToSave).subscribe({
+        next: (response: any) => {
         this.products.push(response);
-       this.resetForm();
-     });
+        this.resetForm();
+     },
+        error: (err:any) =>{
+          console.error('Error al añadir productos', err);
+        }
+    });
    }
   }
 
@@ -90,12 +105,17 @@ export class CatalogComponent implements OnInit {
 
   onEditSubmit() {
     const productToSave = { ...this.editForm.getRawValue() };
-    this.productService.updateProduct(productToSave.id, productToSave).subscribe((response: any) => {
+    this.productService.updateProduct(productToSave.id, productToSave).subscribe({
+      next:(response: any) => {
       const index = this.products.findIndex(product => product.id === productToSave.id);
       this.products[index] = response;
       this.resetForm();
       this.isEditMode = false;
-    });
+    },
+      error:(err:any)=>{
+        console.error('Error al guardar el producto',err);
+      },
+  });
   }
 
   onMouseOver(product: any) {
@@ -107,10 +127,15 @@ export class CatalogComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    this.productService.deleteProduct(id).subscribe(() => {
+    this.productService.deleteProduct(id).subscribe({
+      next:() => {
       this.products = this.products.filter(product => product.id !== id);
-    });
-  }
+    },
+      error:(err)=>{
+      console.error('Error al eliminar el producto:', err);
+      }
+  });
+}
 
   resetForm() {
     this.productForm.reset({

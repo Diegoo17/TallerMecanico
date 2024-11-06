@@ -58,7 +58,8 @@ export class RegisterComponent implements OnInit {
 
     const { email, username, telefono } = this.registerForm.value;
 
-    this.verificacionEmailExistente(email).subscribe((emailExists) => {
+    this.verificacionEmailExistente(email).subscribe({
+      next:(emailExists) => {
       if (emailExists) {
         this.registerForm.get('email')?.setErrors({ emailExists: true });
       } else {
@@ -84,7 +85,11 @@ export class RegisterComponent implements OnInit {
           }
         );
       }
-    });
+    },
+    error:(err:Error)=>{
+    console.error(err.message);
+    }
+  });
   }
 
 
@@ -127,7 +132,7 @@ export class RegisterComponent implements OnInit {
         this.goLogin();
         this.registerForm.reset();
       },
-      error: (error) => {
+      error: (error:Error) => {
         console.error('Error al guardar el usuario:', error);
         alert('Error al registrar el usuario, por favor intenta de nuevo.');
       },

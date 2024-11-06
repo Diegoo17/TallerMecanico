@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
 
     const { username, password } = this.loginForm.value;
 
-    this.verificacionUsernameExistente(username).subscribe((users) => {
+    this.verificacionUsernameExistente(username).subscribe({
+      next: (users) => {
       if (users.length > 0) {
         const user = users[0];
         if (user.password === password) {
@@ -50,7 +51,11 @@ export class LoginComponent implements OnInit {
       } else {
         this.loginForm.get('username')?.setErrors({ usernameExists: true });
       }
-    });
+    },
+    error: (err:Error)=>{
+      console.error(err.message)
+    }
+  });
   }
 
   verificacionUsernameExistente(username: string): Observable<User[]> {
