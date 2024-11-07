@@ -106,3 +106,20 @@ button:disabled {
     width: 100%;
   }
 }
+
+.caracteres-restantes {
+  display: block;
+  font-size: 14px;
+  color: #6c757d;
+  margin-top: 8px;
+  text-align: right;
+}
+
+.caracteres-restantes.warning {
+  color: #dc3545;
+  font-weight: 500;
+}
+
+textarea {
+  margin-bottom: 0; 
+}
