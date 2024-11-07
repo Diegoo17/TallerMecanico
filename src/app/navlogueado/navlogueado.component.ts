@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,13 +7,16 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './navlogueado.component.html',
-  styleUrl: './navlogueado.component.css'
+  styleUrls: ['./navlogueado.component.css']
 })
 export class NavlogueadoComponent {
   constructor(private router: Router) {}
 
   cerrarSesion() {
-    localStorage.removeItem('currentUser'); // o localStorage.clear() si quieres limpiar todo
-    this.router.navigate(['/home']);
+    if (confirm('¿Estás seguro que deseas cerrar sesión?')) {
+      localStorage.removeItem('currentUser');
+      this.router.navigate(['/home']);
+      window.location.reload();
+    }
   }
 }

@@ -1,0 +1,34 @@
+<div class="create-comment-container">
+  <h2>Crear Nuevo Comentario</h2>
+  
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input 
+        id="titulo" 
+        type="text" 
+        formControlName="titulo"
+        placeholder="Ingrese el título"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea 
+        id="descripcion" 
+        formControlName="descripcion"
+        placeholder="Ingrese la descripción"
+        rows="4"
+        [maxLength]="MAX_DESCRIPCION_LENGTH"
+      ></textarea>
+      <span class="caracteres-restantes" [ngClass]="{'warning': caracteresRestantes <= 20}">
+        {{ caracteresRestantes }} caracteres restantes
+      </span>
+    </div>
+
+    <div class="button-group">
+      <button type="submit" [disabled]="!commentForm.valid">Crear Comentario</button>
+      <button type="button" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>

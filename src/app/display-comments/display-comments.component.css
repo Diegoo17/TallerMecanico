@@ -1,0 +1,186 @@
+.comments-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.comments-header h2 {
+  font-size: 24px;
+  color: #343a40;
+  margin: 0;
+}
+
+.create-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.create-button:hover {
+  background-color: #0056b3;
+}
+
+.comment-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.comment-card:hover {
+  transform: translateY(-2px);
+}
+
+.comment-card:hover .delete-button {
+  opacity: 1;
+}
+
+.comment-card h3 {
+  color: #343a40;
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.comment-card p {
+  color: #6c757d;
+  margin: 0 0 15px 0;
+  line-height: 1.5;
+}
+
+.comment-card small {
+  color: #868e96;
+  font-style: italic;
+}
+
+.load-more {
+  width: 100%;
+  padding: 12px;
+  background-color: #e9ecef;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.load-more:hover {
+  background-color: #dee2e6;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.filter-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+  background-color: #5a6268;
+}
+
+.filter-button.active {
+  background-color: #28a745;
+}
+
+.filter-button.active:hover {
+  background-color: #218838;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-button:hover {
+  color: #c82333;
+}
+
+@media (max-width: 768px) {
+  .header-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .filter-button,
+  .create-button {
+    width: 100%;
+  }
+}
+
+/* Asegúrate de incluir Font Awesome en tu index.html */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.show-less {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.show-less:hover {
+  background-color: #5a6268;
+}
+
+@media (max-width: 768px) {
+  .button-container button {
+    width: 100%;
+  }
+}

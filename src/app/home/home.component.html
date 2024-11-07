@@ -1,7 +1,9 @@
-<app-navsinlogueo></app-navsinlogueo>
-<app-navlogueado></app-navlogueado>
-<div id="descripcion">
+<div class="nav-container">
+<app-navlogueado *ngIf="usuarioLogueado"></app-navlogueado>
+<app-navsinlogueo *ngIf="!usuarioLogueado"></app-navsinlogueo>
+</div>
 
+<div id="descripcion">
 <h1 class="Titulo" >Lubricentro SB</h1>
 <h3>A que nos dedicamos?</h3>
 
@@ -18,4 +20,4 @@
 </div>
   
   <app-map></app-map>
-
+  <app-display-comments></app-display-comments>
