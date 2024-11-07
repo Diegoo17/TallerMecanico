@@ -19,7 +19,11 @@
         formControlName="descripcion"
         placeholder="Ingrese la descripción"
         rows="4"
+        [maxLength]="MAX_DESCRIPCION_LENGTH"
       ></textarea>
+      <span class="caracteres-restantes" [ngClass]="{'warning': caracteresRestantes <= 20}">
+        {{ caracteresRestantes }} caracteres restantes
+      </span>
     </div>
 
     <div class="button-group">
