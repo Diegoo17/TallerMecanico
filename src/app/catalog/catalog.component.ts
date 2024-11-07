@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from './product.service';
 import { NavsinlogueoComponent } from '../navsinlogueo/navsinlogueo.component';
 import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
+import { Product } from '../Interface/product.interface';
 
 @Component({
   selector: 'app-catalog',
@@ -16,24 +17,24 @@ import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
   providers: [ProductService]
 })
 export class CatalogComponent implements OnInit {
-  products: any[] = [];
+  products: Product[] = [];
   productForm: FormGroup;
   editForm: FormGroup;
   currentProduct: any = null;
   isEditMode: boolean = false;
 
   constructor(private fb: FormBuilder, private productService: ProductService) {
-    this.productForm = this.fb.group({
+    this.productForm = this.fb.nonNullable.group({
       id: [null],
-      nombre: ['', Validators.required],
-      precio: [0, Validators.required],
+      nombre: ['', [Validators.required,Validators.minLength(3)]],
+      precio: [0, [Validators.required, Validators.min(1)]],
       imagen: ['', Validators.required]
     });
 
     this.editForm = this.fb.group({
       id: [{ value: null, disabled: true }],
       nombre: ['', Validators.required],
-      precio: [0, Validators.required],
+      precio: [0, [Validators.required, Validators.min(3)]],
       imagen: ['']
     });
   }
@@ -48,8 +49,8 @@ export class CatalogComponent implements OnInit {
       next: (data: any)=> {
       this.products = data;
     },
-      error: (err:any)=>{
-      console.error('Error al cargar productos: ', err);
+      error: (err:Error)=>{
+      console.error(err.message);
     },
     }
 );}
@@ -69,19 +70,21 @@ export class CatalogComponent implements OnInit {
   onSubmit() {
     const productToSave = { ...this.productForm.value };
 
+    if(this.productForm.invalid)return;
+
    if (productToSave.id === null) {
       delete productToSave.id;
     }
 
-    if (this.isEditMode) {
+    if (this.isEditMode && productToSave.id !=null) {
      this.productService.updateProduct(productToSave.id, productToSave).subscribe({
       next: (response: any) => {
        const index = this.products.findIndex(product => product.id === productToSave.id);
        this.products[index] = response;
        this.resetForm();
       },
-      error: (err:any)=>{
-        console.error('Error al actualizar productos', err);
+      error: (err:Error)=>{
+        console.error(err.message);
       }
     });
    } else {
@@ -90,8 +93,8 @@ export class CatalogComponent implements OnInit {
         this.products.push(response);
         this.resetForm();
      },
-        error: (err:any) =>{
-          console.error('Error al añadir productos', err);
+        error: (err:Error) =>{
+          console.error(err.message);
         }
     });
    }
@@ -112,8 +115,8 @@ export class CatalogComponent implements OnInit {
       this.resetForm();
       this.isEditMode = false;
     },
-      error:(err:any)=>{
-        console.error('Error al guardar el producto',err);
+      error:(err:Error)=>{
+        console.error(err.message);
       },
   });
   }
@@ -126,15 +129,17 @@ export class CatalogComponent implements OnInit {
     this.currentProduct = null;
   }
 
-  onDelete(id: number) {
+  onDelete(id: number | undefined) {
+    if (id != null){
     this.productService.deleteProduct(id).subscribe({
       next:() => {
       this.products = this.products.filter(product => product.id !== id);
     },
-      error:(err)=>{
-      console.error('Error al eliminar el producto:', err);
+      error:(err:Error)=>{
+      console.error(err.message);
       }
   });
+  }
 }
 
   resetForm() {
