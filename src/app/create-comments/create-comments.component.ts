@@ -13,14 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [CommentService],
   templateUrl: './create-comments.component.html',
   styleUrls: ['./create-comments.component.css']
 })
 export class CreateCommentsComponent {
   commentForm: FormGroup;
-  readonly MAX_DESCRIPCION_LENGTH = 280; // Límite de caracteres
-  caracteresRestantes = this.MAX_DESCRIPCION_LENGTH;
 
   constructor(
     private fb: FormBuilder,
@@ -29,16 +26,7 @@ export class CreateCommentsComponent {
   ) {
     this.commentForm = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(3)]],
-      descripcion: ['', [
-        Validators.required, 
-        Validators.minLength(10),
-        Validators.maxLength(this.MAX_DESCRIPCION_LENGTH)
-      ]]
-    });
-
-    // Suscribirse a los cambios en el campo descripción
-    this.commentForm.get('descripcion')?.valueChanges.subscribe(value => {
-      this.caracteresRestantes = this.MAX_DESCRIPCION_LENGTH - (value?.length || 0);
+      descripcion: ['', [Validators.required, Validators.minLength(10)]]
     });
   }
 

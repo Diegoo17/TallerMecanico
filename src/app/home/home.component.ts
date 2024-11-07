@@ -11,10 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, NavsinlogueoComponent, MapComponent, NavlogueadoComponent, DisplayCommentsComponent, HttpClientModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrl: './home.component.css'
 })
+
 export class HomeComponent {
-  get usuarioLogueado(): boolean {
-    return localStorage.getItem('currentUser') !== null;
-  }
+
+
 }

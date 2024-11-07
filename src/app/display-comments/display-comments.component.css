@@ -44,15 +44,10 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   margin-bottom: 20px;
   transition: transform 0.2s ease;
-  position: relative;
 }
 
 .comment-card:hover {
   transform: translateY(-2px);
-}
-
-.comment-card:hover .delete-button {
-  opacity: 1;
 }
 
 .comment-card h3 {
@@ -86,101 +81,4 @@
 
 .load-more:hover {
   background-color: #dee2e6;
-}
-
-.header-buttons {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.filter-button {
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-.filter-button:hover {
-  background-color: #5a6268;
-}
-
-.filter-button.active {
-  background-color: #28a745;
-}
-
-.filter-button.active:hover {
-  background-color: #218838;
-}
-
-.comment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.delete-button {
-  background: none;
-  border: none;
-  color: #dc3545;
-  cursor: pointer;
-  padding: 5px;
-  font-size: 16px;
-  transition: color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.delete-button:hover {
-  color: #c82333;
-}
-
-@media (max-width: 768px) {
-  .header-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .filter-button,
-  .create-button {
-    width: 100%;
-  }
-}
-
-/* Asegúrate de incluir Font Awesome en tu index.html */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-
-.button-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-  align-items: center;
-}
-
-.show-less {
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-.show-less:hover {
-  background-color: #5a6268;
-}
-
-@media (max-width: 768px) {
-  .button-container button {
-    width: 100%;
-  }
 }
