@@ -1,0 +1,29 @@
+
+<app-navlogueado></app-navlogueado>
+
+<div *ngIf="loading">Cargando turnos...</div>
+<div *ngIf="!loading">
+  <button (click)="sortTurnos()">Ordenar por fecha</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let turno of turnos">
+        <td>{{ turno.titulo }}</td>
+        <td>{{ turno.descripcion }}</td>
+        <td>{{ turno.fecha }}</td>
+        <td>{{ turno.hora }}</td>
+        <td>
+          <button (click)="deleteTurno(turno.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

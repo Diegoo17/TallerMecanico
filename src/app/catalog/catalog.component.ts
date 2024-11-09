@@ -3,9 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ProductService } from './product.service';
+
 import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
 import { Product } from '../Interface/product.interface';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-catalog',

@@ -7,6 +7,8 @@ import { VerPerfilComponent } from './ver-perfil/ver-perfil.component';
 import { ModificarDatosPerfilComponent } from './modificar-datos-perfil/modificar-datos-perfil.component';
 import { CreateCommentsComponent } from './create-comments/create-comments.component';
 import { DisplayCommentsComponent } from './display-comments/display-comments.component';
+import { ReservaTurnoFormComponent } from './reserva-turno-form/reserva-turno-form.component';
+import { ListarTodosLosTurnosComponent } from './listar-todos-los-turnos/listar-todos-los-turnos.component';
 
 
 export const routes: Routes = [
@@ -18,5 +20,9 @@ export const routes: Routes = [
   {path: 'edit-profile', component: ModificarDatosPerfilComponent},
   {path: 'create-comments', component: CreateCommentsComponent},
   {path: 'display-comments', component: DisplayCommentsComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full'}
+  {path: 'reservarTurno', component: ReservaTurnoFormComponent},
+  {path: 'turnos', component: ListarTodosLosTurnosComponent},
+
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];

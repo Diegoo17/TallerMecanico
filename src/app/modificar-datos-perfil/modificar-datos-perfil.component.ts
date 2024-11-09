@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { User } from '../Interface/user';
 import { CommonModule } from '@angular/common';
@@ -8,6 +7,7 @@ import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
 import { NavsinlogueoComponent } from '../navsinlogueo/navsinlogueo.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { map, Observable, firstValueFrom } from 'rxjs';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-modificar-datos-perfil',
