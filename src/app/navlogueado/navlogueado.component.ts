@@ -12,6 +12,19 @@ import { Router } from '@angular/router';
 export class NavlogueadoComponent {
   constructor(private router: Router) {}
 
+  navegarACatalogo() {
+    const userStr = localStorage.getItem('currentUser');
+    if (userStr) {
+      const user = JSON.parse(userStr);
+      // Si el ID es 'mec', es el mecánico
+      if (user.id === 'mec') {
+        this.router.navigate(['/catalog']);
+      } else {
+        this.router.navigate(['/catalogview']);
+      }
+    }
+  }
+
   cerrarSesion() {
     if (confirm('¿Estás seguro que deseas cerrar sesión?')) {
       localStorage.removeItem('currentUser');

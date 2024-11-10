@@ -23,9 +23,6 @@ export const routes: Routes = [
   {path: 'display-comments', component: DisplayCommentsComponent},
   {path: 'reservarTurno', component: ReservaTurnoFormComponent},
   {path: 'turnos', component: ListarTodosLosTurnosComponent},
-
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: '**', redirectTo: '/home', pathMatch: 'full'},
   {path: 'catalogview', component: CatalogUserViewComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];

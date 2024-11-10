@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductService } from '../catalog/product.service';
+import { ProductService } from '../services/product.service';
+import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
+import { NavsinlogueoComponent } from '../navsinlogueo/navsinlogueo.component';
+
 
 @Component({
   selector: 'app-catalog-user-view',
   standalone: true,
   templateUrl: './catalog.view.component.html',
   styleUrls: ['./catalog.view.component.css'],
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule,NavlogueadoComponent,NavsinlogueoComponent],
   providers: [ProductService]
 })
 
@@ -17,8 +20,8 @@ export class CatalogUserViewComponent implements OnInit {
   selectedProduct: any = null;
   window: any;
 
-  constructor(private productService: ProductService) {}
-
+  constructor() {}
+  productService= inject(ProductService)
   ngOnInit() {
     this.loadProducts();
   }
@@ -45,5 +48,9 @@ export class CatalogUserViewComponent implements OnInit {
       const url = this.contactUs();
       window.open(url, '_blank');
     }
+  }
+
+  get usuarioLogueado(): boolean {
+    return localStorage.getItem('currentUser') !== null;
   }
 }
