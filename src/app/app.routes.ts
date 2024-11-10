@@ -9,6 +9,7 @@ import { CreateCommentsComponent } from './create-comments/create-comments.compo
 import { DisplayCommentsComponent } from './display-comments/display-comments.component';
 import { ReservaTurnoFormComponent } from './reserva-turno-form/reserva-turno-form.component';
 import { ListarTodosLosTurnosComponent } from './listar-todos-los-turnos/listar-todos-los-turnos.component';
+import { CatalogUserViewComponent } from './catalog.view/catalog.view.component';
 
 
 export const routes: Routes = [
@@ -24,5 +25,7 @@ export const routes: Routes = [
   {path: 'turnos', component: ListarTodosLosTurnosComponent},
 
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: '**', redirectTo: '/home', pathMatch: 'full'}
+  {path: '**', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'catalogview', component: CatalogUserViewComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
