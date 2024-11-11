@@ -1,12 +1,24 @@
-
 <app-navlogueado></app-navlogueado>
 
-<div *ngIf="loading">Cargando turnos...</div>
 <div *ngIf="!loading">
+  <div class="filter-container">
+    <label for="filtroUsuario">Filtrar por usuario:</label>
+    <input
+      id="filtroUsuario"
+      type="text"
+      [(ngModel)]="usuarioFiltro"
+      (input)="filtrarTurnos()"
+      placeholder="Escribe el nombre de usuario"
+      class="filter-input"
+    />
+  </div>
+
   <button (click)="sortTurnos()">Ordenar por fecha</button>
+
   <table>
     <thead>
       <tr>
+        <th>Usuario</th>
         <th>Título</th>
         <th>Descripción</th>
         <th>Fecha</th>
@@ -15,15 +27,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let turno of turnos">
+      <tr *ngFor="let turno of turnosFiltrados" (click)="verDetalles(turno)">
+        <td>{{ turno.userName }}</td>
         <td>{{ turno.titulo }}</td>
         <td>{{ turno.descripcion }}</td>
         <td>{{ turno.fecha }}</td>
         <td>{{ turno.hora }}</td>
         <td>
-          <button (click)="deleteTurno(turno.id)">Eliminar</button>
+          <button (click)="deleteTurno(turno.id); $event.stopPropagation()">Eliminar</button>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <div *ngIf="turnoSeleccionado" class="card">
+    <button (click)="cerrarDetalles()" class="close-btn"></button>
+    <h3>Detalles del Turno</h3>
+    <p><strong>Usuario:</strong> {{ turnoSeleccionado.userName }}</p>
+    <p><strong>Título:</strong> {{ turnoSeleccionado.titulo }}</p>
+    <p><strong>Descripción:</strong> {{ turnoSeleccionado.descripcion }}</p>
+    <p><strong>Fecha:</strong> {{ turnoSeleccionado.fecha }}</p>
+    <p><strong>Hora:</strong> {{ turnoSeleccionado.hora }}</p>
+  </div>
 </div>

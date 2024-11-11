@@ -1,0 +1,33 @@
+<app-navlogueado></app-navlogueado>
+<div *ngIf="turnosFiltrados.length > 0; else noTurnos">
+    <table>
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Descripción</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let turno of turnosFiltrados">
+          <td>{{ turno.titulo }}</td>
+          <td>{{ turno.descripcion }}</td>
+          <td>{{ turno.fecha }}</td>
+          <td>{{ turno.hora }}</td>
+          <td>
+            <button (click)="editarTurno(turno)">Editar</button>
+            <button (click)="eliminarTurno(turno.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <ng-template #noTurnos>
+    <p>No tienes turnos registrados.</p>
+  </ng-template>
+  <input type="date" [(ngModel)]="fechaFiltro" (change)="filtrarPorFecha()" />
+  <button (click)="ordenarPorFechaReciente()">Ordenar por fecha reciente</button>
+  

@@ -37,7 +37,18 @@ export class ReservaTurnoFormComponent implements OnInit {
       return;
     }
 
-    const nuevoTurno = this.turnoForm.value;
+    const userStr = localStorage.getItem('currentUser');
+    if (!userStr) {
+      alert('Debe iniciar sesión para reservar un turno');
+      return;
+    }
+
+    const user = JSON.parse(userStr);
+    const nuevoTurno = {
+      ...this.turnoForm.value,
+      userId: user.id,
+      userName: user.nombre
+    };
 
     this.verificarTurnoExistente(nuevoTurno.fecha, nuevoTurno.hora).subscribe((turnoExists) => {
       if (turnoExists) {
@@ -67,6 +78,7 @@ export class ReservaTurnoFormComponent implements OnInit {
       },
     });
   }
+
   private validarFechaFutura() {
     return (control: AbstractControl): ValidationErrors | null => {
       const fechaSeleccionada = new Date(control.value);
@@ -77,12 +89,11 @@ export class ReservaTurnoFormComponent implements OnInit {
       }
   
       const anioSeleccionado = fechaSeleccionada.getFullYear();
-      if (anioSeleccionado > 2030) {
+      if (anioSeleccionado > 2025) {
         return { añoNoValido: true }; 
       }
   
       return null;
     };
   }
-  
 }

@@ -3,5 +3,6 @@ export interface Turno{
     titulo: string;
     descripcion: string;
     fecha: string;
-    hora: string
+    hora: string,
+    idUsuario: string
 }
