@@ -1,0 +1,23 @@
+<div class="nav-container">
+  <app-navlogueado *ngIf="usuarioLogueado"></app-navlogueado>
+  <app-navsinlogueo *ngIf="!usuarioLogueado"></app-navsinlogueo>
+  </div>
+  
+<div class="container">
+  <h1>Catálogo de Productos</h1>
+  <div class="catalog">
+    <div class="product" *ngFor="let product of products" (click)="onSelect(product)">
+      <img [src]="product.imagen" alt="{{ product.nombre }}" onerror="this.onerror=null;this.src='path/to/default-image.jpg';">
+      <h2>{{ product.nombre }}</h2>
+    </div>
+  </div>
+
+  <div class="product-card" *ngIf="selectedProduct">
+    <div class="card-content">
+      <img [src]="selectedProduct.imagen" alt="{{ selectedProduct.nombre }}" onerror="this.onerror=null;this.src='path/to/default-image.jpg';">
+      <h2>{{ selectedProduct.nombre }}</h2>
+      <p>{{ selectedProduct.precio | currency }}</p>
+      <button class="whatsapp-button" (click)="openWhatsApp()">Contactenos</button>
+    </div>
+  </div>
+</div>
