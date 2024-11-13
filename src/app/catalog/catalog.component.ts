@@ -3,9 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
-import { Product } from '../Interface/product.interface';
 import { ProductService } from '../services/product.service';
+import { Product } from '../Interface/product.interface';
 
 @Component({
   selector: 'app-catalog',
