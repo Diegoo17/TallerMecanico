@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { CataloglistComponent } from '../cataloglist/cataloglist.component';
 import { CatalogaddComponent } from '../catalogadd/catalogadd.component';
 import { CatalogeditComponent } from '../catalogedit/catalogedit.component';

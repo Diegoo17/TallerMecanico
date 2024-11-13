@@ -14,7 +14,7 @@
     @if(productForm.get('precio')?.hasError('required') && productForm.get('precio')?.touched){
       Precio es requerido.
     }
-    @if(productForm.get('precio')?.hasError('min')){
+    @if(productForm.get('precio')?.hasError('min')&&productForm.get('precio')?.dirty){
       Ingrese un valor valido.
     }
   </div>
