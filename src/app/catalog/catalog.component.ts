@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../Interface/product.interface';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { CataloglistComponent } from '../cataloglist/cataloglist.component';
 import { CatalogaddComponent } from '../catalogadd/catalogadd.component';
 import { CatalogeditComponent } from '../catalogedit/catalogedit.component';
@@ -9,7 +10,8 @@ import { CatalogeditComponent } from '../catalogedit/catalogedit.component';
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule, CataloglistComponent, CatalogaddComponent,CatalogeditComponent],
+  imports: [CommonModule, CataloglistComponent, CatalogaddComponent,CatalogeditComponent, HttpClientModule],
+  providers:[ProductService],
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css'],
 })
