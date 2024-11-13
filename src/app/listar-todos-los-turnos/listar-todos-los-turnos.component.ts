@@ -19,6 +19,8 @@ export class ListarTodosLosTurnosComponent implements OnInit {
   usuarioFiltro: string = '';
   ordenActual: 'reciente' | 'antiguo' = 'reciente';
   loading: boolean = true;
+  tipoFiltroFecha: 'dia' | 'mes' = 'dia';
+  mesAnoFiltro: string = '';
 
   constructor(private turnoService: TurnoService) {}
 
@@ -83,12 +85,18 @@ export class ListarTodosLosTurnosComponent implements OnInit {
   }
 
   filtrarPorFecha() {
-    if (this.fechaFiltro) {
+    if (this.tipoFiltroFecha === 'dia' && this.fechaFiltro) {
       this.turnosFiltrados = this.turnos.filter(turno => turno.fecha === this.fechaFiltro);
+    } else if (this.tipoFiltroFecha === 'mes' && this.mesAnoFiltro) {
+      const [year, month] = this.mesAnoFiltro.split('-');
+      this.turnosFiltrados = this.turnos.filter(turno => {
+        const [turnoYear, turnoMonth] = turno.fecha.split('-');
+        return turnoYear === year && turnoMonth === month;
+      });
     } else {
       this.turnosFiltrados = [...this.turnos];
     }
-    
+
     if (this.ordenActual === 'reciente') {
       this.ordenarPorFechaReciente();
     } else {
@@ -98,6 +106,7 @@ export class ListarTodosLosTurnosComponent implements OnInit {
 
   limpiarFiltro() {
     this.fechaFiltro = '';
+    this.mesAnoFiltro = '';
     this.turnosFiltrados = [...this.turnos];
     if (this.ordenActual === 'reciente') {
       this.ordenarPorFechaReciente();
@@ -105,12 +114,19 @@ export class ListarTodosLosTurnosComponent implements OnInit {
       this.ordenarPorFechaAntigua();
     }
   }
-  
+
+  cambiarTipoFiltro(tipo: 'dia' | 'mes') {
+    this.tipoFiltroFecha = tipo;
+    this.fechaFiltro = '';
+    this.mesAnoFiltro = '';
+    this.filtrarPorFecha();
+  }
+
   filtrarTurnos() {
     this.turnosFiltrados = this.turnos.filter(turno => {
       const coincideFecha = this.fechaFiltro ? turno.fecha === this.fechaFiltro : true;
-      const coincideUsuario = this.usuarioFiltro ? 
-                              turno.userName.toLowerCase().includes(this.usuarioFiltro.toLowerCase()) : 
+      const coincideUsuario = this.usuarioFiltro ?
+                              turno.userName.toLowerCase().includes(this.usuarioFiltro.toLowerCase()) :
                               true;
       return coincideFecha && coincideUsuario;
     });
@@ -123,6 +139,6 @@ export class ListarTodosLosTurnosComponent implements OnInit {
   }
   limpiarFiltroUsuario() {
     this.usuarioFiltro = '';
-    this.filtrarTurnos(); 
+    this.filtrarTurnos();
   }
 }

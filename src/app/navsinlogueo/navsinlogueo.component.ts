@@ -10,6 +10,5 @@ import { Router } from '@angular/router';
   styleUrl: './navsinlogueo.component.css'
 })
 export class NavsinlogueoComponent {
-
-
+  constructor(private router: Router) {}
 }

@@ -1,14 +1,14 @@
 
 <div class="controles-container">
   <div class="botones-ordenamiento">
-    <button 
+    <button
       *ngIf="ordenActual === 'antiguo'"
       (click)="ordenarPorFechaReciente()"
       class="boton-ordenar"
     >
       <i class="fas fa-sort-amount-down"></i> Más recientes
     </button>
-    <button 
+    <button
       *ngIf="ordenActual === 'reciente'"
       (click)="ordenarPorFechaAntigua()"
       class="boton-ordenar"
@@ -16,23 +16,51 @@
       <i class="fas fa-sort-amount-up"></i> Más antiguos
     </button>
   </div>
-  
+
   <div class="filtro-fecha">
-    <label for="fechaFiltro">Filtrar por fecha:</label>
-    <input 
-      type="date" 
-      id="fechaFiltro" 
-      [(ngModel)]="fechaFiltro" 
-      (change)="filtrarPorFecha()"
-      class="input-fecha"
-    >
-    <button 
-      *ngIf="fechaFiltro" 
-      (click)="limpiarFiltro()" 
-      class="boton-limpiar"
-    >
-      <i class="fas fa-times"></i> Limpiar filtro
-    </button>
+    <label>Filtrar por fecha:</label>
+    <div class="tipo-filtro-buttons">
+      <button
+        [class.active]="tipoFiltroFecha === 'dia'"
+        (click)="cambiarTipoFiltro('dia')"
+        class="tipo-filtro-btn"
+      >
+        Por día
+      </button>
+      <button
+        [class.active]="tipoFiltroFecha === 'mes'"
+        (click)="cambiarTipoFiltro('mes')"
+        class="tipo-filtro-btn"
+      >
+        Por mes
+      </button>
+    </div>
+
+    <div class="input-fecha-container">
+      <input
+        *ngIf="tipoFiltroFecha === 'dia'"
+        type="date"
+        id="fechaFiltro"
+        [(ngModel)]="fechaFiltro"
+        (change)="filtrarPorFecha()"
+        class="input-fecha"
+      >
+      <input
+        *ngIf="tipoFiltroFecha === 'mes'"
+        type="month"
+        id="mesAnoFiltro"
+        [(ngModel)]="mesAnoFiltro"
+        (change)="filtrarPorFecha()"
+        class="input-fecha"
+      >
+      <button
+        *ngIf="fechaFiltro || mesAnoFiltro"
+        (click)="limpiarFiltro()"
+        class="boton-limpiar"
+      >
+        <i class="fas fa-times"></i> Limpiar filtro
+      </button>
+    </div>
   </div>
 </div>
 
@@ -48,21 +76,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let turno of turnosFiltrados" 
+        <tr *ngFor="let turno of turnosFiltrados"
             [class.turno-pasado]="esTurnoPasado(turno.fecha, turno.hora)">
           <td>{{ turno.titulo }}</td>
-          <td>{{ turno.descripcion }}</td>
+          <td class="descripcion-cell">
+            <div class="descripcion-truncada" (click)="verDescripcionCompleta(turno.descripcion)">
+              {{ turno.descripcion }}
+            </div>
+          </td>
           <td>{{ turno.fecha }}</td>
           <td>{{ turno.hora }}</td>
           <td>
-            <button 
+            <button
               (click)="editarTurno(turno)"
               [disabled]="esTurnoPasado(turno.fecha, turno.hora)"
               [class.boton-deshabilitado]="esTurnoPasado(turno.fecha, turno.hora)"
             >
               Editar
             </button>
-            <button 
+            <button
               class="eliminar"
               (click)="eliminarTurno(turno)"
               [disabled]="esTurnoPasado(turno.fecha, turno.hora)"
@@ -75,8 +107,15 @@
       </tbody>
     </table>
   </div>
-  
+
   <ng-template #noTurnos>
     <p>No tienes turnos registrados.</p>
   </ng-template>
-  
+
+  <div class="modal-overlay" *ngIf="mostrarModal" (click)="cerrarModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="cerrarModal()">×</button>
+      <h3>Descripción completa</h3>
+      <p>{{ descripcionSeleccionada }}</p>
+    </div>
+  </div>

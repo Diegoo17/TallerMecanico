@@ -13,10 +13,12 @@ import { TurnoService } from '../services/turno.service';
   providers: [TurnoService],
   templateUrl: './reserva-turno-form.component.html',
   styleUrls: ['./reserva-turno-form.component.css'],
-  
+
 })
 export class ReservaTurnoFormComponent implements OnInit {
   turnoForm!: FormGroup;
+  maxCaracteres = 200;
+  caracteresRestantes = this.maxCaracteres;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,15 +29,19 @@ export class ReservaTurnoFormComponent implements OnInit {
   ngOnInit(): void {
     this.turnoForm = this.formBuilder.group({
       titulo: ['', Validators.required],
-      descripcion: ['', Validators.required],
-      fecha: ['', [Validators.required, this.validarFechaFutura()]], 
-      hora: ['', [Validators.required, Validators.pattern(/^(1[3-9]|1[0-9]):[0-5][0-9]$/)]], 
+      descripcion: ['', [Validators.required, Validators.maxLength(this.maxCaracteres)]],
+      fecha: ['', [Validators.required, this.validarFechaFutura()]],
+      hora: ['', [Validators.required, Validators.pattern(/^(1[3-9]|1[0-9]):[0-5][0-9]$/)]],
+    });
+
+    this.turnoForm.get('descripcion')?.valueChanges.subscribe(value => {
+      this.caracteresRestantes = this.maxCaracteres - (value?.length || 0);
     });
   }
 
   onSubmit() {
     if (this.turnoForm.invalid) {
-      this.turnoForm.markAllAsTouched(); 
+      this.turnoForm.markAllAsTouched();
       return;
     }
 
@@ -79,16 +85,16 @@ export class ReservaTurnoFormComponent implements OnInit {
     return (control: AbstractControl): ValidationErrors | null => {
       const fechaSeleccionada = new Date(control.value);
       const fechaActual = new Date();
-  
+
       if (fechaSeleccionada <= fechaActual) {
-        return { fechaNoValida: true }; 
+        return { fechaNoValida: true };
       }
-  
+
       const anioSeleccionado = fechaSeleccionada.getFullYear();
       if (anioSeleccionado > 2025) {
-        return { añoNoValido: true }; 
+        return { añoNoValido: true };
       }
-  
+
       return null;
     };
   }

@@ -2,13 +2,13 @@ table {
     width: 100%;
     border-collapse: collapse;
   }
-  
+
   th, td {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid #ccc;
   }
-  
+
   button {
     background-color: rgb(70, 235, 254);
     color: black;
@@ -16,34 +16,34 @@ table {
     padding: 0.5rem;
     cursor: pointer;
   }
-  
+
   button:hover {
     background-color: rgb(0, 147, 147);
   }
-  
+
   button:focus {
     outline: none;
   }
-  
+
   thead {
     background-color: #f0f0f0;
   }
-  
+
   th {
     font-weight: bold;
   }
-  
+
   tr:nth-child(even) {
     background-color: #f9f9f9;
   }
   tbody{
     background-color: grey;
   }
-  
+
   td {
-    word-wrap: break-word; 
+    word-wrap: break-word;
     max-width: 200px;
-    overflow: hidden; 
+    overflow: hidden;
     text-overflow: ellipsis;
   }
 
@@ -299,7 +299,7 @@ button:disabled {
 
 @media (max-width: 48rem) {
   /* ... otros estilos responsive ... */
-  
+
   td button {
     padding: 0.5rem;
     font-size: 0.9rem;
@@ -308,5 +308,144 @@ button:disabled {
 
   td button:last-child {
     margin-bottom: 0;
+  }
+}
+
+.filtro-usuario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.filtro-usuario label {
+  font-weight: 500;
+  color: #495057;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  color: #adb5bd;
+}
+
+.input-usuario {
+  width: 100%;
+  padding: 0.8rem 2.5rem;
+  border: 2px solid rgb(70, 235, 254);
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.input-usuario:focus {
+  outline: none;
+  border-color: rgb(0, 147, 147);
+  box-shadow: 0 0 0 3px rgba(0, 147, 147, 0.1);
+}
+
+.input-usuario::placeholder {
+  color: #adb5bd;
+}
+
+.boton-limpiar-usuario {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #dc3545;
+  padding: 0.3rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.boton-limpiar-usuario:hover {
+  background-color: #dc3545;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Actualizar los media queries existentes */
+@media (max-width: 768px) {
+  .controles-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .filtro-usuario {
+    max-width: 100%;
+  }
+
+  .input-usuario {
+    font-size: 0.9rem;
+    padding: 0.7rem 2.5rem;
+  }
+}
+
+/* Añadir estos estilos */
+.tipo-filtro-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tipo-filtro-btn {
+  padding: 0.5rem 1rem;
+  border: 2px solid rgb(70, 235, 254);
+  background-color: white;
+  color: #333;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tipo-filtro-btn:hover {
+  background-color: rgb(70, 235, 254);
+  color: black;
+}
+
+.tipo-filtro-btn.active {
+  background-color: rgb(70, 235, 254);
+  color: black;
+}
+
+.input-fecha-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Actualizar el estilo existente */
+.filtro-fecha {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .input-fecha-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .input-fecha {
+    width: 100%;
+  }
+
+  .boton-limpiar {
+    width: 100%;
   }
 }

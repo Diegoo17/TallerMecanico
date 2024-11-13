@@ -1,5 +1,5 @@
 
-  
+
 <div class="container">
   <h1>Catálogo de Productos</h1>
   <div class="catalog">
@@ -10,11 +10,14 @@
   </div>
 
   <div class="product-card" *ngIf="selectedProduct">
+    <button class="close-button" (click)="onSelect(null)">×</button>
     <div class="card-content">
       <img [src]="selectedProduct.imagen" alt="{{ selectedProduct.nombre }}" onerror="this.onerror=null;this.src='path/to/default-image.jpg';">
       <h2>{{ selectedProduct.nombre }}</h2>
       <p>{{ selectedProduct.precio | currency }}</p>
-      <button class="whatsapp-button" (click)="openWhatsApp()">Contactenos</button>
+      <button class="whatsapp-button" (click)="openWhatsApp()">
+        <i class="fab fa-whatsapp"></i> Contáctenos por WhatsApp
+      </button>
     </div>
   </div>
 </div>

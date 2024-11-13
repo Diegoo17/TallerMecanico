@@ -2,8 +2,8 @@
   <div class="comments-header">
     <h2>Comentarios</h2>
     <div class="header-buttons" *ngIf="usuarioLogueado">
-      <button 
-        class="filter-button" 
+      <button
+        class="filter-button"
         (click)="toggleFiltroMisComentarios()"
         [class.active]="mostrarSoloMisComentarios"
       >
@@ -16,10 +16,22 @@
   </div>
 
   <div class="comments-list">
+    <div *ngIf="mostrarSoloMisComentarios && filteredComments.length === 0"
+         class="comment-card empty-comments">
+      <div class="empty-comments-content">
+        <i class="fas fa-comments"></i>
+        <h3>Todavía no tienes comentarios propios</h3>
+        <p>¡Sé el primero en compartir tu opinión!</p>
+        <button class="create-comment-button" (click)="navegarACrear()">
+          <i class="fas fa-plus"></i> Crear mi primer comentario
+        </button>
+      </div>
+    </div>
+
     <div *ngFor="let comment of filteredComments" class="comment-card">
       <div class="comment-header">
         <h3>{{ comment.titulo }}</h3>
-        <button 
+        <button
           *ngIf="puedeEliminar(comment)"
           class="delete-button"
           (click)="eliminarComentario(comment.id!)"
@@ -33,16 +45,16 @@
   </div>
 
   <div class="button-container">
-    <button 
-      *ngIf="hasMore && !mostrarSoloMisComentarios" 
-      class="load-more" 
+    <button
+      *ngIf="hasMore && !mostrarSoloMisComentarios"
+      class="load-more"
       (click)="cargarMas()"
     >
       Cargar más comentarios
     </button>
 
-    <button 
-      *ngIf="mostrarBotonMenos" 
+    <button
+      *ngIf="mostrarBotonMenos"
       class="show-less"
       (click)="mostrarMenos()"
     >

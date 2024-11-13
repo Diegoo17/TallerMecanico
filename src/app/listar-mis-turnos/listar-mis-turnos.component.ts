@@ -20,6 +20,10 @@ export class ListarMisTurnosComponent {
   userId: string | null = '';
   fechaFiltro: string = '';
   ordenActual: 'reciente' | 'antiguo' = 'reciente';
+  descripcionSeleccionada: string = '';
+  mostrarModal: boolean = false;
+  tipoFiltroFecha: 'dia' | 'mes' = 'dia';
+  mesAnoFiltro: string = '';
 
   constructor(
     private turnoService: TurnoService,
@@ -82,12 +86,18 @@ export class ListarMisTurnosComponent {
   }
 
   filtrarPorFecha() {
-    if (this.fechaFiltro) {
+    if (this.tipoFiltroFecha === 'dia' && this.fechaFiltro) {
       this.turnosFiltrados = this.turnos.filter(turno => turno.fecha === this.fechaFiltro);
+    } else if (this.tipoFiltroFecha === 'mes' && this.mesAnoFiltro) {
+      const [year, month] = this.mesAnoFiltro.split('-');
+      this.turnosFiltrados = this.turnos.filter(turno => {
+        const [turnoYear, turnoMonth] = turno.fecha.split('-');
+        return turnoYear === year && turnoMonth === month;
+      });
     } else {
       this.turnosFiltrados = [...this.turnos];
     }
-    
+
     if (this.ordenActual === 'reciente') {
       this.ordenarPorFechaReciente();
     } else {
@@ -115,11 +125,28 @@ export class ListarMisTurnosComponent {
 
   limpiarFiltro() {
     this.fechaFiltro = '';
+    this.mesAnoFiltro = '';
     this.turnosFiltrados = [...this.turnos];
     if (this.ordenActual === 'reciente') {
       this.ordenarPorFechaReciente();
     } else {
       this.ordenarPorFechaAntigua();
     }
+  }
+
+  verDescripcionCompleta(descripcion: string) {
+    this.descripcionSeleccionada = descripcion;
+    this.mostrarModal = true;
+  }
+
+  cerrarModal() {
+    this.mostrarModal = false;
+  }
+
+  cambiarTipoFiltro(tipo: 'dia' | 'mes') {
+    this.tipoFiltroFecha = tipo;
+    this.fechaFiltro = '';
+    this.mesAnoFiltro = '';
+    this.filtrarPorFecha();
   }
 }

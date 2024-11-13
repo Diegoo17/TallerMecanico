@@ -1,9 +1,9 @@
 
 <div class="container">
     <form [formGroup]="turnoForm" (ngSubmit)="onSubmit()">
-  
+
       <h1>Reserva de Turnos</h1>
-  
+
       <div>
         <label for="titulo">Título:</label>
         <input id="titulo" formControlName="titulo" />
@@ -11,15 +11,25 @@
           El título es obligatorio.
         </div>
       </div>
-    
+
       <div>
         <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" formControlName="descripcion"></textarea>
+        <div class="textarea-container">
+          <textarea
+            id="descripcion"
+            formControlName="descripcion"
+            [maxlength]="maxCaracteres"
+          ></textarea>
+          <span class="caracteres-contador">{{ caracteresRestantes }}</span>
+        </div>
         <div *ngIf="turnoForm.get('descripcion')?.hasError('required') && turnoForm.get('descripcion')?.touched" class="error">
           La descripción es obligatoria.
         </div>
+        <div *ngIf="turnoForm.get('descripcion')?.hasError('maxlength') && turnoForm.get('descripcion')?.touched" class="error">
+          La descripción no puede exceder los {{ maxCaracteres }} caracteres.
+        </div>
       </div>
-    
+
       <div>
         <label for="fecha">Fecha:</label>
         <input type="date" id="fecha" formControlName="fecha" />
@@ -33,7 +43,7 @@
           El año de la fecha no puede ser mayor a 2030.
         </div>
       </div>
-    
+
       <div>
         <label for="hora">Hora:</label>
         <select id="hora" formControlName="hora">
@@ -55,8 +65,7 @@
           Ya existe un turno reservado para esta fecha y hora.
         </div>
       </div>
-    
+
       <button type="submit" [disabled]="turnoForm.invalid">Reservar Turno</button>
     </form>
   </div>
-  
