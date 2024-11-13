@@ -35,6 +35,26 @@
       <i class="fas fa-times"></i> Limpiar filtro
     </button>
   </div>
+<!-- 
+     <div class="filtro-usuario">
+    <label for="usuarioFiltro">Filtrar por usuario:</label>
+    <input 
+      type="text" 
+      id="usuarioFiltro" 
+      [(ngModel)]="usuarioFiltro" 
+      (input)="filtrarTurnos()"
+      class="input-usuario"
+      placeholder="Nombre del cliente"
+    >
+    <div 
+      *ngIf="usuarioFiltro" 
+      (click)="limpiarFiltroUsuario()" 
+      class="boton-limpiar">
+      <i class="fas fa-times"></i> Limpiar filtro
+    </div>
+-->
+ 
+  
 </div>
 
 <div *ngIf="loading" class="loading">
