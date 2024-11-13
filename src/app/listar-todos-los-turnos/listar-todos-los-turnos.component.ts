@@ -16,6 +16,7 @@ export class ListarTodosLosTurnosComponent implements OnInit {
   turnos: any[] = [];
   turnosFiltrados: any[] = [];
   fechaFiltro: string = '';
+  usuarioFiltro: string = '';
   ordenActual: 'reciente' | 'antiguo' = 'reciente';
   loading: boolean = true;
 
@@ -103,5 +104,25 @@ export class ListarTodosLosTurnosComponent implements OnInit {
     } else {
       this.ordenarPorFechaAntigua();
     }
+  }
+  
+  filtrarTurnos() {
+    this.turnosFiltrados = this.turnos.filter(turno => {
+      const coincideFecha = this.fechaFiltro ? turno.fecha === this.fechaFiltro : true;
+      const coincideUsuario = this.usuarioFiltro ? 
+                              turno.userName.toLowerCase().includes(this.usuarioFiltro.toLowerCase()) : 
+                              true;
+      return coincideFecha && coincideUsuario;
+    });
+
+    if (this.ordenActual === 'reciente') {
+      this.ordenarPorFechaReciente();
+    } else {
+      this.ordenarPorFechaAntigua();
+    }
+  }
+  limpiarFiltroUsuario() {
+    this.usuarioFiltro = '';
+    this.filtrarTurnos(); 
   }
 }
