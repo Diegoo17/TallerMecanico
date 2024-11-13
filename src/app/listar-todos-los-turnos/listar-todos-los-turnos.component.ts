@@ -1,38 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
 import { FormsModule } from '@angular/forms';
+import { TurnoService } from '../services/turno.service';
 
 @Component({
   selector: 'app-listar-todos-los-turnos',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, NavlogueadoComponent, FormsModule],
+  imports: [CommonModule, HttpClientModule, FormsModule],
+  providers: [TurnoService],
   templateUrl: './listar-todos-los-turnos.component.html',
   styleUrls: ['./listar-todos-los-turnos.component.css']
 })
-export class ListarTodosLosTurnosComponent {
+export class ListarTodosLosTurnosComponent implements OnInit {
   turnos: any[] = [];
   turnosFiltrados: any[] = [];
+  fechaFiltro: string = '';
+  ordenActual: 'reciente' | 'antiguo' = 'reciente';
   loading: boolean = true;
-  apiUrl: string = 'http://localhost:3000/turnosTotales';
-  usuarioFiltro: string = ''; 
-  turnoSeleccionado: any = null; 
 
-  constructor(private http: HttpClient) {}
+  constructor(private turnoService: TurnoService) {}
 
   ngOnInit() {
     this.loadTurnos();
   }
 
   loadTurnos() {
-    this.http.get<any[]>(this.apiUrl).subscribe(
+    this.turnoService.getTurnos().subscribe(
       (data) => {
-        this.turnos = data.map(turno => ({
-          ...turno,
-          fechaHora: new Date(`${turno.fecha}T${turno.hora}:00`),
-        }));
-        this.turnosFiltrados = this.turnos; 
+        this.turnos = data;
+        this.turnosFiltrados = this.turnos;
+        this.ordenarPorFechaReciente(); // Ordenar automáticamente al cargar
         this.loading = false;
       },
       (error) => {
@@ -42,36 +40,68 @@ export class ListarTodosLosTurnosComponent {
     );
   }
 
-  deleteTurno(id: string) {
+  esTurnoPasado(fecha: string, hora: string): boolean {
+    const fechaTurno = new Date(`${fecha}T${hora}`);
+    const ahora = new Date();
+    return fechaTurno < ahora;
+  }
+
+  eliminarTurno(turno: any) {
+    if (this.esTurnoPasado(turno.fecha, turno.hora)) {
+      alert('No se pueden eliminar turnos pasados');
+      return;
+    }
+
     if (confirm('¿Estás seguro de que deseas eliminar este turno?')) {
-      this.http.delete(`${this.apiUrl}/${id}`).subscribe(
+      this.turnoService.eliminarTurno(turno.id).subscribe(
         () => {
-          this.turnos = this.turnos.filter((turno) => turno.id !== id);
-          this.filtrarTurnos(); 
+          this.turnos = this.turnos.filter(t => t.id !== turno.id);
+          this.filtrarPorFecha();
         },
-        (error) => {
-          console.error('Error al eliminar el turno', error);
-        }
+        (error) => console.error('Error al eliminar el turno', error)
       );
     }
   }
 
-  sortTurnos() {
-    this.turnosFiltrados.sort((a, b) => a.fechaHora.getTime() - b.fechaHora.getTime());
+  ordenarPorFechaReciente() {
+    this.turnosFiltrados.sort((a, b) => {
+      const fechaA = new Date(`${a.fecha}T${a.hora}`);
+      const fechaB = new Date(`${b.fecha}T${b.hora}`);
+      return fechaB.getTime() - fechaA.getTime();
+    });
+    this.ordenActual = 'reciente';
   }
 
-  filtrarTurnos() {
-    const filtro = this.usuarioFiltro.toLowerCase();
-    this.turnosFiltrados = this.turnos.filter(turno =>
-      turno.userName.toLowerCase().includes(filtro)
-    );
-  }
-  
-  verDetalles(turno: any) {
-    this.turnoSeleccionado = turno;
+  ordenarPorFechaAntigua() {
+    this.turnosFiltrados.sort((a, b) => {
+      const fechaA = new Date(`${a.fecha}T${a.hora}`);
+      const fechaB = new Date(`${b.fecha}T${b.hora}`);
+      return fechaA.getTime() - fechaB.getTime();
+    });
+    this.ordenActual = 'antiguo';
   }
 
-  cerrarDetalles() {
-    this.turnoSeleccionado = null;
+  filtrarPorFecha() {
+    if (this.fechaFiltro) {
+      this.turnosFiltrados = this.turnos.filter(turno => turno.fecha === this.fechaFiltro);
+    } else {
+      this.turnosFiltrados = [...this.turnos];
+    }
+    
+    if (this.ordenActual === 'reciente') {
+      this.ordenarPorFechaReciente();
+    } else {
+      this.ordenarPorFechaAntigua();
+    }
+  }
+
+  limpiarFiltro() {
+    this.fechaFiltro = '';
+    this.turnosFiltrados = [...this.turnos];
+    if (this.ordenActual === 'reciente') {
+      this.ordenarPorFechaReciente();
+    } else {
+      this.ordenarPorFechaAntigua();
+    }
   }
 }

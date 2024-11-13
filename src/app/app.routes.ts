@@ -11,6 +11,7 @@ import { ReservaTurnoFormComponent } from './reserva-turno-form/reserva-turno-fo
 import { ListarTodosLosTurnosComponent } from './listar-todos-los-turnos/listar-todos-los-turnos.component';
 import { CatalogUserViewComponent } from './catalog.view/catalog.view.component';
 import { ListarMisTurnosComponent } from './listar-mis-turnos/listar-mis-turnos.component';
+import { ModificarTurnoComponent } from './modificar-turno/modificar-turno.component';
 
 
 export const routes: Routes = [
@@ -22,9 +23,10 @@ export const routes: Routes = [
   {path: 'edit-profile', component: ModificarDatosPerfilComponent},
   {path: 'create-comments', component: CreateCommentsComponent},
   {path: 'display-comments', component: DisplayCommentsComponent},
+  {path: 'catalogview', component: CatalogUserViewComponent},
   {path: 'reservarTurno', component: ReservaTurnoFormComponent},
   {path: 'turnos', component: ListarTodosLosTurnosComponent},
-  {path: 'catalogview', component: CatalogUserViewComponent},
   {path: 'misTurnos', component: ListarMisTurnosComponent},
+  {path: 'modificar-turno/:id', component: ModificarTurnoComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];

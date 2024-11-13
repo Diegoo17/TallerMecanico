@@ -4,21 +4,23 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
+import { TurnoService } from '../services/turno.service';
 
 @Component({
   selector: 'app-reserva-turno-form',
   standalone: true,
+  imports: [ReactiveFormsModule, HttpClientModule, CommonModule],
+  providers: [TurnoService],
   templateUrl: './reserva-turno-form.component.html',
   styleUrls: ['./reserva-turno-form.component.css'],
-  imports: [ReactiveFormsModule, HttpClientModule, CommonModule, NavlogueadoComponent],
+  
 })
 export class ReservaTurnoFormComponent implements OnInit {
   turnoForm!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
+    private turnoService: TurnoService,
     private router: Router
   ) {}
 
@@ -46,11 +48,11 @@ export class ReservaTurnoFormComponent implements OnInit {
     const user = JSON.parse(userStr);
     const nuevoTurno = {
       ...this.turnoForm.value,
-      userId: user.id,
+      idUsuario: user.id,
       userName: user.nombre
     };
 
-    this.verificarTurnoExistente(nuevoTurno.fecha, nuevoTurno.hora).subscribe((turnoExists) => {
+    this.turnoService.verificarTurnoExistente(nuevoTurno.fecha, nuevoTurno.hora).subscribe((turnoExists) => {
       if (turnoExists) {
         this.turnoForm.get('hora')?.setErrors({ turnoExistente: true });
       } else {
@@ -59,23 +61,17 @@ export class ReservaTurnoFormComponent implements OnInit {
     });
   }
 
-  verificarTurnoExistente(fecha: string, hora: string): Observable<boolean> {
-    return this.http
-      .get<any[]>(`http://localhost:3000/turnosTotales?fecha=${fecha}&hora=${hora}`)
-      .pipe(map((turnos) => turnos.length > 0));
-  }
-
   guardarTurno(turno: any) {
-    this.http.post('http://localhost:3000/turnosTotales', turno).subscribe({
+    this.turnoService.crearTurno(turno).subscribe({
       next: () => {
         alert("Turno reservado exitosamente!");
         this.turnoForm.reset();
-        this.router.navigate(['/']); 
+        this.router.navigate(['/']);
       },
       error: (error) => {
         console.error('Error al guardar el turno:', error);
         alert('Error al reservar el turno, por favor intenta de nuevo.');
-      },
+      }
     });
   }
 

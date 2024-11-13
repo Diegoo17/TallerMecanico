@@ -2,8 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from '../services/product.service';
-import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
-import { NavsinlogueoComponent } from '../navsinlogueo/navsinlogueo.component';
 
 
 @Component({
@@ -11,7 +9,7 @@ import { NavsinlogueoComponent } from '../navsinlogueo/navsinlogueo.component';
   standalone: true,
   templateUrl: './catalog.view.component.html',
   styleUrls: ['./catalog.view.component.css'],
-  imports: [CommonModule, HttpClientModule,NavlogueadoComponent,NavsinlogueoComponent],
+  imports: [CommonModule, HttpClientModule],
   providers: [ProductService]
 })
 

@@ -4,15 +4,13 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { NavsinlogueoComponent } from '../navsinlogueo/navsinlogueo.component';
-import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  imports: [ReactiveFormsModule, HttpClientModule, CommonModule,NavsinlogueoComponent,NavlogueadoComponent],
+  imports: [ReactiveFormsModule, HttpClientModule, CommonModule],
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;

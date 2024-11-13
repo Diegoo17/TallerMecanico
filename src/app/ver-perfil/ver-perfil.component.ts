@@ -2,8 +2,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { User } from '../Interface/user';
 import { HttpClientModule } from '@angular/common/http';
-import { NavsinlogueoComponent } from '../navsinlogueo/navsinlogueo.component';
-import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UserService } from '../services/user.service';
@@ -11,13 +9,7 @@ import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-ver-perfil',
   standalone: true,
-  imports: [
-    HttpClientModule,
-    NavlogueadoComponent,
-    NavsinlogueoComponent,
-    CommonModule,
-    RouterModule
-],
+  imports: [HttpClientModule,CommonModule,RouterModule],
   providers: [UserService],
   templateUrl: './ver-perfil.component.html',
   styleUrl: './ver-perfil.component.css'

@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
+import { TurnoService } from '../services/turno.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-mis-turnos',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, NavlogueadoComponent],
+  imports: [CommonModule, FormsModule, HttpClientModule],
+  providers:[TurnoService],
   templateUrl: './listar-mis-turnos.component.html',
   styleUrls: ['./listar-mis-turnos.component.css']
 })
@@ -16,9 +18,13 @@ export class ListarMisTurnosComponent {
   turnosFiltrados: any[] = [];
   apiUrl: string = 'http://localhost:3000/turnosTotales';
   userId: string | null = '';
-  fechaFiltro: string = ''; 
+  fechaFiltro: string = '';
+  ordenActual: 'reciente' | 'antiguo' = 'reciente';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private turnoService: TurnoService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     const userStr = localStorage.getItem('currentUser');
@@ -32,44 +38,88 @@ export class ListarMisTurnosComponent {
   }
 
   cargarTurnos() {
-    this.http.get<any[]>(this.apiUrl).subscribe(
-      (data) => {
-        this.turnos = data.filter(turno => turno.userId === this.userId);
-        this.turnosFiltrados = this.turnos;
-      },
-      (error) => {
-        console.error('Error al cargar los turnos', error);
-      }
-    );
+    if (this.userId) {
+      this.turnoService.getTurnosByUserId(this.userId).subscribe(
+        (data) => {
+          this.turnos = data;
+          this.turnosFiltrados = this.turnos;
+          this.ordenarPorFechaReciente();
+        },
+        (error) => console.error('Error al cargar los turnos', error)
+      );
+    }
   }
 
-  eliminarTurno(id: string) {
+  esTurnoPasado(fecha: string, hora: string): boolean {
+    const fechaTurno = new Date(`${fecha}T${hora}`);
+    const ahora = new Date();
+    return fechaTurno < ahora;
+  }
+
+  eliminarTurno(turno: any) {
+    if (this.esTurnoPasado(turno.fecha, turno.hora)) {
+      alert('No se pueden eliminar turnos pasados');
+      return;
+    }
+
     if (confirm('¿Estás seguro de que deseas eliminar este turno?')) {
-      this.http.delete(`${this.apiUrl}/${id}`).subscribe(
+      this.turnoService.eliminarTurno(turno.id).subscribe(
         () => {
-          this.turnos = this.turnos.filter(turno => turno.id !== id);
-          this.filtrarPorFecha(); 
+          this.turnos = this.turnos.filter(t => t.id !== turno.id);
+          this.filtrarPorFecha();
         },
-        (error) => {
-          console.error('Error al eliminar el turno', error);
-        }
+        (error) => console.error('Error al eliminar el turno', error)
       );
     }
   }
 
   editarTurno(turno: any) {
-    alert('Funcionalidad de editar turno en desarrollo.');
+    if (this.esTurnoPasado(turno.fecha, turno.hora)) {
+      alert('No se pueden editar turnos pasados');
+      return;
+    }
+    this.router.navigate(['/modificar-turno', turno.id]);
   }
 
   filtrarPorFecha() {
     if (this.fechaFiltro) {
       this.turnosFiltrados = this.turnos.filter(turno => turno.fecha === this.fechaFiltro);
     } else {
-      this.turnosFiltrados = [...this.turnos];  
+      this.turnosFiltrados = [...this.turnos];
+    }
+    
+    if (this.ordenActual === 'reciente') {
+      this.ordenarPorFechaReciente();
+    } else {
+      this.ordenarPorFechaAntigua();
     }
   }
 
   ordenarPorFechaReciente() {
-    this.turnosFiltrados.sort((b,a) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
+    this.turnosFiltrados.sort((a, b) => {
+      const fechaA = new Date(`${a.fecha}T${a.hora}`);
+      const fechaB = new Date(`${b.fecha}T${b.hora}`);
+      return fechaB.getTime() - fechaA.getTime();
+    });
+    this.ordenActual = 'reciente';
+  }
+
+  ordenarPorFechaAntigua() {
+    this.turnosFiltrados.sort((a, b) => {
+      const fechaA = new Date(`${a.fecha}T${a.hora}`);
+      const fechaB = new Date(`${b.fecha}T${b.hora}`);
+      return fechaA.getTime() - fechaB.getTime();
+    });
+    this.ordenActual = 'antiguo';
+  }
+
+  limpiarFiltro() {
+    this.fechaFiltro = '';
+    this.turnosFiltrados = [...this.turnos];
+    if (this.ordenActual === 'reciente') {
+      this.ordenarPorFechaReciente();
+    } else {
+      this.ordenarPorFechaAntigua();
+    }
   }
 }

@@ -10,13 +10,14 @@
             <ul class="hijos">
                 <li><a href="reservarTurno">Reserva</a></li>
                 <li><a href="misTurnos">Mis Turnos</a></li>
+                <li *ngIf="isMecanico"><a href="turnos">Todos los Turnos</a></li>
             </ul>
           </li>
           <li class="submenu">
             <a href="">Mi Perfil</a>
             <ul class="hijos">
               <li><a href="profile">Mis Datos</a></li>
-              <li><a (click)="cerrarSesion()" style="cursor: pointer;">Cerrar Sesión</a></li>
+              <li><a (click)="cerrarSesion()">Cerrar Sesión</a></li>
             </ul>
           </li>
         </ul>

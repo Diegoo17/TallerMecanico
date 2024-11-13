@@ -8,11 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-create-comments',
   standalone: true,
-  imports: [
-    CommonModule, 
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule,HttpClientModule],
   providers: [CommentService],
   templateUrl: './create-comments.component.html',
   styleUrls: ['./create-comments.component.css']

@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractContro
 import { Router } from '@angular/router';
 import { User } from '../Interface/user';
 import { CommonModule } from '@angular/common';
-import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
-import { NavsinlogueoComponent } from '../navsinlogueo/navsinlogueo.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { map, Observable, firstValueFrom } from 'rxjs';
 import { UserService } from '../services/user.service';
@@ -12,13 +10,7 @@ import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-modificar-datos-perfil',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    NavlogueadoComponent,
-    NavsinlogueoComponent,
-    HttpClientModule
-  ],
+  imports: [ReactiveFormsModule,CommonModule,HttpClientModule],
   providers: [UserService],
   templateUrl: './modificar-datos-perfil.component.html',
   styleUrls: ['./modificar-datos-perfil.component.css']

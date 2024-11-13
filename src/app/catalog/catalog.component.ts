@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { NavlogueadoComponent } from '../navlogueado/navlogueado.component';
 import { Product } from '../Interface/product.interface';
 import { ProductService } from '../services/product.service';
 
@@ -13,7 +12,7 @@ import { ProductService } from '../services/product.service';
   standalone: true,
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule,NavlogueadoComponent],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   providers: [ProductService]
 })
 export class CatalogComponent implements OnInit {

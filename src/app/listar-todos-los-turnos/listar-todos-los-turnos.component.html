@@ -1,24 +1,51 @@
-<app-navlogueado></app-navlogueado>
 
-<div *ngIf="!loading">
-  <div class="filter-container">
-    <label for="filtroUsuario">Filtrar por usuario:</label>
-    <input
-      id="filtroUsuario"
-      type="text"
-      [(ngModel)]="usuarioFiltro"
-      (input)="filtrarTurnos()"
-      placeholder="Escribe el nombre de usuario"
-      class="filter-input"
-    />
+
+<div class="controles-container">
+  <div class="botones-ordenamiento">
+    <button 
+      *ngIf="ordenActual === 'antiguo'"
+      (click)="ordenarPorFechaReciente()"
+      class="boton-ordenar"
+    >
+      <i class="fas fa-sort-amount-down"></i> Más recientes
+    </button>
+    <button 
+      *ngIf="ordenActual === 'reciente'"
+      (click)="ordenarPorFechaAntigua()"
+      class="boton-ordenar"
+    >
+      <i class="fas fa-sort-amount-up"></i> Más antiguos
+    </button>
   </div>
+  
+  <div class="filtro-fecha">
+    <label for="fechaFiltro">Filtrar por fecha:</label>
+    <input 
+      type="date" 
+      id="fechaFiltro" 
+      [(ngModel)]="fechaFiltro" 
+      (change)="filtrarPorFecha()"
+      class="input-fecha"
+    >
+    <button 
+      *ngIf="fechaFiltro" 
+      (click)="limpiarFiltro()" 
+      class="boton-limpiar"
+    >
+      <i class="fas fa-times"></i> Limpiar filtro
+    </button>
+  </div>
+</div>
 
-  <button (click)="sortTurnos()">Ordenar por fecha</button>
+<div *ngIf="loading" class="loading">
+  Cargando turnos...
+</div>
 
+<div *ngIf="!loading && turnosFiltrados.length > 0; else noTurnos">
   <table>
     <thead>
       <tr>
-        <th>Usuario</th>
+        <th>Cliente</th>
         <th>Título</th>
         <th>Descripción</th>
         <th>Fecha</th>
@@ -27,26 +54,28 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let turno of turnosFiltrados" (click)="verDetalles(turno)">
+      <tr *ngFor="let turno of turnosFiltrados" 
+          [class.turno-pasado]="esTurnoPasado(turno.fecha, turno.hora)">
         <td>{{ turno.userName }}</td>
         <td>{{ turno.titulo }}</td>
         <td>{{ turno.descripcion }}</td>
         <td>{{ turno.fecha }}</td>
         <td>{{ turno.hora }}</td>
         <td>
-          <button (click)="deleteTurno(turno.id); $event.stopPropagation()">Eliminar</button>
+          <button 
+            class="eliminar"
+            (click)="eliminarTurno(turno)"
+            [disabled]="esTurnoPasado(turno.fecha, turno.hora)"
+            [class.boton-deshabilitado]="esTurnoPasado(turno.fecha, turno.hora)"
+          >
+            Eliminar
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
-
-  <div *ngIf="turnoSeleccionado" class="card">
-    <button (click)="cerrarDetalles()" class="close-btn"></button>
-    <h3>Detalles del Turno</h3>
-    <p><strong>Usuario:</strong> {{ turnoSeleccionado.userName }}</p>
-    <p><strong>Título:</strong> {{ turnoSeleccionado.titulo }}</p>
-    <p><strong>Descripción:</strong> {{ turnoSeleccionado.descripcion }}</p>
-    <p><strong>Fecha:</strong> {{ turnoSeleccionado.fecha }}</p>
-    <p><strong>Hora:</strong> {{ turnoSeleccionado.hora }}</p>
-  </div>
 </div>
+
+<ng-template #noTurnos>
+  <p class="no-turnos">No hay turnos registrados.</p>
+</ng-template>

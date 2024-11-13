@@ -63,6 +63,7 @@
     padding: 12px 20px;
     transition: .3s linear;
     font-size: 1.5rem;
+    cursor: pointer;
  }
  .navegacion ul li a:hover {
     color: #00c9bd;

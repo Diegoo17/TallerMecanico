@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -9,14 +9,23 @@ import { Router } from '@angular/router';
   templateUrl: './navlogueado.component.html',
   styleUrls: ['./navlogueado.component.css']
 })
-export class NavlogueadoComponent {
+export class NavlogueadoComponent implements OnInit {
+  isMecanico: boolean = false;
+
   constructor(private router: Router) {}
+
+  ngOnInit() {
+    const userStr = localStorage.getItem('currentUser');
+    if (userStr) {
+      const user = JSON.parse(userStr);
+      this.isMecanico = user.id === 'mec';
+    }
+  }
 
   navegarACatalogo() {
     const userStr = localStorage.getItem('currentUser');
     if (userStr) {
       const user = JSON.parse(userStr);
-      // Si el ID es 'mec', es el mecánico
       if (user.id === 'mec') {
         this.router.navigate(['/catalog']);
       } else {
@@ -27,9 +36,10 @@ export class NavlogueadoComponent {
 
   cerrarSesion() {
     if (confirm('¿Estás seguro que deseas cerrar sesión?')) {
-      localStorage.removeItem('currentUser');
-      this.router.navigate(['/home']);
-      window.location.reload();
+      localStorage.clear();
+      this.router.navigate(['/home']).then(() => {
+        window.location.href = '/home';
+      });
     }
   }
 }
