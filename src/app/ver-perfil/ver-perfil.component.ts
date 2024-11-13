@@ -1,22 +1,25 @@
-
+import { UserService } from '../services/user.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { User } from '../Interface/user';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-ver-perfil',
   standalone: true,
-  imports: [HttpClientModule,CommonModule,RouterModule],
+  imports: [
+    HttpClientModule,
+    CommonModule,
+    RouterModule
+],
   providers: [UserService],
   templateUrl: './ver-perfil.component.html',
   styleUrl: './ver-perfil.component.css'
 })
 
 export class VerPerfilComponent implements OnInit {
-  currentUser: any;
+  currentUser: any; // Define el tipo según lo que necesites
   usuario : User | null = null;
   showPassword = false;
 

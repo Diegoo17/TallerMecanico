@@ -1,0 +1,21 @@
+<div *ngIf="product" class="edit-container">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="editNombre">Nombre del producto:</label>
+      <input type="text" id="editNombre" formControlName="nombre">
+    </div>
+
+    <div class="form-group">
+      <label for="editPrecio">Precio:</label>
+      <input type="number" id="editPrecio" formControlName="precio" step="1000">
+    </div>
+
+    <div class="form-group">
+      <label for="editImagen">Imagen:</label>
+      <input type="file" id="editImagen" (change)="onFileSelected($event)">
+    </div>
+
+    <button type="submit" [disabled]="editForm.invalid">Guardar Cambios</button>
+  </form>
+</div>
+
