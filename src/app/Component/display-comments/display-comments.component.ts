@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CommentService } from '../../Service/comment.service';
@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./display-comments.component.css']
 })
 export class DisplayCommentsComponent implements OnInit {
+  private commentService = inject(CommentService);
+  private router = inject(Router);
+
   allComments: Comment[] = [];
   comments: Comment[] = [];
   filteredComments: Comment[] = [];
@@ -26,10 +29,7 @@ export class DisplayCommentsComponent implements OnInit {
   mostrarSoloMisComentarios = false;
   currentUserId: string | null = null;
 
-  constructor(
-    private commentService: CommentService,
-    private router: Router
-  ) {
+  constructor() {
     const userStr = localStorage.getItem('currentUser');
     if (userStr) {
       const user = JSON.parse(userStr);

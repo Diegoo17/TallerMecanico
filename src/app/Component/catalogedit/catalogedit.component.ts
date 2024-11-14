@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../Interface/product.interface';
@@ -11,6 +11,8 @@ import { Product } from '../../Interface/product.interface';
   styleUrl: './catalogedit.component.css'
 })
 export class CatalogeditComponent implements OnChanges{
+  private fb = inject(FormBuilder);
+
   @Input() product:Product | null = null;
   @Output() save = new EventEmitter<Product>();
   @Output() cancel = new EventEmitter<void>();
@@ -20,7 +22,7 @@ export class CatalogeditComponent implements OnChanges{
   maxCaracteres=200;
   caracteresRestantes = this.maxCaracteres;
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.editForm = this.fb.group({
       id: [{ value: null, disabled: true }],
       nombre: ['', Validators.required],

@@ -55,6 +55,14 @@
       "email": "diego1@gmail.com",
       "telefono": "2222222222",
       "password": "Diego123"
+    },
+    {
+      "id": "ddcb",
+      "nombre": "fsafsa",
+      "username": "xd",
+      "email": "fasfas@gmail.com",
+      "telefono": "0223580912",
+      "password": "Holabotot1234"
     }
   ],
   "products": [
@@ -245,33 +253,6 @@
       "userName": "fdsa"
     },
     {
-      "id": "t004",
-      "titulo": "Diagnóstico general",
-      "descripcion": "Revisión completa del vehículo",
-      "fecha": "2024-03-28",
-      "hora": "14:00",
-      "idUsuario": "ce41",
-      "userName": "Lukita Botete"
-    },
-    {
-      "id": "t005",
-      "titulo": "Cambio de filtro de aire",
-      "descripcion": "Reemplazo de filtro de aire del motor",
-      "fecha": "2024-03-29",
-      "hora": "15:00",
-      "idUsuario": "3ba1",
-      "userName": "quimey d"
-    },
-    {
-      "id": "t006",
-      "titulo": "Cambio de bujías",
-      "descripcion": "Reemplazo de bujías y revisión del sistema de encendido",
-      "fecha": "2024-03-30",
-      "hora": "16:00",
-      "idUsuario": "f888",
-      "userName": "fdsa"
-    },
-    {
       "id": "t007",
       "titulo": "Servicio de aire acondicionado",
       "descripcion": "Recarga de gas y limpieza del sistema",
@@ -279,15 +260,6 @@
       "hora": "09:00",
       "idUsuario": "ce41",
       "userName": "Lukita Botete"
-    },
-    {
-      "id": "t008",
-      "titulo": "Cambio de correa de distribución",
-      "descripcion": "Reemplazo de la correa y componentes asociados",
-      "fecha": "2024-04-02",
-      "hora": "10:00",
-      "idUsuario": "3ba1",
-      "userName": "quimey d"
     },
     {
       "id": "t009",
@@ -323,7 +295,8 @@
       "fecha": "2024-11-25",
       "hora": "19:00",
       "idUsuario": "3e7f",
-      "userName": "Diego"
+      "userName": "Diego",
+      "vehiculo": "gsdgs"
     },
     {
       "id": "a57c",
@@ -332,7 +305,8 @@
       "fecha": "2024-11-20",
       "hora": "15:00",
       "idUsuario": "mec",
-      "userName": "Gustavo Mecánico"
+      "userName": "Gustavo Mecánico",
+      "vehiculo": "dfsf"
     },
     {
       "id": "989c",
@@ -341,15 +315,16 @@
       "fecha": "2024-11-28",
       "hora": "17:00",
       "idUsuario": "29a5",
-      "userName": "diego"
+      "userName": "diego",
+      "vehiculo": "xdxddxdxddx"
     },
     {
       "id": "4b69",
       "titulo": "reserva con auto",
-      "descripcion": "renoleta rota",
+      "descripcion": "renoleta rota xd",
       "fecha": "2024-12-01",
       "hora": "15:00",
-      "vehiculo": "renoleta",
+      "vehiculo": "fasfas",
       "idUsuario": "29a5",
       "userName": "diego"
     }

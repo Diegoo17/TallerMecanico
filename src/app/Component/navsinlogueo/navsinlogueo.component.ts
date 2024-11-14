@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,5 +10,5 @@ import { Router } from '@angular/router';
   styleUrl: './navsinlogueo.component.css'
 })
 export class NavsinlogueoComponent {
-  constructor(private router: Router) {}
+  private router = inject(Router);
 }

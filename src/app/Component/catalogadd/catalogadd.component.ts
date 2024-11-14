@@ -1,8 +1,7 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../Interface/product.interface';
-
 
 @Component({
   selector: 'app-catalogadd',
@@ -13,12 +12,14 @@ import { Product } from '../../Interface/product.interface';
 })
 
 export class CatalogaddComponent {
+  private fb = inject(FormBuilder);
+
   @Output() addProduct = new EventEmitter<Product>();
   productForm: FormGroup;
   maxCaracteres=200;
   caracteresRestantes = this.maxCaracteres;
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.productForm = this.fb.nonNullable.group({
       id: [null],
       nombre: ['', [Validators.required,Validators.minLength(3)]],

@@ -12,9 +12,8 @@ import { AuthService } from '../../Service/auth.service';
 })
 export class NavlogueadoComponent implements OnInit {
   isMecanico: boolean = false;
-  private authS=inject(AuthService);
-
-  constructor(private router: Router) {}
+  private router = inject(Router);
+  private authS = inject(AuthService);
 
   ngOnInit() {
     const userStr = localStorage.getItem('currentUser');

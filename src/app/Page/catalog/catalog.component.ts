@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ProductService } from '../../Service/product.service';
 import { Product } from '../../Interface/product.interface';
 
@@ -16,11 +16,11 @@ import { CommonModule } from '@angular/common';
   imports: [ CatalogeditComponent, CatalogaddComponent, CataloglistComponent, CommonModule]
 })
 export class CatalogComponent implements OnInit {
+  private productService = inject(ProductService);
+
   products: Product[] = [];
   currentProduct: Product | null = null;
   isEditMode: boolean = false;
-
-  constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.loadProducts();

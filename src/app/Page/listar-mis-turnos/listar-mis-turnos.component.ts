@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -9,11 +9,14 @@ import { Router } from '@angular/router';
   selector: 'app-listar-mis-turnos',
   standalone: true,
   imports: [CommonModule, FormsModule, HttpClientModule],
-  providers:[TurnoService],
+  providers: [TurnoService],
   templateUrl: './listar-mis-turnos.component.html',
   styleUrls: ['./listar-mis-turnos.component.css']
 })
-export class ListarMisTurnosComponent {
+export class ListarMisTurnosComponent implements OnInit {
+  private turnoService = inject(TurnoService);
+  private router = inject(Router);
+
   turnos: any[] = [];
   turnosFiltrados: any[] = [];
   apiUrl: string = 'http://localhost:3000/turnosTotales';
@@ -24,34 +27,76 @@ export class ListarMisTurnosComponent {
   mostrarModal: boolean = false;
   tipoFiltroFecha: 'dia' | 'mes' = 'dia';
   mesAnoFiltro: string = '';
-  turnoSeleccionado : any = null;
-
-  constructor(
-    private turnoService: TurnoService,
-    private router: Router
-  ) {}
+  turnoSeleccionado: any = null;
+  mostrarTurnosPasados: boolean = false;
+  loading: boolean = true;
+  isMecanico: boolean = false;
 
   ngOnInit() {
     const userStr = localStorage.getItem('currentUser');
     if (userStr) {
       const user = JSON.parse(userStr);
       this.userId = user.id;
-      this.cargarTurnos();
+      this.isMecanico = user.id === 'mec';
+      this.loadTurnos();
     } else {
       console.error('El usuario no está autenticado.');
     }
   }
 
-  cargarTurnos() {
+  loadTurnos() {
     if (this.userId) {
       this.turnoService.getTurnosByUserId(this.userId).subscribe(
         (data) => {
           this.turnos = data;
-          this.turnosFiltrados = this.turnos;
+          this.filtrarTurnosPasados();
           this.ordenarPorFechaReciente();
+          this.loading = false;
         },
-        (error) => console.error('Error al cargar los turnos', error)
+        (error) => {
+          console.error('Error al cargar los turnos', error);
+          this.loading = false;
+        }
       );
+    }
+  }
+
+  filtrarTurnosPasados() {
+    if (!this.mostrarTurnosPasados) {
+      this.turnosFiltrados = this.turnos.filter(turno => 
+        !this.esTurnoPasado(turno.fecha, turno.hora)
+      );
+    } else {
+      this.turnosFiltrados = [...this.turnos];
+    }
+    this.filtrarPorFecha();
+  }
+
+  toggleTurnosPasados() {
+    this.mostrarTurnosPasados = !this.mostrarTurnosPasados;
+    this.filtrarTurnosPasados();
+  }
+
+  filtrarPorFecha() {
+    let turnosFiltradosTemp = this.mostrarTurnosPasados ? [...this.turnos] : 
+      this.turnos.filter(turno => !this.esTurnoPasado(turno.fecha, turno.hora));
+
+    if (this.tipoFiltroFecha === 'dia' && this.fechaFiltro) {
+      turnosFiltradosTemp = turnosFiltradosTemp.filter(turno => turno.fecha === this.fechaFiltro);
+    } else if (this.tipoFiltroFecha === 'mes' && this.mesAnoFiltro) {
+      const [year, month] = this.mesAnoFiltro.split('-');
+      turnosFiltradosTemp = turnosFiltradosTemp.filter(turno => {
+        const [turnoYear, turnoMonth] = turno.fecha.split('-');
+        return turnoYear === year && turnoMonth === month;
+      });
+    }
+
+    this.turnosFiltrados = turnosFiltradosTemp;
+
+    if (this.ordenActual === 'reciente') {
+      this.ordenarPorFechaReciente();
+    } else {
+      this.ordenarPorFechaAntigua();
     }
   }
 
@@ -62,7 +107,7 @@ export class ListarMisTurnosComponent {
   }
 
   eliminarTurno(turno: any) {
-    if (this.esTurnoPasado(turno.fecha, turno.hora)) {
+    if (!this.isMecanico && this.esTurnoPasado(turno.fecha, turno.hora)) {
       alert('No se pueden eliminar turnos pasados');
       return;
     }
@@ -79,31 +124,11 @@ export class ListarMisTurnosComponent {
   }
 
   editarTurno(turno: any) {
-    if (this.esTurnoPasado(turno.fecha, turno.hora)) {
+    if (!this.isMecanico && this.esTurnoPasado(turno.fecha, turno.hora)) {
       alert('No se pueden editar turnos pasados');
       return;
     }
     this.router.navigate(['/modificar-turno', turno.id]);
-  }
-
-  filtrarPorFecha() {
-    if (this.tipoFiltroFecha === 'dia' && this.fechaFiltro) {
-      this.turnosFiltrados = this.turnos.filter(turno => turno.fecha === this.fechaFiltro);
-    } else if (this.tipoFiltroFecha === 'mes' && this.mesAnoFiltro) {
-      const [year, month] = this.mesAnoFiltro.split('-');
-      this.turnosFiltrados = this.turnos.filter(turno => {
-        const [turnoYear, turnoMonth] = turno.fecha.split('-');
-        return turnoYear === year && turnoMonth === month;
-      });
-    } else {
-      this.turnosFiltrados = [...this.turnos];
-    }
-
-    if (this.ordenActual === 'reciente') {
-      this.ordenarPorFechaReciente();
-    } else {
-      this.ordenarPorFechaAntigua();
-    }
   }
 
   ordenarPorFechaReciente() {

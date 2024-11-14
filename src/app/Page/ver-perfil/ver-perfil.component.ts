@@ -23,7 +23,7 @@ export class VerPerfilComponent implements OnInit {
   usuario : User | null = null;
   showPassword = false;
 
-  userService = inject(UserService);
+  private userService = inject(UserService);
 
   ngOnInit(): void {
     this.loadUserProfile();

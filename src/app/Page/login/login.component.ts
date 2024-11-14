@@ -15,14 +15,12 @@ import { AuthService } from '../../Service/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
-  private authS= inject(AuthService);
+  private formBuilder = inject(FormBuilder);
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  private authS = inject(AuthService);
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private http: HttpClient,
-    private router: Router
-  ) {}
+  loginForm!: FormGroup;
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -40,22 +38,22 @@ export class LoginComponent implements OnInit {
 
     this.verificacionUsernameExistente(username).subscribe({
       next: (users) => {
-      if (users.length > 0) {
-        const user = users[0];
-        if (user.password === password) {
-          this.authS.login(user);
-          this.router.navigate(['/home']);
+        if (users.length > 0) {
+          const user = users[0];
+          if (user.password === password) {
+            this.authS.login(user);
+            this.router.navigate(['/home']);
+          } else {
+            this.loginForm.get('password')?.setErrors({ incorrect: true });
+          }
         } else {
-          this.loginForm.get('password')?.setErrors({ incorrect: true });
+          this.loginForm.get('username')?.setErrors({ usernameExists: true });
         }
-      } else {
-        this.loginForm.get('username')?.setErrors({ usernameExists: true });
+      },
+      error: (err: Error) => {
+        console.error(err.message)
       }
-    },
-    error: (err:Error)=>{
-      console.error(err.message)
-    }
-  });
+    });
   }
 
   verificacionUsernameExistente(username: string): Observable<User[]> {

@@ -1,5 +1,5 @@
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { map, Observable } from 'rxjs';
@@ -16,15 +16,13 @@ import { TurnoService } from '../../Service/turno.service';
 
 })
 export class ReservaTurnoFormComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private turnoService = inject(TurnoService);
+  private router = inject(Router);
+
   turnoForm!: FormGroup;
   maxCaracteres = 200;
   caracteresRestantes = this.maxCaracteres;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private turnoService: TurnoService,
-    private router: Router
-  ) {}
 
   ngOnInit(): void {
     this.turnoForm = this.formBuilder.group({
