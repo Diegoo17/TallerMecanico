@@ -15,13 +15,19 @@ import { Product } from '../../Interface/product.interface';
 export class CatalogaddComponent {
   @Output() addProduct = new EventEmitter<Product>();
   productForm: FormGroup;
+  maxCaracteres=200;
+  caracteresRestantes = this.maxCaracteres;
 
   constructor(private fb: FormBuilder) {
     this.productForm = this.fb.nonNullable.group({
       id: [null],
       nombre: ['', [Validators.required,Validators.minLength(3)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(this.maxCaracteres)]],
       precio: [0, [Validators.required, Validators.min(1)]],
       imagen: ['', Validators.required]
+    });
+    this.productForm.get('descripcion')?.valueChanges.subscribe(value => {
+      this.caracteresRestantes = this.maxCaracteres - (value?.length || 0);
     });
   }
 

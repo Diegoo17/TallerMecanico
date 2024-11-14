@@ -27,6 +27,27 @@
   </div>
 
   <div class="form-group">
+    <label for="descripcion" id="labelFormGroup">Descripción:</label>
+    <div class="textarea-container">
+      <textarea
+        id="descripcion"
+        formControlName="descripcion"
+        [maxlength]="maxCaracteres"
+        placeholder="Añada una descripcion al producto"
+      ></textarea>
+      <span class="caracteres-contador" [class.pocos]="caracteresRestantes <= 20">
+        {{ caracteresRestantes }} caracteres restantes
+      </span>
+    </div>
+    <div *ngIf="productForm.get('descripcion')?.hasError('required') && productForm.get('descripcion')?.touched" class="error">
+      <div class="error-message">
+        La descripcion es obligatoria
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
     <label for="imagen" id="labelFormGroup">Imagen:</label>
     <input type="file" id="imagen" (change)="onFileSelected($event)">
     @if(productForm.get('imagen')?.hasError('required') && productForm.get('imagen')?.touched){

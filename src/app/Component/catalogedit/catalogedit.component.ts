@@ -17,14 +17,22 @@ export class CatalogeditComponent implements OnChanges{
 
   editForm:FormGroup;
   imagePreview: string | ArrayBuffer | null = null;
+  maxCaracteres=200;
+  caracteresRestantes = this.maxCaracteres;
 
   constructor(private fb: FormBuilder) {
     this.editForm = this.fb.group({
       id: [{ value: null, disabled: true }],
       nombre: ['', Validators.required],
       precio: [0, [Validators.required, Validators.min(1)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(this.maxCaracteres)]],
       imagen: [''],
     });
+
+    this.editForm.get('descripcion')?.valueChanges.subscribe(value => {
+      this.caracteresRestantes = this.maxCaracteres - (value?.length || 0);
+    });
+
   }
 
   ngOnChanges() {

@@ -14,6 +14,7 @@
     <div class="card-content">
       <img [src]="selectedProduct.imagen" alt="{{ selectedProduct.nombre }}" onerror="this.onerror=null;this.src='path/to/default-image.jpg';">
       <h2>{{ selectedProduct.nombre }}</h2>
+      <p>{{ selectedProduct.descripcion }}</p>
       <p>{{ selectedProduct.precio | currency }}</p>
       <button class="whatsapp-button" (click)="openWhatsApp()">
         <i class="fab fa-whatsapp"></i> Contáctenos por WhatsApp

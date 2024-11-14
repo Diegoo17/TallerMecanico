@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       if (users.length > 0) {
         const user = users[0];
         if (user.password === password) {
-          this.authS.login({username})
+          this.authS.login(user);
           this.router.navigate(['/home']);
         } else {
           this.loginForm.get('password')?.setErrors({ incorrect: true });

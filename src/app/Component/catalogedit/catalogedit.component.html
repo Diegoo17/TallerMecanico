@@ -8,6 +8,22 @@
       </div>
 
       <div class="form-group">
+        <label for="descripcion">Descripcion:</label>
+        <div class="textarea-container">
+          <textarea
+            id="descripcion"
+            formControlName="descripcion"
+            [maxlength]="maxCaracteres"
+            placeholder="Añada una descripcion al producto"
+          ></textarea>
+          <span class="caracteres-contador" [class.pocos]="caracteresRestantes <= 20">
+            {{ caracteresRestantes }} caracteres restantes
+          </span>
+        </div>
+      </div>
+
+
+      <div class="form-group">
         <label for="precio">Precio:</label>
         <input type="number" id="precio" formControlName="precio" step="1000" placeholder="Ingrese el precio">
       </div>
