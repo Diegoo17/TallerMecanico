@@ -12,7 +12,9 @@ import { Product } from '../Interface/product.interface';
 })
 export class CatalogeditComponent implements OnChanges{
   @Input() product:Product | null = null;
-  @Output() editProduct = new EventEmitter <Product>();
+  @Output() save = new EventEmitter<Product>();
+  @Output() cancel = new EventEmitter<void>();
+
   editForm:FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -30,21 +32,29 @@ export class CatalogeditComponent implements OnChanges{
     }
   }
 
-  onSubmit() {
-    if (this.editForm.invalid) return;
-    const updatedProduct = { ...this.editForm.getRawValue(), id: this.product?.id } as Product;
-    this.editProduct.emit(updatedProduct);
+  onSubmit(): void {
+    if (this.editForm.valid && this.product) {
+      const updatedProduct: Product = {
+        ...this.product,
+        ...this.editForm.value
+      };
+      this.save.emit(updatedProduct);
+    }
   }
 
-  onFileSelected(event: Event) {
+  onCancel(): void {
+    this.cancel.emit();
+  }
+
+  onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
       const reader = new FileReader();
-      reader.onload = () => {
-        this.editForm.patchValue({ imagen: reader.result as string });
+      reader.onload = (e: any) => {
+        this.editForm.patchValue({ imagen: e.target.result });
       };
-      reader.readAsDataURL(input.files[0]);
+      reader.readAsDataURL(file);
     }
   }
 }
-

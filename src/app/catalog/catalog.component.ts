@@ -1,30 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { CataloglistComponent } from '../cataloglist/cataloglist.component';
-import { CatalogaddComponent } from '../catalogadd/catalogadd.component';
-import { CatalogeditComponent } from '../catalogedit/catalogedit.component';
-import { RouterModule } from '@angular/router';
 import { Product } from '../Interface/product.interface';
+
+import { CatalogeditComponent } from '../catalogedit/catalogedit.component';
+import { CatalogaddComponent } from '../catalogadd/catalogadd.component';
+import { CataloglistComponent } from '../cataloglist/cataloglist.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    CataloglistComponent,
-    CatalogaddComponent,
-    CatalogeditComponent
-  ],
-  providers: [ProductService],
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css'],
+  providers: [ProductService],
+  imports: [ CatalogeditComponent, CatalogaddComponent, CataloglistComponent, CommonModule]
 })
 export class CatalogComponent implements OnInit {
   products: Product[] = [];
   currentProduct: Product | null = null;
+  isEditMode: boolean = false;
 
   constructor(private productService: ProductService) {}
 
@@ -34,39 +28,75 @@ export class CatalogComponent implements OnInit {
 
   loadProducts() {
     this.productService.getProducts()?.subscribe({
-      next: (data) => (this.products = data),
-      error: (err) => console.error(err),
+      next: (data: Product[]) => {
+        this.products = data;
+      },
+      error: (err: Error) => {
+        console.error(err.message);
+      }
     });
   }
 
-  onAdd(product: Product) {
+  onAddProduct(product: Product) {
     this.productService.addProduct(product).subscribe({
-      next: (response) => this.products.push(response),
-      error: (err) => console.error(err),
+      next: (response: Product) => {
+        this.products.push(response);
+      },
+      error: (err: Error) => {
+        console.error(err.message);
+      }
     });
   }
 
-  onEdit(product: Product) {
+  updateProduct(updatedProduct: Product) {
+    if(updatedProduct.id!=null)
+    this.productService.updateProduct(updatedProduct.id, updatedProduct).subscribe({
+      next: (product: Product) => {
+        const index = this.products.findIndex(p => p.id === product.id);
+        if (index !== -1) {
+          this.products[index] = product;
+        }
+        this.cancelEdit();
+      },
+      error: (err: Error) => {
+        console.error(err.message);
+      }
+    });
+  }
+
+  cancelEdit() {
+    this.isEditMode = false;
+    this.currentProduct = null;
+  }
+
+  onEditRequest(product: Product) {
+    this.isEditMode = true;
     this.currentProduct = product;
   }
 
-  onEditSubmit(product: Product) {
-    this.productService.updateProduct(product.id!, product).subscribe({
-      next: (response) => {
-        const index = this.products.findIndex((p) => p.id === response.id);
-        if (index !== -1) this.products[index] = response;
-        this.currentProduct = null;
+  onDeleteRequest(id: number) {
+    this.productService.deleteProduct(id).subscribe({
+      next: () => {
+        this.products = this.products.filter(product => product.id !== id);
       },
-      error: (err) => console.error(err),
+      error: (err: Error) => {
+        console.error(err.message);
+      }
     });
   }
 
-  onDelete(id: number) {
-    this.productService.deleteProduct(id).subscribe({
-      next: () => {
-        this.products = this.products.filter((product) => product.id !== id);
-      },
-      error: (err) => console.error(err),
-    });
+  onMouseOverProduct(product: Product | null) {
+    this.currentProduct = product;
+  }
+
+  onEditCancel() {
+    this.isEditMode = false;
+    this.currentProduct = null;
+  }
+
+  onEditSave() {
+    this.isEditMode = false;
+    this.currentProduct = null;
+    this.loadProducts();
   }
 }

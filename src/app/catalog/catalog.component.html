@@ -1,18 +1,27 @@
 <div class="container">
-  <h1>Catálogo de Productos</h1>
 
-  <app-catalogadd (addProduct)="onAdd($event)"></app-catalogadd>
+<h1>Catálogo de Productos</h1>
 
-  <app-catalogedit
-    *ngIf="currentProduct"
-    [product]="currentProduct"
-    (editProduct)="onEditSubmit($event)">
-  </app-catalogedit>
+<div *ngIf="!isEditMode">
 
-  <app-cataloglist
-    [products]="products"
-    [currentProduct]="currentProduct"
-    (editRequest)="onEdit($event)"
-    (deleteRequest)="onDelete($event)">
-  </app-cataloglist>
+<app-catalogadd (addProduct)="onAddProduct($event)"></app-catalogadd>
+<app-cataloglist
+  [products]="products"
+  [currentProduct]="currentProduct"
+  (editRequest)="onEditRequest($event)"
+  (deleteRequest)="onDeleteRequest($event)"
+  (mouseOverProduct)="onMouseOverProduct($event)">
+</app-cataloglist>
+</div>
+
+<div *ngIf="isEditMode" class="edit-overlay">
+  <div class="edit-card">
+    <app-catalogedit
+      [product]="currentProduct"
+      (save)="updateProduct($event)"
+      (cancel)="cancelEdit()">
+    </app-catalogedit>
+  </div>
+</div>
+
 </div>

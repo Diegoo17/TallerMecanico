@@ -1,10 +1,8 @@
 <div *ngIf="products.length > 0" class="catalog">
   <div class="product" *ngFor="let product of products"
-       (mouseover)="onEdit(product)"
-       (mouseleave)="currentProduct = null">
+       (mouseover)="onMouseOver(product)"
+       (mouseleave)="onMouseLeave()">
     <div class="product-image-container">
-      <img [src]="product.imagen" [alt]="product.nombre"
-           onerror="this.onerror=null;this.src='assets/images/default-product.jpg';">
     <img [src]="product.imagen" alt="{{ product.nombre }}"
          onerror="this.onerror=null;this.src='path/to/default-image.jpg';">
     <h2>{{ product.nombre }}</h2>

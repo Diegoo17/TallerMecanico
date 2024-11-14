@@ -14,6 +14,7 @@ export class CataloglistComponent {
   @Input() currentProduct: Product | null = null;
   @Output() editRequest = new EventEmitter<Product>();
   @Output() deleteRequest = new EventEmitter<number>();
+  @Output() mouseOverProduct = new EventEmitter<Product | null>();
 
   onEdit(product: Product) {
     this.editRequest.emit(product);
@@ -21,5 +22,13 @@ export class CataloglistComponent {
 
   onDelete(id: number) {
     this.deleteRequest.emit(id);
+  }
+
+  onMouseOver(product: Product) {
+    this.mouseOverProduct.emit(product);
+  }
+
+  onMouseLeave() {
+    this.mouseOverProduct.emit(null);
   }
 }

@@ -1,6 +1,7 @@
+<div class="container">
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label for="nombre">Nombre del producto:</label>
+    <label for="nombre" id="labelFormGroup">Nombre del producto:</label>
     <input type="text" id="nombre" formControlName="nombre">
     @if(productForm.get('nombre')?.hasError('required') && productForm.get('nombre')?.touched){
       Nombre es requerido.
@@ -9,7 +10,7 @@
 
 
   <div class="form-group">
-    <label for="precio">Precio:</label>
+    <label for="precio" id="labelFormGroup">Precio:</label>
     <input type="number" id="precio" formControlName="precio" step="1000">
     @if(productForm.get('precio')?.hasError('required') && productForm.get('precio')?.touched){
       Precio es requerido.
@@ -20,7 +21,7 @@
   </div>
 
   <div class="form-group">
-    <label for="imagen">Imagen:</label>
+    <label for="imagen" id="labelFormGroup">Imagen:</label>
     <input type="file" id="imagen" (change)="onFileSelected($event)">
     @if(productForm.get('imagen')?.hasError('required') && productForm.get('imagen')?.touched){
       Imagen es requerida.
@@ -29,4 +30,4 @@
 
   <button type="submit" [disabled]="productForm.invalid">Agregar al Catálogo</button>
 </form>
-
+</div>

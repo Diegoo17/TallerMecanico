@@ -11,6 +11,7 @@ import { Product } from '../Interface/product.interface';
   templateUrl: './catalogadd.component.html',
   styleUrl: './catalogadd.component.css'
 })
+
 export class CatalogaddComponent {
   @Output() addProduct = new EventEmitter<Product>();
   productForm: FormGroup;
@@ -25,12 +26,18 @@ export class CatalogaddComponent {
   }
 
   onSubmit(){
-    if(this.productForm.invalid)return
-    this.addProduct.emit(this.productForm.value);
+    const productToSave = { ...this.productForm.value };
+
+    if(this.productForm.invalid)return;
+
+   if (productToSave.id === null) {
+      delete productToSave.id;
+    }
+    this.addProduct.emit(productToSave);
     this.productForm.reset();
   }
 
-  onFileSelected(event: Event){
+  onFileSelected(event: Event):void{
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const reader = new FileReader();
