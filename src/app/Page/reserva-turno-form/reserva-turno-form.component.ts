@@ -25,12 +25,6 @@ export class ReservaTurnoFormComponent implements OnInit {
   maxCaracteres = 200;
   caracteresRestantes = this.maxCaracteres;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private turnoService: TurnoService,
-    private router: Router
-  ) {}
-
   ngOnInit(): void {
     this.turnoForm = this.formBuilder.group({
       titulo: ['', Validators.required],

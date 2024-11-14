@@ -57,6 +57,36 @@
       "password": "Diego123"
     },
     {
+      "id": "78a9",
+      "nombre": "nuevo",
+      "username": "nuevo",
+      "email": "nuevo@gmail.com",
+      "telefono": "2321122332",
+      "password": "Nuevo123"
+    },
+    {
+      "id": "0380",
+      "nombre": "Diego1",
+      "username": "Diego1",
+      "email": "diego31@gmail.com",
+      "telefono": "1234567893",
+      "password": "Diego124"
+    },
+    {
+      "id": "264f",
+      "nombre": "nananaa",
+      "username": "nanana",
+      "email": "nananana@gmail.com",
+      "telefono": "0987654321",
+      "password": "Nana1234"
+    },
+    {
+      "id": "0d1f",
+      "nombre": "alerta",
+      "username": "alerta",
+      "email": "alerta@gmail.com",
+      "telefono": "1231231233",
+      "password": "Alerta123"
       "id": "ddcb",
       "nombre": "fsafsa",
       "username": "xd",

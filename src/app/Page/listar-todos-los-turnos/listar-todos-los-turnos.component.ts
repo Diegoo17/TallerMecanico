@@ -3,11 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TurnoService } from '../../Service/turno.service';
-<<<<<<< HEAD
 import Swal from 'sweetalert2';
-=======
 import { Router } from '@angular/router';
->>>>>>> 7ea98cd305806d8cbf650b7a9f741f82a2edf52a
 
 @Component({
   selector: 'app-listar-todos-los-turnos',
@@ -76,13 +73,8 @@ export class ListarTodosLosTurnosComponent implements OnInit {
     return fechaTurno < ahora;
   }
   eliminarTurno(turno: any) {
-<<<<<<< HEAD
     if (this.esTurnoPasado(turno.fecha, turno.hora)) {
       this.eliminarTurnoPasado();
-=======
-    if (!this.isMecanico && this.esTurnoPasado(turno.fecha, turno.hora)) {
-      alert('No se pueden eliminar turnos pasados');
->>>>>>> 7ea98cd305806d8cbf650b7a9f741f82a2edf52a
       return;
     }
   
@@ -203,19 +195,10 @@ export class ListarTodosLosTurnosComponent implements OnInit {
   cerrarCard() {
     this.turnoSeleccionado = null; 
   }
-<<<<<<< HEAD
-  async eliminarTurnoPasado() {
-    await Swal.fire('Error al eliminar turno', 'No puede eliminar un turno pasado', 'error');
-  }
-  async errorEliminarTurno() {
-    await Swal.fire('Error al eliminar turno', 'No se pudo eliminar el turno', 'error');
-  }
-  
-=======
-
+ 
   editarTurno(turno: any) {
     if (!this.isMecanico && this.esTurnoPasado(turno.fecha, turno.hora)) {
-      alert('No se pueden editar turnos pasados');
+      this.editarTurnoPasado()
       return;
     }
     this.router.navigate(['/modificar-turno', turno.id]);
@@ -228,5 +211,13 @@ export class ListarTodosLosTurnosComponent implements OnInit {
       this.isMecanico = user.id === 'mec';
     }
   }
->>>>>>> 7ea98cd305806d8cbf650b7a9f741f82a2edf52a
+  async eliminarTurnoPasado() {
+    await Swal.fire('Error al eliminar turno', 'No puede eliminar un turno pasado', 'error');
+  }
+  async errorEliminarTurno() {
+    await Swal.fire('Error al eliminar turno', 'No se pudo eliminar el turno', 'error');
+  }
+  async editarTurnoPasado() {
+    await Swal.fire('Error al editar turno', 'No puede editar un turno pasado', 'error');
+  }
 }

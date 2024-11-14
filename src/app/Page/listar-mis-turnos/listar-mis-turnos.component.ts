@@ -108,20 +108,12 @@ export class ListarMisTurnosComponent implements OnInit {
     return fechaTurno < ahora;
   }
 
-<<<<<<< HEAD
   
 eliminarTurno(turno: any) {
   if (this.esTurnoPasado(turno.fecha, turno.hora)) {
     this.eliminarTurnoPasado();
     return;
   }
-=======
-  eliminarTurno(turno: any) {
-    if (!this.isMecanico && this.esTurnoPasado(turno.fecha, turno.hora)) {
-      alert('No se pueden eliminar turnos pasados');
-      return;
-    }
->>>>>>> 7ea98cd305806d8cbf650b7a9f741f82a2edf52a
 
   Swal.fire({
     title: '¿Estás seguro?',
@@ -145,15 +137,9 @@ eliminarTurno(turno: any) {
   });
 }
   editarTurno(turno: any) {
-<<<<<<< HEAD
     if (this.esTurnoPasado(turno.fecha, turno.hora)) {
       this.editarTurnoPasado()
       return; 
-=======
-    if (!this.isMecanico && this.esTurnoPasado(turno.fecha, turno.hora)) {
-      alert('No se pueden editar turnos pasados');
-      return;
->>>>>>> 7ea98cd305806d8cbf650b7a9f741f82a2edf52a
     }
     this.router.navigate(['/modificar-turno', turno.id]);
   }
