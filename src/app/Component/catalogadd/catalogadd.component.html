@@ -3,27 +3,26 @@
   <div class="form-group">
     <label for="nombre" id="labelFormGroup">Nombre del producto:</label>
     <input type="text" id="nombre" formControlName="nombre">
-    @if(productForm.get('nombre')?.hasError('required') && productForm.get('nombre')?.touched){
+    <div *ngIf="productForm.get('nombre')?.hasError('required') && productForm.get('nombre')?.touched" class="error">
       <div class="error-message">
         Nombre es requerido.
       </div>
-    }
     </div>
-
+  </div>
 
   <div class="form-group">
     <label for="precio" id="labelFormGroup">Precio:</label>
     <input type="number" id="precio" formControlName="precio" step="1000">
-    @if(productForm.get('precio')?.hasError('required') && productForm.get('precio')?.touched){
+    <div *ngIf="productForm.get('precio')?.hasError('required') && productForm.get('precio')?.touched" class="error">
       <div class="error-message">
         Precio invalido.
       </div>
-    }
-    @if(productForm.get('precio')?.hasError('min')&&productForm.get('precio')?.dirty){
+    </div>
+    <div *ngIf="productForm.get('precio')?.hasError('min') && productForm.get('precio')?.dirty" class="error">
       <div class="error-message">
         Ingrese un valor valido.
       </div>
-    }
+    </div>
   </div>
 
   <div class="form-group">
@@ -46,15 +45,14 @@
     </div>
   </div>
 
-
   <div class="form-group">
     <label for="imagen" id="labelFormGroup">Imagen:</label>
     <input type="file" id="imagen" (change)="onFileSelected($event)">
-    @if(productForm.get('imagen')?.hasError('required') && productForm.get('imagen')?.touched){
+    <div *ngIf="productForm.get('imagen')?.hasError('required') && productForm.get('imagen')?.touched" class="error">
       <div class="error-message">
         Imagen es requerida.
       </div>
-    }
+    </div>
   </div>
 
   <button type="submit" [disabled]="productForm.invalid">Agregar al Catálogo</button>
