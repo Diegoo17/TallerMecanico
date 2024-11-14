@@ -21,6 +21,8 @@ export class ListarTodosLosTurnosComponent implements OnInit {
   loading: boolean = true;
   tipoFiltroFecha: 'dia' | 'mes' = 'dia';
   mesAnoFiltro: string = '';
+  descripcionSeleccionada: string = '';
+  mostrarModal: boolean = false;
 
   constructor(private turnoService: TurnoService) {}
 
@@ -140,5 +142,14 @@ export class ListarTodosLosTurnosComponent implements OnInit {
   limpiarFiltroUsuario() {
     this.usuarioFiltro = '';
     this.filtrarTurnos();
+  }
+
+  verDescripcionCompleta(descripcion: string) {
+    this.descripcionSeleccionada = descripcion;
+    this.mostrarModal = true;
+  }
+
+  cerrarModal() {
+    this.mostrarModal = false;
   }
 }

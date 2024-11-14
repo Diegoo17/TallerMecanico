@@ -108,7 +108,11 @@
           [class.turno-pasado]="esTurnoPasado(turno.fecha, turno.hora)">
         <td>{{ turno.userName }}</td>
         <td>{{ turno.titulo }}</td>
-        <td>{{ turno.descripcion }}</td>
+        <td class="descripcion-cell">
+          <div class="descripcion-truncada" (click)="verDescripcionCompleta(turno.descripcion)">
+            {{ turno.descripcion }}
+          </div>
+        </td>
         <td>{{ turno.fecha }}</td>
         <td>{{ turno.hora }}</td>
         <td>
@@ -129,3 +133,11 @@
 <ng-template #noTurnos>
   <p class="no-turnos">No hay turnos registrados.</p>
 </ng-template>
+
+<div class="modal-overlay" *ngIf="mostrarModal" (click)="cerrarModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="cerrarModal()">×</button>
+    <h3>Descripción completa</h3>
+    <p>{{ descripcionSeleccionada }}</p>
+  </div>
+</div>

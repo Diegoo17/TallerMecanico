@@ -304,10 +304,10 @@
     },
     {
       "id": "600b",
-      "titulo": "fdafa",
-      "descripcion": "gfdagdas",
-      "fecha": "2024-11-27",
-      "hora": "17:00",
+      "titulo": "lupo",
+      "descripcion": "renoleta toda rota arreglala porfa\ncambiar cubiertas\njunta explotada\ncaño de escape violado",
+      "fecha": "2024-11-15",
+      "hora": "13:00",
       "idUsuario": "mec",
       "userName": "Gustavo Mecánico"
     },
@@ -319,6 +319,15 @@
       "hora": "19:00",
       "idUsuario": "3e7f",
       "userName": "Diego"
+    },
+    {
+      "id": "a57c",
+      "titulo": "Corsa paragolpe",
+      "descripcion": "Paragolpe caido, arreglar y cambiar luces led",
+      "fecha": "2024-11-20",
+      "hora": "15:00",
+      "idUsuario": "mec",
+      "userName": "Gustavo Mecánico"
     }
   ]
 }
