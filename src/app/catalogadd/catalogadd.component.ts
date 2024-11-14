@@ -47,9 +47,5 @@ export class CatalogaddComponent {
       reader.readAsDataURL(input.files[0]);
     }
   }
-
-
-
-
 }
 
