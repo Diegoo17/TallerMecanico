@@ -20,6 +20,14 @@
     </div>
 
     <div>
+      <label for="vehiculo">Vehículo:</label>
+      <input id="vehiculo" formControlName="vehiculo" />
+      <div *ngIf="turnoForm.get('vehiculo')?.hasError('required') && turnoForm.get('vehiculo')?.touched" class="error">
+        El vehículo es obligatorio.
+      </div>
+    </div>
+
+    <div>
       <label for="fecha">Fecha:</label>
       <input type="date" id="fecha" formControlName="fecha" />
       <div *ngIf="turnoForm.get('fecha')?.hasError('required') && turnoForm.get('fecha')?.touched" class="error">

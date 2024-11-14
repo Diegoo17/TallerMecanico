@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,21 +9,22 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-create-comments',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   providers: [CommentService],
   templateUrl: './create-comments.component.html',
   styleUrls: ['./create-comments.component.css']
 })
 export class CreateCommentsComponent {
+
+  private fb = inject(FormBuilder);
+  private commentService = inject(CommentService);
+  private router = inject(Router);
+
   commentForm: FormGroup;
-  readonly MAX_DESCRIPCION_LENGTH = 280; // Límite de caracteres
+  readonly MAX_DESCRIPCION_LENGTH = 280;
   caracteresRestantes = this.MAX_DESCRIPCION_LENGTH;
 
-  constructor(
-    private fb: FormBuilder,
-    private commentService: CommentService,
-    private router: Router
-  ) {
+  constructor() {
     this.commentForm = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(3)]],
       descripcion: ['', [

@@ -62,6 +62,12 @@
       </button>
     </div>
   </div>
+
+  <div class="botones-control">
+    <button class="boton-turnos-pasados" (click)="toggleTurnosPasados()">
+      {{ mostrarTurnosPasados ? 'Ocultar turnos pasados' : 'Mostrar turnos pasados' }}
+    </button>
+  </div>
 </div>
 
 <div *ngIf="turnosFiltrados.length > 0; else noTurnos">
@@ -88,17 +94,14 @@
           <td>{{ turno.vehiculo }}</td>
           <td>
             <button
+              *ngIf="!esTurnoPasado(turno.fecha, turno.hora)"
               (click)="editarTurno(turno)"
-              [disabled]="esTurnoPasado(turno.fecha, turno.hora)"
-              [class.boton-deshabilitado]="esTurnoPasado(turno.fecha, turno.hora)"
             >
               Editar
             </button>
             <button
               class="eliminar"
               (click)="eliminarTurno(turno)"
-              [disabled]="esTurnoPasado(turno.fecha, turno.hora)"
-              [class.boton-deshabilitado]="esTurnoPasado(turno.fecha, turno.hora)"
             >
               Eliminar
             </button>

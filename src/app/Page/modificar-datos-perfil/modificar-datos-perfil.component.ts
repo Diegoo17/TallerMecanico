@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { User } from '../../Interface/user';
@@ -22,17 +22,17 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modificar-datos-perfil.component.css']
 })
 export class ModificarDatosPerfilComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private userService = inject(UserService);
+  private router = inject(Router);
+  private http = inject(HttpClient);
+
   editForm: FormGroup;
   usuario: User | null = null;
   submitted = false;
   mostrarPassword = false;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private userService: UserService,
-    private router: Router,
-    private http: HttpClient
-  ) {
+  constructor() {
     this.editForm = this.formBuilder.group({
       nombre: ['', [Validators.required]],
       username: ['', [Validators.required]],

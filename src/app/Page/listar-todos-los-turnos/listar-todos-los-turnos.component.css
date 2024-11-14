@@ -597,3 +597,55 @@ table {
   .card-content button:hover {
     background-color: #0056b3;
   }
+
+  td:last-child {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  td button:not(.eliminar) {
+    background: linear-gradient(145deg, rgb(70, 235, 254), rgb(60, 225, 244));
+    color: black;
+    padding: 0.8rem 1.6rem;
+    border-radius: 3rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.1);
+    order: 1;
+  }
+
+  td button.eliminar {
+    background: linear-gradient(145deg, #dc3545, #c82333);
+    color: white;
+    padding: 0.8rem 1.6rem;
+    border-radius: 3rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.2rem 0.5rem rgba(220, 53, 69, 0.3);
+    order: 2;
+  }
+  .boton-turnos-pasados {
+    background: linear-gradient(145deg, rgb(70, 235, 254), rgb(60, 225, 244));
+    color: black;
+    padding: 0.8rem 1.6rem;
+    border-radius: 3rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.1);
+    border: none;
+    cursor: pointer;
+  }
+  
+  .boton-turnos-pasados:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.4rem 1rem rgba(70, 235, 254, 0.3);
+    background: linear-gradient(145deg, rgb(60, 225, 244), rgb(0, 147, 147));
+    color: white;
+  }
+  
+  .botones-control {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }

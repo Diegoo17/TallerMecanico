@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Location } from '@angular/common';
 import { TurnoService } from '../../Service/turno.service';
 import { Turno } from '../../Interface/turno';
 import Swal from 'sweetalert2';
@@ -17,16 +18,17 @@ import Swal from 'sweetalert2';
   styleUrls: ['./modificar-turno.component.css']
 })
 export class ModificarTurnoComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private turnoService = inject(TurnoService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private location = inject(Location);
+
   turnoForm!: FormGroup;
   turnoId: string = '';
   turnoOriginal: Turno | null = null;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private turnoService: TurnoService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.initForm();
@@ -40,6 +42,7 @@ export class ModificarTurnoComponent implements OnInit {
     this.turnoForm = this.formBuilder.group({
       titulo: ['', Validators.required],
       descripcion: ['', Validators.required],
+      vehiculo: ['', Validators.required],
       fecha: ['', [Validators.required, this.validarFechaFutura()]],
       hora: ['', [Validators.required, Validators.pattern(/^(1[3-9]|1[0-9]):[0-5][0-9]$/)]],
     });
@@ -65,6 +68,7 @@ export class ModificarTurnoComponent implements OnInit {
         this.turnoForm.patchValue({
           titulo: turno.titulo,
           descripcion: turno.descripcion,
+          vehiculo: turno.vehiculo,
           fecha: turno.fecha,
           hora: turno.hora
         });
@@ -110,7 +114,7 @@ export class ModificarTurnoComponent implements OnInit {
     this.turnoService.actualizarTurno(this.turnoId, turno).subscribe({
       next: () => {
         this.turnoActualizado()
-        this.router.navigate(['/misTurnos']);
+        this.location.back();
       },
       error: (error) => {
         console.error('Error al actualizar el turno:', error);
@@ -138,7 +142,7 @@ export class ModificarTurnoComponent implements OnInit {
   }
 
   cancelar(): void {
-    this.router.navigate(['/misTurnos']);
+    this.location.back();
   }
 
 

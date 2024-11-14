@@ -1,0 +1,132 @@
+.contact-container {
+  width: 100%;
+  max-width: 50rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  border-radius: 1.5rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  background: linear-gradient(145deg, rgb(70, 235, 254), rgb(0, 147, 147));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-description {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.contact-form {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+label {
+  display: block;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.8rem;
+  border: 0.125rem solid #e0e0e0;
+  border-radius: 0.8rem;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: rgb(70, 235, 254);
+  box-shadow: 0 0 0 0.2rem rgba(70, 235, 254, 0.1);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 7.5rem;
+}
+
+.btn-submit {
+  width: 100%;
+  background: linear-gradient(145deg, rgb(70, 235, 254), rgb(60, 225, 244));
+  color: black;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.1rem 0.3rem rgba(0,0,0,0.1);
+}
+
+.btn-submit:hover {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.2rem 0.5rem rgba(70, 235, 254, 0.3);
+  background: linear-gradient(145deg, rgb(60, 225, 244), rgb(0, 147, 147));
+  color: white;
+}
+
+.invalid {
+  border-color: #dc3545 !important;
+  background-color: rgba(220, 53, 69, 0.05);
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: #cccccc !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 48rem) {
+  .contact-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .contact-description {
+    font-size: 0.9rem;
+  }
+}

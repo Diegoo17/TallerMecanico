@@ -76,3 +76,17 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* Unificar tipografía para todos los inputs */
+input,
+select,
+textarea {
+  font-family: 'Poppins', 'Segoe UI', 'Arial', sans-serif;
+  font-size: 1.2rem;
+}
+
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
+  font-family: 'Poppins', 'Segoe UI', 'Arial', sans-serif;
+}
