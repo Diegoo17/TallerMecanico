@@ -32,6 +32,7 @@ export class ReservaTurnoFormComponent implements OnInit {
       descripcion: ['', [Validators.required, Validators.maxLength(this.maxCaracteres)]],
       fecha: ['', [Validators.required, this.validarFechaFutura()]],
       hora: ['', [Validators.required, Validators.pattern(/^(1[3-9]|1[0-9]):[0-5][0-9]$/)]],
+      vehiculo: ['', [Validators.required]]
     });
 
     this.turnoForm.get('descripcion')?.valueChanges.subscribe(value => {
@@ -55,7 +56,7 @@ export class ReservaTurnoFormComponent implements OnInit {
     const nuevoTurno = {
       ...this.turnoForm.value,
       idUsuario: user.id,
-      userName: user.nombre
+      userName: user.nombre,
     };
 
     this.turnoService.verificarTurnoExistente(nuevoTurno.fecha, nuevoTurno.hora).subscribe((turnoExists) => {

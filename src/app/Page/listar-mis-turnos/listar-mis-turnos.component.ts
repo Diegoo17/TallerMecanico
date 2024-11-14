@@ -24,6 +24,7 @@ export class ListarMisTurnosComponent {
   mostrarModal: boolean = false;
   tipoFiltroFecha: 'dia' | 'mes' = 'dia';
   mesAnoFiltro: string = '';
+  turnoSeleccionado : any = null;
 
   constructor(
     private turnoService: TurnoService,
@@ -148,5 +149,12 @@ export class ListarMisTurnosComponent {
     this.fechaFiltro = '';
     this.mesAnoFiltro = '';
     this.filtrarPorFecha();
+  }
+  mostrarCard(turno: any) {
+    this.turnoSeleccionado = turno; 
+  }
+
+  cerrarCard() {
+    this.turnoSeleccionado = null; 
   }
 }

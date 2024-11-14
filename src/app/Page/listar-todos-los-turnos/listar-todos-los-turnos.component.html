@@ -100,21 +100,21 @@
         <th>Descripción</th>
         <th>Fecha</th>
         <th>Hora</th>
+        <th>Vehiculo</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let turno of turnosFiltrados"
-          [class.turno-pasado]="esTurnoPasado(turno.fecha, turno.hora)">
+          [class.turno-pasado]="esTurnoPasado(turno.fecha, turno.hora)"
+          (click) = "mostrarCard(turno)"
+          class="descripcion-truncada">
         <td>{{ turno.userName }}</td>
         <td>{{ turno.titulo }}</td>
-        <td class="descripcion-cell">
-          <div class="descripcion-truncada" (click)="verDescripcionCompleta(turno.descripcion)">
-            {{ turno.descripcion }}
-          </div>
-        </td>
+        <td>{{ turno.descripcion }}</td>
         <td>{{ turno.fecha }}</td>
         <td>{{ turno.hora }}</td>
+        <td>{{ turno.vehiculo }}</td>
         <td>
           <button
             class="eliminar"
@@ -134,10 +134,15 @@
   <p class="no-turnos">No hay turnos registrados.</p>
 </ng-template>
 
-<div class="modal-overlay" *ngIf="mostrarModal" (click)="cerrarModal()">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <button class="modal-close" (click)="cerrarModal()">×</button>
-    <h3>Descripción completa</h3>
-    <p>{{ descripcionSeleccionada }}</p>
+<div *ngIf="turnoSeleccionado" class="card-modal">
+  <div class="card-content">
+    <h2>Detalles del Turno</h2>
+    <p><strong>Título:</strong> {{ turnoSeleccionado.titulo }}</p>
+    <p><strong>Descripción:</strong> {{ turnoSeleccionado.descripcion }}</p>
+    <p><strong>Fecha:</strong> {{ turnoSeleccionado.fecha }}</p>
+    <p><strong>Hora:</strong> {{ turnoSeleccionado.hora }}</p>
+    <p><strong>Vehiculo:</strong> {{ turnoSeleccionado.vehiculo }}</p>
+    
+    <button (click)="cerrarCard()">Cerrar</button>
   </div>
 </div>

@@ -23,6 +23,7 @@ export class ListarTodosLosTurnosComponent implements OnInit {
   mesAnoFiltro: string = '';
   descripcionSeleccionada: string = '';
   mostrarModal: boolean = false;
+  turnoSeleccionado: any = null;
 
   constructor(private turnoService: TurnoService) {}
 
@@ -151,5 +152,12 @@ export class ListarTodosLosTurnosComponent implements OnInit {
 
   cerrarModal() {
     this.mostrarModal = false;
+  }
+  mostrarCard(turno: any) {
+    this.turnoSeleccionado = turno; 
+  }
+
+  cerrarCard() {
+    this.turnoSeleccionado = null; 
   }
 }
