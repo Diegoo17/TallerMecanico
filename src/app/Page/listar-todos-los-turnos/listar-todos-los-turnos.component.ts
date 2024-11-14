@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TurnoService } from '../../Service/turno.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listar-todos-los-turnos',
@@ -51,23 +52,34 @@ export class ListarTodosLosTurnosComponent implements OnInit {
     const ahora = new Date();
     return fechaTurno < ahora;
   }
-
   eliminarTurno(turno: any) {
     if (this.esTurnoPasado(turno.fecha, turno.hora)) {
-      alert('No se pueden eliminar turnos pasados');
+      this.eliminarTurnoPasado();
       return;
     }
-
-    if (confirm('¿Estás seguro de que deseas eliminar este turno?')) {
-      this.turnoService.eliminarTurno(turno.id).subscribe(
-        () => {
-          this.turnos = this.turnos.filter(t => t.id !== turno.id);
-          this.filtrarPorFecha();
-        },
-        (error) => console.error('Error al eliminar el turno', error)
-      );
-    }
+  
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Estás a punto de eliminar este turno',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.turnoService.eliminarTurno(turno.id).subscribe(
+          () => {
+            this.turnos = this.turnos.filter(t => t.id !== turno.id);
+            this.filtrarPorFecha();
+          },
+          (error) => this.errorEliminarTurno()
+        );
+      }
+    });
   }
+
 
   ordenarPorFechaReciente() {
     this.turnosFiltrados.sort((a, b) => {
@@ -160,4 +172,11 @@ export class ListarTodosLosTurnosComponent implements OnInit {
   cerrarCard() {
     this.turnoSeleccionado = null; 
   }
+  async eliminarTurnoPasado() {
+    await Swal.fire('Error al eliminar turno', 'No puede eliminar un turno pasado', 'error');
+  }
+  async errorEliminarTurno() {
+    await Swal.fire('Error al eliminar turno', 'No se pudo eliminar el turno', 'error');
+  }
+  
 }

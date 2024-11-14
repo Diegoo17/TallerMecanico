@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { CommentService } from '../../Service/comment.service';
 import { HttpClientModule } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-comments',
@@ -42,7 +43,7 @@ export class CreateCommentsComponent {
     if (this.commentForm.valid) {
       const userStr = localStorage.getItem('currentUser');
       if (!userStr) {
-        alert('Debe iniciar sesión para crear un comentario');
+        this.noInicioSesion()
         return;
       }
 
@@ -55,12 +56,11 @@ export class CreateCommentsComponent {
 
       this.commentService.createComment(comment).subscribe({
         next: () => {
-          alert('Comentario creado exitosamente');
+          this.comentarioCreado()
           this.router.navigate(['/home']);
         },
         error: (error) => {
-          console.error('Error creando comentario:', error);
-          alert('Error al crear el comentario');
+          this.comentarioNoCreado()
         }
       });
     }
@@ -69,4 +69,14 @@ export class CreateCommentsComponent {
   cancelar() {
     this.router.navigate(['/home']);
   }
+  async comentarioCreado() {
+    await Swal.fire('Comentario Creado', 'El comentario fue creado correctamente', 'success');
+  }
+  async comentarioNoCreado() {
+    await Swal.fire('Su comentario no fue creado', 'El comentario no fue creado correctamente', 'error');
+  }
+  async noInicioSesion() {
+    await Swal.fire('No inicio sesion', 'Tiene que haber iniciado sesion para realizar comentarios', 'error');
+  }
+
 }

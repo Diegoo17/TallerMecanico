@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { TurnoService } from '../../Service/turno.service';
 import { Turno } from '../../Interface/turno';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modificar-turno',
@@ -55,7 +56,7 @@ export class ModificarTurnoComponent implements OnInit {
       const turno = turnos.find(t => t.id === this.turnoId);
       if (turno) {
         if (this.esTurnoPasado(turno.fecha, turno.hora)) {
-          alert('No se pueden editar turnos pasados');
+          this.errorTurnosPasados()
           this.router.navigate(['/misTurnos']);
           return;
         }
@@ -68,7 +69,7 @@ export class ModificarTurnoComponent implements OnInit {
           hora: turno.hora
         });
       } else {
-        alert('Turno no encontrado');
+        this.turnoNoEncontrado()
         this.router.navigate(['/misTurnos']);
       }
     });
@@ -108,12 +109,12 @@ export class ModificarTurnoComponent implements OnInit {
   private actualizarTurno(turno: Turno): void {
     this.turnoService.actualizarTurno(this.turnoId, turno).subscribe({
       next: () => {
-        alert('Turno actualizado exitosamente');
+        this.turnoActualizado()
         this.router.navigate(['/misTurnos']);
       },
       error: (error) => {
         console.error('Error al actualizar el turno:', error);
-        alert('Error al actualizar el turno');
+        this.errorTurnoActualizado()
       }
     });
   }
@@ -139,4 +140,19 @@ export class ModificarTurnoComponent implements OnInit {
   cancelar(): void {
     this.router.navigate(['/misTurnos']);
   }
+
+
+  async errorTurnosPasados() {
+    await Swal.fire('Error', 'No se pueden editar turnos pasados', 'error');
+  }
+  async turnoNoEncontrado() {
+    await Swal.fire('No encontrado', 'El turno no fue encontrado', 'question');
+  }
+  async turnoActualizado() {
+    await Swal.fire('Turno actualizado', 'El turno fue actualizado correctamente', 'success');
+  }
+  async errorTurnoActualizado() {
+    await Swal.fire('Error', 'El turno no fue actualizado correctamente', 'error');
+  }
+
 }

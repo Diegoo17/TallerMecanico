@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommentService } from '../../Service/comment.service';
 import { Comment } from '../../Interface/comment';
 import { HttpClientModule } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-display-comments',
@@ -96,20 +97,30 @@ export class DisplayCommentsComponent implements OnInit {
   }
 
   eliminarComentario(id: string) {
-    if (confirm('¿Estás seguro de que deseas eliminar este comentario?')) {
-      this.commentService.deleteComment(id).subscribe({
-        next: () => {
-          this.allComments = this.allComments.filter(comment => comment.id !== id);
-          this.comments = this.comments.filter(comment => comment.id !== id);
-          this.aplicarFiltro();
-          alert('Comentario eliminado exitosamente');
-        },
-        error: (error) => {
-          console.error('Error eliminando comentario:', error);
-          alert('Error al eliminar el comentario');
-        }
-      });
-    }
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción no se puede deshacer',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.commentService.deleteComment(id).subscribe({
+          next: () => {
+            this.allComments = this.allComments.filter(comment => comment.id !== id);
+            this.comments = this.comments.filter(comment => comment.id !== id);
+            this.aplicarFiltro();
+            this.comentarioEliminado(); 
+          },
+          error: (error) => {
+            this.comentarioNoEliminado();
+          }
+        });
+      }
+    });
   }
 
   mostrarMenos() {
@@ -125,5 +136,12 @@ export class DisplayCommentsComponent implements OnInit {
 
   get usuarioLogueado(): boolean {
     return localStorage.getItem('currentUser') !== null;
+  }
+
+  async comentarioEliminado() {
+    await Swal.fire('Comentario Eliminado', 'El comentario fue eliminado correctamente', 'success');
+  }
+  async comentarioNoEliminado() {
+    await Swal.fire('Su comentario no fue eliminado', 'El comentario no fue eliminado correctamente', 'error');
   }
 }

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-register',
@@ -126,18 +128,24 @@ export class RegisterComponent implements OnInit {
 
     this.http.post('http://localhost:3000/users', nuevoUsuario).subscribe({
       next: () => {
-        alert("Registro exitoso!");
+        this.registroExitoso()
         this.goLogin();
         this.registerForm.reset();
       },
       error: (error:Error) => {
         console.error('Error al guardar el usuario:', error);
-        alert('Error al registrar el usuario, por favor intenta de nuevo.');
+        this.errorRegistro()
       },
     });
   }
 
   goLogin() {
     this.router.navigate(['/login']);
+  }
+  async registroExitoso() {
+    await Swal.fire('Registro Exitoso', 'El usuario fue registrado correctamente', 'success');
+  }
+  async errorRegistro() {
+    await Swal.fire('Error', 'El registro falló', 'error');
   }
 }

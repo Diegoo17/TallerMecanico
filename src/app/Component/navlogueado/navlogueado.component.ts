@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Service/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navlogueado',
@@ -37,11 +38,22 @@ export class NavlogueadoComponent implements OnInit {
   }
 
   cerrarSesion() {
-    if (confirm('¿Estás seguro que deseas cerrar sesión?')) {
-      this.authS.logout();
-      this.router.navigate(['/home']).then(() => {
-        window.location.href = '/home';
-      });
-    }
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Estás a punto de cerrar sesión',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, cerrar sesión',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authS.logout();
+        this.router.navigate(['/home']).then(() => {
+          window.location.href = '/home';
+        });
+      }
+    });
   }
 }

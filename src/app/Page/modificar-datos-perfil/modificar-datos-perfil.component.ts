@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { map, Observable, firstValueFrom } from 'rxjs';
 import { UserService } from '../../Service/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modificar-datos-perfil',
@@ -88,7 +89,7 @@ export class ModificarDatosPerfilComponent implements OnInit {
     });
 
     if (Object.keys(updatedFields).length === 0) {
-      alert('No hay cambios para guardar');
+      this.noHayCambios()
       return;
     }
 
@@ -124,7 +125,7 @@ export class ModificarDatosPerfilComponent implements OnInit {
       })
       .catch(error => {
         console.error('Error en las verificaciones:', error);
-        alert('Error al verificar los datos');
+        this.errorVerificacionDeDatos()
       });
   }
 
@@ -156,13 +157,34 @@ export class ModificarDatosPerfilComponent implements OnInit {
           ...updatedFields
         };
         localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-        alert('Perfil actualizado exitosamente');
+        this.perfilActualizado()
         this.router.navigate(['/ver-perfil']);
       },
       error: (error) => {
         console.error('Error al actualizar el perfil:', error);
-        alert('Error al actualizar el perfil');
+        this.perfilNoActualizado()
       }
     });
   }
+
+
+  async noHayCambios() {
+    await Swal.fire('No hay cambios', 'No existen cambios para guardar', 'question');
+  }
+  
+  async errorVerificacionDeDatos() {
+    await Swal.fire('Error', 'Error al verificar los datos', 'error');
+  }
+  
+  async perfilActualizado() {
+    await Swal.fire('Perfil Actualizado', 'El perfil fue actualizado correctamente', 'success');
+  }
+  async perfilNoActualizado() {
+    await Swal.fire('Error', 'El perfil no fue actualizado correctamente', 'error');
+  }
+  
+  
+
+
+
 }

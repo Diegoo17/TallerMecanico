@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, 
 import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { TurnoService } from '../../Service/turno.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reserva-turno-form',
@@ -25,6 +26,7 @@ export class ReservaTurnoFormComponent implements OnInit {
     private turnoService: TurnoService,
     private router: Router
   ) {}
+
 
   ngOnInit(): void {
     this.turnoForm = this.formBuilder.group({
@@ -48,7 +50,7 @@ export class ReservaTurnoFormComponent implements OnInit {
 
     const userStr = localStorage.getItem('currentUser');
     if (!userStr) {
-      alert('Debe iniciar sesión para reservar un turno');
+      this.errorInicioDeSesion()
       return;
     }
 
@@ -71,13 +73,13 @@ export class ReservaTurnoFormComponent implements OnInit {
   guardarTurno(turno: any) {
     this.turnoService.crearTurno(turno).subscribe({
       next: () => {
-        alert("Turno reservado exitosamente!");
+        this.turnoReservado()
         this.turnoForm.reset();
         this.router.navigate(['/']);
       },
       error: (error) => {
         console.error('Error al guardar el turno:', error);
-        alert('Error al reservar el turno, por favor intenta de nuevo.');
+        this.errorTurno()
       }
     });
   }
@@ -98,5 +100,14 @@ export class ReservaTurnoFormComponent implements OnInit {
 
       return null;
     };
+  }
+  async errorInicioDeSesion() {
+    await Swal.fire('Error', 'Debe iniciar sesion para reservar un turno', 'error');
+  }
+  async turnoReservado() {
+    await Swal.fire('Turno reservado', 'El turno fue reservado correctamente', 'success');
+  }
+  async errorTurno() {
+    await Swal.fire('Error turno', 'El turno no fue reservado', 'error');
   }
 }
