@@ -1,71 +1,66 @@
-
 <div class="container">
-    <form [formGroup]="turnoForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="turnoForm" (ngSubmit)="onSubmit()">
+    <h1>Reserva de Turnos</h1>
 
-      <h1>Reserva de Turnos</h1>
-
-      <div>
-        <label for="titulo">Título:</label>
-        <input id="titulo" formControlName="titulo" />
-        <div *ngIf="turnoForm.get('titulo')?.hasError('required') && turnoForm.get('titulo')?.touched" class="error">
-          El título es obligatorio.
-        </div>
+    <div class="form-group">
+      <label for="titulo">Título:</label>
+      <input id="titulo" formControlName="titulo" placeholder="Ingrese un título para su turno"/>
+      <div *ngIf="turnoForm.get('titulo')?.hasError('required') && turnoForm.get('titulo')?.touched" class="error">
+        El título es obligatorio.
       </div>
+    </div>
 
-      <div>
-        <label for="descripcion">Descripción:</label>
-        <div class="textarea-container">
-          <textarea
-            id="descripcion"
-            formControlName="descripcion"
-            [maxlength]="maxCaracteres"
-          ></textarea>
-          <span class="caracteres-contador">{{ caracteresRestantes }}</span>
-        </div>
-        <div *ngIf="turnoForm.get('descripcion')?.hasError('required') && turnoForm.get('descripcion')?.touched" class="error">
-          La descripción es obligatoria.
-        </div>
-        <div *ngIf="turnoForm.get('descripcion')?.hasError('maxlength') && turnoForm.get('descripcion')?.touched" class="error">
-          La descripción no puede exceder los {{ maxCaracteres }} caracteres.
-        </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción:</label>
+      <div class="textarea-container">
+        <textarea
+          id="descripcion"
+          formControlName="descripcion"
+          [maxlength]="maxCaracteres"
+          placeholder="Describa el motivo de su visita"
+        ></textarea>
+        <span class="caracteres-contador" [class.pocos]="caracteresRestantes <= 20">
+          {{ caracteresRestantes }} caracteres restantes
+        </span>
       </div>
-
-      <div>
-        <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" formControlName="fecha" />
-        <div *ngIf="turnoForm.get('fecha')?.hasError('required') && turnoForm.get('fecha')?.touched" class="error">
-          La fecha es obligatoria.
-        </div>
-        <div *ngIf="turnoForm.get('fecha')?.hasError('fechaNoValida') && turnoForm.get('fecha')?.touched" class="error">
-          La fecha debe ser posterior a la fecha actual.
-        </div>
-        <div *ngIf="turnoForm.get('fecha')?.hasError('añoNoValido') && turnoForm.get('fecha')?.touched" class="error">
-          El año de la fecha no puede ser mayor a 2030.
-        </div>
+      <div *ngIf="turnoForm.get('descripcion')?.hasError('required') && turnoForm.get('descripcion')?.touched" class="error">
+        La descripción es obligatoria.
       </div>
+    </div>
 
-      <div>
-        <label for="hora">Hora:</label>
-        <select id="hora" formControlName="hora">
-          <option value="">Seleccione una hora</option>
-          <option value="11:00">11:00</option>
-          <option value="12:00">12:00</option>
-          <option value="13:00">13:00</option>
-          <option value="14:00">14:00</option>
-          <option value="15:00">15:00</option>
-          <option value="16:00">16:00</option>
-          <option value="17:00">17:00</option>
-          <option value="18:00">18:00</option>
-          <option value="19:00">19:00</option>
-        </select>
-        <div *ngIf="turnoForm.get('hora')?.hasError('required') && turnoForm.get('hora')?.touched" class="error">
-          La hora es obligatoria.
-        </div>
-        <div *ngIf="turnoForm.get('hora')?.hasError('turnoExistente') && turnoForm.get('hora')?.touched" class="error">
-          Ya existe un turno reservado para esta fecha y hora.
-        </div>
+    <div class="form-group">
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" formControlName="fecha" />
+      <div *ngIf="turnoForm.get('fecha')?.hasError('required') && turnoForm.get('fecha')?.touched" class="error">
+        La fecha es obligatoria.
       </div>
+      <div *ngIf="turnoForm.get('fecha')?.hasError('fechaNoValida') && turnoForm.get('fecha')?.touched" class="error">
+        La fecha debe ser posterior a la fecha actual.
+      </div>
+    </div>
 
-      <button type="submit" [disabled]="turnoForm.invalid">Reservar Turno</button>
-    </form>
-  </div>
+    <div class="form-group">
+      <label for="hora">Hora:</label>
+      <select id="hora" formControlName="hora">
+        <option value="">Seleccione una hora</option>
+        <option value="11:00">11:00</option>
+        <option value="12:00">12:00</option>
+        <option value="13:00">13:00</option>
+        <option value="14:00">14:00</option>
+        <option value="15:00">15:00</option>
+        <option value="16:00">16:00</option>
+        <option value="17:00">17:00</option>
+        <option value="18:00">18:00</option>
+        <option value="19:00">19:00</option>
+      </select>
+      <div *ngIf="turnoForm.get('hora')?.hasError('required') && turnoForm.get('hora')?.touched" class="error">
+        La hora es obligatoria.
+      </div>
+      <div *ngIf="turnoForm.get('hora')?.hasError('turnoExistente') && turnoForm.get('hora')?.touched" class="error">
+        Ya existe un turno reservado para esta fecha y hora.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="turnoForm.invalid">Reservar Turno</button>
+  </form>
+</div>

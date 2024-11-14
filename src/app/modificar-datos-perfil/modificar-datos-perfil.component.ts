@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { User } from '../Interface/user';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -10,7 +10,12 @@ import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-modificar-datos-perfil',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,HttpClientModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    HttpClientModule,
+    RouterModule
+  ],
   providers: [UserService],
   templateUrl: './modificar-datos-perfil.component.html',
   styleUrls: ['./modificar-datos-perfil.component.css']

@@ -17,9 +17,11 @@
         <input type="file" id="imagen" (change)="onFileSelected($event)">
 
 
-      <div *ngIf="imagePreview">
-        <h3>Vista previa:</h3>
-        <img [src]="imagePreview" alt="Vista previa de la imagen" class="preview-image">
+      <div *ngIf="imagePreview" class="preview-container">
+        <h3>Vista previa</h3>
+        <div class="image-wrapper">
+          <img [src]="imagePreview" alt="Vista previa de la imagen" class="preview-image">
+        </div>
       </div>
     </div>
 
