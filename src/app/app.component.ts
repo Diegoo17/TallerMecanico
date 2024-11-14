@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { NavegadorComponent } from "./navegador/navegador.component";
+import { NavegadorComponent } from "./Component/navegador/navegador.component";
 
 @Component({
   selector: 'app-root',
