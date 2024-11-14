@@ -16,6 +16,7 @@ export class CatalogeditComponent implements OnChanges{
   @Output() cancel = new EventEmitter<void>();
 
   editForm:FormGroup;
+  imagePreview: string | ArrayBuffer | null = null;
 
   constructor(private fb: FormBuilder) {
     this.editForm = this.fb.group({
@@ -29,6 +30,7 @@ export class CatalogeditComponent implements OnChanges{
   ngOnChanges() {
     if (this.product) {
       this.editForm.patchValue(this.product);
+      this.imagePreview = this.product.imagen;
     }
   }
 
@@ -52,6 +54,7 @@ export class CatalogeditComponent implements OnChanges{
       const file = input.files[0];
       const reader = new FileReader();
       reader.onload = (e: any) => {
+        this.imagePreview = e.target.result;
         this.editForm.patchValue({ imagen: e.target.result });
       };
       reader.readAsDataURL(file);

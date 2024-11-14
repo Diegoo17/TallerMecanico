@@ -13,7 +13,7 @@
     <label for="precio" id="labelFormGroup">Precio:</label>
     <input type="number" id="precio" formControlName="precio" step="1000">
     @if(productForm.get('precio')?.hasError('required') && productForm.get('precio')?.touched){
-      Precio es requerido.
+      Precio invalido.
     }
     @if(productForm.get('precio')?.hasError('min')&&productForm.get('precio')?.dirty){
       Ingrese un valor valido.

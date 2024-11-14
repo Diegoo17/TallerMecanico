@@ -1,71 +1,117 @@
-.edit-card {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+/* Contenedor principal del formulario */
+.edit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: #f9f9f9;
+  min-height: 100vh;  /* Asegura que el formulario esté centrado */
 }
 
+/* Estilo de la tarjeta de edición */
+.edit-card {
+  max-width: 500px;
+  width: 100%;
+  margin: 20px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.edit-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Título de la tarjeta */
 .edit-card h2 {
   text-align: center;
   margin-bottom: 20px;
-  font-size: 1.5em;
+  font-size: 1.8em;
+  font-weight: bold;
   color: #333;
+  letter-spacing: 0.5px;
 }
 
+/* Estilo de los grupos de formulario */
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #555;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #666;
+  font-size: 1.1em;
 }
 
+/* Estilo de los inputs */
 .form-group input[type="text"],
 .form-group input[type="number"],
 .form-group input[type="file"] {
   width: 100%;
-  padding: 8px;
+  padding: 12px;
   font-size: 1em;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
+  transition: border-color 0.3s;
 }
 
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="file"]:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+/* Estilo de la vista previa de la imagen */
+.preview-image {
+  max-width: 100%;
+  max-height: 250px;
+  margin-top: 15px;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  padding: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos del grupo de botones */
 .button-group {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
+}
+
+/* Estilo de los botones */
+.save-button,
+.cancel-button {
+  padding: 12px 20px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  min-width: 120px;
+  text-align: center;
+  border: none;
 }
 
 .save-button {
   background-color: #4CAF50;
   color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1em;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .save-button:disabled {
   background-color: #a5d6a7;
+  cursor: not-allowed;
 }
 
 .cancel-button {
   background-color: #f44336;
   color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1em;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .save-button:hover:not(:disabled) {
@@ -74,4 +120,21 @@
 
 .cancel-button:hover {
   background-color: #d32f2f;
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+  .edit-card {
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .form-group input,
+  .button-group {
+    width: 100%;
+  }
+
+  .preview-image {
+    max-height: 200px;
+  }
 }
