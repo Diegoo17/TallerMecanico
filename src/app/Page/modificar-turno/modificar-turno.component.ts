@@ -27,10 +27,12 @@ export class ModificarTurnoComponent implements OnInit {
   turnoForm!: FormGroup;
   turnoId: string = '';
   turnoOriginal: Turno | null = null;
+  isMecanico: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {
+    this.checkIfMecanico();
     this.initForm();
     this.route.params.subscribe(params => {
       this.turnoId = params['id'];
@@ -58,8 +60,8 @@ export class ModificarTurnoComponent implements OnInit {
     this.turnoService.getTurnos().subscribe(turnos => {
       const turno = turnos.find(t => t.id === this.turnoId);
       if (turno) {
-        if (this.esTurnoPasado(turno.fecha, turno.hora)) {
-          this.errorTurnosPasados()
+        if (!this.isMecanico && this.esTurnoPasado(turno.fecha, turno.hora)) {
+          this.errorTurnosPasados();
           this.router.navigate(['/misTurnos']);
           return;
         }
@@ -125,6 +127,10 @@ export class ModificarTurnoComponent implements OnInit {
 
   private validarFechaFutura() {
     return (control: AbstractControl): ValidationErrors | null => {
+      if (this.isMecanico) {
+        return null;
+      }
+
       const fechaSeleccionada = new Date(control.value);
       const fechaActual = new Date();
 
@@ -145,6 +151,13 @@ export class ModificarTurnoComponent implements OnInit {
     this.location.back();
   }
 
+  checkIfMecanico() {
+    const userStr = localStorage.getItem('currentUser');
+    if (userStr) {
+      const user = JSON.parse(userStr);
+      this.isMecanico = user.id === 'mec';
+    }
+  }
 
   async errorTurnosPasados() {
     await Swal.fire('Error', 'No se pueden editar turnos pasados', 'error');

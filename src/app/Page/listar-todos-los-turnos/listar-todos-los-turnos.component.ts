@@ -73,7 +73,7 @@ export class ListarTodosLosTurnosComponent implements OnInit {
     return fechaTurno < ahora;
   }
   eliminarTurno(turno: any) {
-    if (this.esTurnoPasado(turno.fecha, turno.hora)) {
+    if (!this.isMecanico && this.esTurnoPasado(turno.fecha, turno.hora)) {
       this.eliminarTurnoPasado();
       return;
     }
@@ -197,8 +197,8 @@ export class ListarTodosLosTurnosComponent implements OnInit {
   }
  
   editarTurno(turno: any) {
-    if (!this.isMecanico && this.esTurnoPasado(turno.fecha, turno.hora)) {
-      this.editarTurnoPasado()
+    if (this.esTurnoPasado(turno.fecha, turno.hora)) {
+      this.editarTurnoPasado();
       return;
     }
     this.router.navigate(['/modificar-turno', turno.id]);

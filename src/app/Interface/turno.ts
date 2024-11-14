@@ -5,5 +5,6 @@ export interface Turno{
     vehiculo: string;
     fecha: string;
     hora: string,
-    idUsuario: string
+    idUsuario: string;
+    userName: string;
 }

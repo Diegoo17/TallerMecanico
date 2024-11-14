@@ -129,6 +129,7 @@
             Editar
           </button>
           <button
+            *ngIf="isMecanico || !esTurnoPasado(turno.fecha, turno.hora)"
             class="eliminar"
             (click)="eliminarTurno(turno)"
           >
