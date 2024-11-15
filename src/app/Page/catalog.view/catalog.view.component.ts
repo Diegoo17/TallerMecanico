@@ -36,7 +36,7 @@ export class CatalogUserViewComponent implements OnInit {
 
   contactUs(): string {
     if (this.selectedProduct) {
-      return `https://wa.me/5491123456789?text=Hola%2C%20estoy%20interesado%20en%20este%20producto:%0A${this.selectedProduct.nombre}`;
+      return `https://wa.me/+5492235719422?text=Hola%2C%20estoy%20interesado%20en%20este%20producto:%0A${this.selectedProduct.nombre}`;
     }
     return '';
   }

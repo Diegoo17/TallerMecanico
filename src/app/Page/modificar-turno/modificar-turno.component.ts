@@ -92,7 +92,7 @@ export class ModificarTurnoComponent implements OnInit {
       ...this.turnoForm.value
     };
 
-    // Verificar si el horario está disponible (excepto si es el mismo horario del turno actual)
+
     if (this.horarioCambiado(turnoActualizado)) {
       this.turnoService.verificarTurnoExistente(turnoActualizado.fecha, turnoActualizado.hora)
         .subscribe(exists => {

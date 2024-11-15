@@ -15,7 +15,7 @@ export class MapComponent implements AfterViewInit {
   @ViewChild('mapContainer', { static: false }) gmap!: ElementRef<HTMLDivElement>;
   map?: google.maps.Map;
 
-  // Coordenadas de Luis Agote 582, Mar del Plata
+
   center: google.maps.LatLngLiteral = { lat: -38.031872643184435, lng: -57.56433106838446 };
   zoom = 18;
 
@@ -32,7 +32,7 @@ export class MapComponent implements AfterViewInit {
 
     this.map = new google.maps.Map(this.gmap.nativeElement, mapOptions);
 
-    // Añadir marcador
+
     new google.maps.Marker({
       position: coordinates,
       map: this.map,

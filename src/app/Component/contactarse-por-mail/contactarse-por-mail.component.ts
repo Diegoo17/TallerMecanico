@@ -24,14 +24,14 @@ export class ContactarsePorMailComponent implements OnInit {
     });
   }
 
-  // Getters para facilitar el acceso en el template
+
   get f() { return this.contactForm.controls; }
 
   onSubmit() {
     this.submitted = true;
 
     if (this.contactForm.valid) {
-      // Obtener el formulario HTML y enviarlo
+
       const form = document.querySelector('form');
       if (form) {
         form.submit();

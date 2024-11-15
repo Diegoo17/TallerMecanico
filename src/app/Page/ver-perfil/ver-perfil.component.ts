@@ -19,7 +19,7 @@ import { RouterModule } from '@angular/router';
 })
 
 export class VerPerfilComponent implements OnInit {
-  currentUser: any; // Define el tipo según lo que necesites
+  currentUser: any;
   usuario : User | null = null;
   showPassword = false;
 
@@ -39,12 +39,12 @@ export class VerPerfilComponent implements OnInit {
         },
         (error:Error) => {
           console.error('Error al cargar el perfil:', error);
-          // Maneja el error, tal vez mostrando un mensaje al usuario
+
         }
       );
     } else {
       console.error('No hay usuario en localStorage');
-      // Manejar el caso donde no hay usuario, por ejemplo, redirigir a inicio de sesión
+
     }
   }
 

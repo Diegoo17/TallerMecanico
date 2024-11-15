@@ -11,12 +11,12 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  // Método para obtener todos los comentarios sin paginación
+
   getAllComments(): Observable<Comment[]> {
     return this.http.get<Comment[]>(this.urlBase);
   }
 
-  // Método para obtener comentarios paginados
+
   getComments(start: number, limit: number): Observable<Comment[]> {
     return this.http.get<Comment[]>(`${this.urlBase}?_start=${start}&_limit=${limit}`);
   }
@@ -28,4 +28,4 @@ export class CommentService {
   deleteComment(id: string): Observable<any> {
     return this.http.delete(`${this.urlBase}/${id}`);
   }
-} 
+}

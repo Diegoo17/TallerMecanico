@@ -34,7 +34,6 @@ export class CreateCommentsComponent {
       ]]
     });
 
-    // Suscribirse a los cambios en el campo descripción
     this.commentForm.get('descripcion')?.valueChanges.subscribe(value => {
       this.caracteresRestantes = this.MAX_DESCRIPCION_LENGTH - (value?.length || 0);
     });

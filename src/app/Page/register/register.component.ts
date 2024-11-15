@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
 
-    ///ESTAS SON LAS VALIDACIONES QUE TIENE CADA CAMPO SI FALTA ALGUNA AGREGUENLA ACA Y DESPUES CAMBIENLA EN EL HTML
+
     this.registerForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       username: ['', Validators.required],
