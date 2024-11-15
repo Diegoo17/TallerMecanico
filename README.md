@@ -1,4 +1,10 @@
+AUTORES DEL PROYECTO: Fernandez Echeverria Diego, P. G. Federico Funes Guerra, Sette Lucas Hernan y Mateo Yatin
+
+para la correcta ejecucion del proyecto se debe tener instalado: los imports del google maps y del sweetalert2
+
 # ComponenteRegistroUsuarios
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
 
 ## Development server
