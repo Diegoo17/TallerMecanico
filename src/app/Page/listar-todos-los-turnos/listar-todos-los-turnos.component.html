@@ -113,7 +113,7 @@
     <tbody>
       <tr *ngFor="let turno of turnosFiltrados"
           [class.turno-pasado]="esTurnoPasado(turno.fecha, turno.hora)"
-          (click) = "mostrarCard(turno)"
+          (click)="mostrarCard(turno)"
           class="descripcion-truncada">
         <td>{{ turno.userName }}</td>
         <td>{{ turno.titulo }}</td>
@@ -121,7 +121,7 @@
         <td>{{ turno.fecha }}</td>
         <td>{{ turno.hora }}</td>
         <td>{{ turno.vehiculo }}</td>
-        <td>
+        <td (click)="$event.stopPropagation()">
           <button
             *ngIf="!esTurnoPasado(turno.fecha, turno.hora)"
             (click)="editarTurno(turno)"
