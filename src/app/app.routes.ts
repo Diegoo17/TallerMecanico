@@ -29,5 +29,6 @@ export const routes: Routes = [
   {path: 'turnos', component: ListarTodosLosTurnosComponent, canActivate:[authGuard]},
   {path: 'misTurnos', component: ListarMisTurnosComponent, canActivate:[authGuard]},
   {path: 'modificar-turno/:id', component: ModificarTurnoComponent, canActivate:[authGuard]},
-  {path: '', redirectTo: '/home', pathMatch: 'full'}
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '**', redirectTo: 'home'}
 ];

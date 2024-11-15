@@ -409,6 +409,7 @@ table {
     transition: background-color 0.3s ease;
     width: auto;
     max-width: 100%;
+    flex-direction: column;
   }
 
   .input-fecha-container:hover {
@@ -634,6 +635,7 @@ table {
     box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.1);
     border: none;
     cursor: pointer;
+    margin-top: 1.5rem;
   }
   
   .boton-turnos-pasados:hover {
@@ -647,4 +649,18 @@ table {
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
+  }
+
+  .no-turnos {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.08);
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 600px;
+    color: #34495e;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border: 0.2rem solid rgba(70, 235, 254, 0.2);
   }

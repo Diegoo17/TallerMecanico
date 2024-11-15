@@ -2,6 +2,16 @@ AUTORES DEL PROYECTO: Fernandez Echeverria Diego, P. G. Federico Funes Guerra, S
 
 para la correcta ejecucion del proyecto se debe tener instalado: los imports del google maps y del sweetalert2
 
+npm install sweetalert2 --force
+npm install @angular/google-maps
+
+Los datos del mecanico son:
+"id": "mec",
+      "nombre": "Gustavo Mecánico",
+      "username": "gustavitotaller",
+      "email": "gustavitoTaller@gmail.com",
+      "password": "Taller1234",
+      "telefono": "2235944445"
 # ComponenteRegistroUsuarios
 
 
