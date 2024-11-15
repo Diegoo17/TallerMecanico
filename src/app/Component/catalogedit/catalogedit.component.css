@@ -50,9 +50,9 @@
 }
 
 .form-group {
-  margin-bottom: 3rem;
+  margin-bottom: 6rem;
   position: relative;
-  padding: 0 1rem;
+  width: 100%;
 }
 
 .form-group label {
@@ -101,7 +101,6 @@
   text-align: center;
 }
 
-
 .caracteres-contador {
   font-size: 1.4rem;
   color: #666;
@@ -113,7 +112,6 @@
 .caracteres-contador.pocos {
   color: #dc3545;
 }
-
 
 .preview-container h3 {
   font-size: 1.8rem;
@@ -216,4 +214,38 @@
   .edit-card h2 {
     font-size: 2.4rem;
   }
+}
+
+.error-message {
+  width: 100%;
+  color: #842029;
+  font-size: 1.4rem;
+  background-color: #f8d7da;
+  border: 0.1rem solid #f5c2c7;
+  border-left: 0.5rem solid #dc3545;
+  padding: 1.2rem;
+  border-radius: 0.8rem;
+  margin: 0.5rem auto;
+  animation: slideIn 0.3s ease-in-out;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: -4.8rem;
+  z-index: 1;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.textarea-container {
+  width: 100%;
+  position: relative;
 }

@@ -25,10 +25,10 @@ export class CatalogeditComponent implements OnChanges{
   constructor() {
     this.editForm = this.fb.group({
       id: [{ value: null, disabled: true }],
-      nombre: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
       precio: [0, [Validators.required, Validators.min(1)]],
       descripcion: ['', [Validators.required, Validators.maxLength(this.maxCaracteres)]],
-      imagen: [''],
+      imagen: ['']
     });
 
     this.editForm.get('descripcion')?.valueChanges.subscribe(value => {
@@ -48,7 +48,8 @@ export class CatalogeditComponent implements OnChanges{
     if (this.editForm.valid && this.product) {
       const updatedProduct: Product = {
         ...this.product,
-        ...this.editForm.value
+        ...this.editForm.value,
+        imagen: this.editForm.get('imagen')?.value || this.product.imagen
       };
       this.save.emit(updatedProduct);
     }

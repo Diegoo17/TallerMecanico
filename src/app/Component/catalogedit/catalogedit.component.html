@@ -5,6 +5,11 @@
       <div class="form-group">
         <label for="nombre">Nombre del producto:</label>
         <input type="text" id="nombre" formControlName="nombre" placeholder="Ingrese el nombre">
+        <div *ngIf="editForm.get('nombre')?.hasError('required') && editForm.get('nombre')?.touched" class="error">
+          <div class="error-message">
+            Nombre es requerido.
+          </div>
+        </div>
       </div>
 
       <div class="form-group">
@@ -20,26 +25,44 @@
             {{ caracteresRestantes }} caracteres restantes
           </span>
         </div>
+        <div *ngIf="editForm.get('descripcion')?.hasError('required') && editForm.get('descripcion')?.touched" class="error">
+          <div class="error-message">
+            La descripcion es obligatoria
+          </div>
+        </div>
       </div>
-
 
       <div class="form-group">
         <label for="precio">Precio:</label>
-        <input type="number" id="precio" formControlName="precio" step="1000" placeholder="Ingrese el precio">
+        <input type="number" id="precio" formControlName="precio" step="1000">
+        <div *ngIf="editForm.get('precio')?.hasError('required') && editForm.get('precio')?.touched" class="error">
+          <div class="error-message">
+            Precio invalido.
+          </div>
+        </div>
+        <div *ngIf="editForm.get('precio')?.hasError('min') && editForm.get('precio')?.dirty" class="error">
+          <div class="error-message">
+            Ingrese un valor valido.
+          </div>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="imagen">Imagen:</label>
         <input type="file" id="imagen" (change)="onFileSelected($event)">
+        <div *ngIf="editForm.get('imagen')?.hasError('required') && editForm.get('imagen')?.touched" class="error">
+          <div class="error-message">
+            Imagen es requerida.
+          </div>
+        </div>
 
-
-      <div *ngIf="imagePreview" class="preview-container">
-        <h3>Vista previa</h3>
-        <div class="image-wrapper">
-          <img [src]="imagePreview" alt="Vista previa de la imagen" class="preview-image">
+        <div *ngIf="imagePreview" class="preview-container">
+          <h3>Vista previa</h3>
+          <div class="image-wrapper">
+            <img [src]="imagePreview" alt="Vista previa de la imagen" class="preview-image">
+          </div>
         </div>
       </div>
-    </div>
 
       <div class="button-group">
         <button type="submit" class="save-button" [disabled]="editForm.invalid">Guardar Cambios</button>
@@ -47,6 +70,5 @@
       </div>
     </form>
   </div>
-
 </div>
 
