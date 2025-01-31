@@ -1,5 +1,3 @@
-
-
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <h1>Registrarse</h1>
 
@@ -68,6 +66,19 @@
     <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('pattern')" class="error">
       La contraseña debe contener al menos una letra minúscula, una mayúscula y un número.
     </div>
+  </div>
+
+  <div>
+    <label for="marca">Marca del Vehículo:</label>
+    <select id="marca" formControlName="marca" (change)="onMarcaChange()">
+      <option *ngFor="let marca of marcas" [value]="marca">{{ marca }}</option>
+      <option value="Otro">Otro</option>
+    </select>
+  </div>
+
+  <div *ngIf="registerForm.get('marca')?.value === 'Otro'">
+    <label for="otraMarca">Escribe la marca:</label>
+    <input id="otraMarca" type="text" formControlName="otraMarca" placeholder="Ingresa la marca">
   </div>
 
   <button type="submit" [disabled]="registerForm.invalid">Registrarse</button>

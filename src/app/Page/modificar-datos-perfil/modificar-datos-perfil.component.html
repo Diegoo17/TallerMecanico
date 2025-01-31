@@ -88,6 +88,20 @@
           </div>
         </div>
 
+        <div class="info-item">
+          <i class="fas fa-car"></i>
+              <label for="marca">Marca:</label>
+              <select id="marca" formControlName="marca" (change)="onMarcaChange()">
+                <option *ngFor="let marca of marcas" [value]="marca">{{ marca }}</option>
+                <option value="Otro">Otro</option>
+              </select>
+          
+            <div *ngIf="editForm.get('marca')?.value === 'Otro'">
+              <label for="otraMarca">Escribe la marca:</label>
+              <input id="otraMarca" type="text" formControlName="otraMarca" placeholder="Ingresa la marca">
+            </div>
+          
+        </div>
         <div class="button-container">
           <button type="submit" class="save-button">
             <i class="fas fa-save"></i> Guardar Cambios
@@ -96,6 +110,11 @@
             <i class="fas fa-times"></i> Cancelar
           </button>
         </div>
+
+        
+
+        
+
       </form>
     </div>
   </div>

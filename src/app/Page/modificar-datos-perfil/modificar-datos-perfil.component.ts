@@ -31,6 +31,9 @@ export class ModificarDatosPerfilComponent implements OnInit {
   usuario: User | null = null;
   submitted = false;
   mostrarPassword = false;
+  marcas: string[] = ['Toyota', 'Ford', 'Honda', 'BMW', 'Mercedes'];
+  marcaSeleccionada: string = '';
+  otraMarca: string = '';
 
   constructor() {
     this.editForm = this.formBuilder.group({
@@ -51,7 +54,8 @@ export class ModificarDatosPerfilComponent implements OnInit {
         Validators.pattern(/[a-z]/),
         Validators.pattern(/[A-Z]/),
         Validators.pattern(/[0-9]/)
-      ]]
+      ]],
+      marca: ['', [Validators.required]],
     });
   }
 
@@ -183,6 +187,12 @@ export class ModificarDatosPerfilComponent implements OnInit {
     await Swal.fire('Error', 'El perfil no fue actualizado correctamente', 'error');
   }
   
+
+  onMarcaChange() {
+    if (this.editForm.get('marca')?.value !== 'Otro') {
+      this.editForm.get('otraMarca')?.setValue('');
+    }
+  }
   
 
 

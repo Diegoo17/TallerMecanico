@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { TurnoService } from '../../Service/turno.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Turno } from '../../Interface/turno';
+import { UserService } from '../../Service/user.service';
 
 @Component({
   selector: 'app-listar-todos-los-turnos',
@@ -220,4 +222,6 @@ export class ListarTodosLosTurnosComponent implements OnInit {
   async editarTurnoPasado() {
     await Swal.fire('Error al editar turno', 'No puede editar un turno pasado', 'error');
   }
+
+
 }

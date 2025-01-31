@@ -49,6 +49,7 @@ export class NavlogueadoComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.authS.logout();
+        
         this.router.navigate(['/home']).then(() => {
           window.location.href = '/home';
         });

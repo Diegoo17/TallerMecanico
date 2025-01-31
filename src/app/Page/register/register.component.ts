@@ -16,6 +16,9 @@ import Swal from 'sweetalert2';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
+  marcas: string[] = ['Toyota', 'Ford', 'Honda', 'BMW', 'Mercedes'];
+  marcaSeleccionada: string = '';
+  otraMarca: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,6 +51,8 @@ export class RegisterComponent implements OnInit {
           Validators.pattern(/[0-9]/),
         ],
       ],
+      marca: ['', Validators.required],
+
     });
   }
 
@@ -147,5 +152,12 @@ export class RegisterComponent implements OnInit {
   }
   async errorRegistro() {
     await Swal.fire('Error', 'El registro falló', 'error');
+  }
+
+
+  onMarcaChange() {
+    if (this.registerForm.get('marca')?.value !== 'Otro') {
+      this.registerForm.get('otraMarca')?.setValue('');
+    }
   }
 }
