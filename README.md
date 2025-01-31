@@ -1,5 +1,10 @@
 AUTORES DEL PROYECTO: Fernandez Echeverria Diego, P. G. Federico Funes Guerra, Sette Lucas Hernan y Mateo Yatin
 
+codigo para iniciar
+ 
+json-server src/db.json
+ng serve --o
+
 para la correcta ejecucion del proyecto se debe tener instalado: los imports del google maps y del sweetalert2
 
 npm install sweetalert2 --force
