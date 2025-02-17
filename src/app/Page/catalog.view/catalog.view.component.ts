@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from '../../Service/product.service';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { ProductService } from '../../Service/product.service';
   standalone: true,
   templateUrl: './catalog.view.component.html',
   styleUrls: ['./catalog.view.component.css'],
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, FormsModule],
   providers: [ProductService]
 })
 
@@ -17,6 +18,8 @@ export class CatalogUserViewComponent implements OnInit {
   products: any[] = [];
   selectedProduct: any = null;
   window: any;
+  searchTerm: string = '';
+  filteredProducts: any[] = [];
 
   constructor() {}
   productService= inject(ProductService)
@@ -27,7 +30,19 @@ export class CatalogUserViewComponent implements OnInit {
   loadProducts() {
     this.productService.getProducts().subscribe((data: any) => {
       this.products = data;
+      this.filteredProducts = data;
     });
+  }
+
+  filterProducts() {
+    if (!this.searchTerm) {
+      this.filteredProducts = this.products;
+      return;
+    }
+
+    this.filteredProducts = this.products.filter(product =>
+      product.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 
   onSelect(product: any) {
