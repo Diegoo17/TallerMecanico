@@ -11,14 +11,6 @@
     </div>
 
     <div class="form-group">
-      <label for="titulo">Vehiculo:</label>
-      <input id="vehiculo" formControlName="vehiculo" placeholder="Ingrese el vehiculo"/>
-      <div *ngIf="turnoForm.get('vehiculo')?.hasError('required') && turnoForm.get('vehiculo')?.touched" class="error">
-        El vehiculo es obligatorio.
-      </div>
-    </div>
-
-    <div class="form-group">
       <label for="descripcion">Descripción:</label>
       <div class="textarea-container">
         <textarea

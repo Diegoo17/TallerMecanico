@@ -189,6 +189,33 @@
       "telefono": "2233445566",
       "password": "@Casd123",
       "marca": "Otro"
+    },
+    {
+      "id": "5540",
+      "nombre": "Nombre ",
+      "username": "Nombre del auto",
+      "email": "nombreauto@gmail.com",
+      "telefono": "6565656565",
+      "password": "A@123asddd",
+      "marca": "Marca Nueva"
+    },
+    {
+      "id": "cf5c",
+      "nombre": "Nuevo Nombre",
+      "username": "Nuevo Usuario",
+      "email": "nuevomail@gmail.com",
+      "telefono": "7657565742",
+      "password": "@ASa123n",
+      "marca": "Otra marquita"
+    },
+    {
+      "id": "e4ca",
+      "nombre": "nombrecito",
+      "username": "usernamecito",
+      "email": "emailcito@gmail.com",
+      "telefono": "0000000001",
+      "password": "qwAs123@",
+      "marca": "MARCA RARA"
     }
   ],
   "products": [
@@ -954,6 +981,16 @@
       "vehiculo": "Renault 21",
       "idUsuario": "mec",
       "userName": "Gustavo Mecánico"
+    },
+    {
+      "id": "285b",
+      "titulo": "turnito",
+      "descripcion": "sdfadfasdfadf",
+      "fecha": "2025-12-12",
+      "hora": "19:00",
+      "vehiculo": "turnito",
+      "idUsuario": "5540",
+      "userName": "Nombre del auto"
     }
   ]
 }

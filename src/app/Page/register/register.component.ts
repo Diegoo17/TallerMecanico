@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   marcas: string[] = ['Toyota', 'Ford', 'Honda', 'BMW', 'Mercedes'];
   marcaSeleccionada: string = '';
-  otraMarca: string = '';
+  esOtro = false
 
   constructor(
     private formBuilder: FormBuilder,
@@ -154,10 +154,16 @@ export class RegisterComponent implements OnInit {
     await Swal.fire('Error', 'El registro falló', 'error');
   }
 
-
   onMarcaChange() {
-    if (this.registerForm.get('marca')?.value !== 'Otro') {
-      this.registerForm.get('otraMarca')?.setValue('');
+    const valorSeleccionado = this.registerForm.get('marca')?.value;
+    this.esOtro = valorSeleccionado === 'Otro';
+    if (this.esOtro) {
+      this.registerForm.get('marca')?.setValue('');
     }
+  }
+
+  onOtraMarcaInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    this.registerForm.get('marca')?.setValue(inputElement.value);
   }
 }

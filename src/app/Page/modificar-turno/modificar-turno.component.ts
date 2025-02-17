@@ -44,7 +44,6 @@ export class ModificarTurnoComponent implements OnInit {
     this.turnoForm = this.formBuilder.group({
       titulo: ['', Validators.required],
       descripcion: ['', Validators.required],
-      vehiculo: ['', Validators.required],
       fecha: ['', [Validators.required, this.validarFechaFutura()]],
       hora: ['', [Validators.required, Validators.pattern(/^(1[3-9]|1[0-9]):[0-5][0-9]$/)]],
     });
@@ -70,7 +69,6 @@ export class ModificarTurnoComponent implements OnInit {
         this.turnoForm.patchValue({
           titulo: turno.titulo,
           descripcion: turno.descripcion,
-          vehiculo: turno.vehiculo,
           fecha: turno.fecha,
           hora: turno.hora
         });

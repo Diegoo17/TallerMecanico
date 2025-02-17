@@ -67,19 +67,18 @@
       La contraseña debe contener al menos una letra minúscula, una mayúscula y un número.
     </div>
   </div>
-
-  <div>
-    <label for="marca">Marca del Vehículo:</label>
-    <select id="marca" formControlName="marca" (change)="onMarcaChange()">
-      <option *ngFor="let marca of marcas" [value]="marca">{{ marca }}</option>
-      <option value="Otro">Otro</option>
-    </select>
-  </div>
-
-  <div *ngIf="registerForm.get('marca')?.value === 'Otro'">
-    <label for="otraMarca">Escribe la marca:</label>
-    <input id="otraMarca" type="text" formControlName="otraMarca" placeholder="Ingresa la marca">
-  </div>
-
+    <div>
+      <label for="marca">Marca del Vehículo:</label>
+      <select id="marca" formControlName="marca" (change)="onMarcaChange()">
+        <option *ngFor="let marca of marcas" [value]="marca">{{ marca }}</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+    
+    <div *ngIf="esOtro">
+      <label for="otraMarca">Escribe la marca:</label>
+      <input id="otraMarca" type="text" [value]="registerForm.get('marca')?.value" 
+             (input)="onOtraMarcaInput($event)" placeholder="Ingresa la marca">
+    </div>
   <button type="submit" [disabled]="registerForm.invalid">Registrarse</button>
 </form>

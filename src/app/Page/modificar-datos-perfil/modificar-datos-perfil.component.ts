@@ -33,7 +33,7 @@ export class ModificarDatosPerfilComponent implements OnInit {
   mostrarPassword = false;
   marcas: string[] = ['Toyota', 'Ford', 'Honda', 'BMW', 'Mercedes'];
   marcaSeleccionada: string = '';
-  otraMarca: string = '';
+  esOtro = false
 
   constructor() {
     this.editForm = this.formBuilder.group({
@@ -70,7 +70,9 @@ export class ModificarDatosPerfilComponent implements OnInit {
         username: this.usuario?.username || '',
         email: this.usuario?.email || '',
         telefono: this.usuario?.telefono || '',
-        password: ''
+        password: '',
+        marca: this.usuario?.marca || ''
+        
       });
     } else {
       this.router.navigate(['/login']);
@@ -189,9 +191,16 @@ export class ModificarDatosPerfilComponent implements OnInit {
   
 
   onMarcaChange() {
-    if (this.editForm.get('marca')?.value !== 'Otro') {
-      this.editForm.get('otraMarca')?.setValue('');
+    const valorSeleccionado = this.editForm.get('marca')?.value;
+    this.esOtro = valorSeleccionado === 'Otro';
+    if (this.esOtro) {
+      this.editForm.get('marca')?.setValue('');
     }
+  }
+
+  onOtraMarcaInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    this.editForm.get('marca')?.setValue(inputElement.value);
   }
   
 

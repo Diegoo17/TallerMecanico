@@ -78,7 +78,6 @@
           <th>Descripción</th>
           <th>Fecha</th>
           <th>Hora</th>
-          <th>Vehiculo</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -91,7 +90,6 @@
           <td>{{ turno.descripcion }}</td>
           <td>{{ turno.fecha }}</td>
           <td>{{ turno.hora }}</td>
-          <td>{{ turno.vehiculo }}</td>
           <td (click)="$event.stopPropagation()">
             <button
               *ngIf="!esTurnoPasado(turno.fecha, turno.hora)"
@@ -123,7 +121,6 @@
       <p><strong>Descripción:</strong> {{ turnoSeleccionado.descripcion }}</p>
       <p><strong>Fecha:</strong> {{ turnoSeleccionado.fecha }}</p>
       <p><strong>Hora:</strong> {{ turnoSeleccionado.hora }}</p>
-      <p><strong>Vehiculo:</strong> {{ turnoSeleccionado.vehiculo }}</p>
       <button (click)="cerrarCard()">Cerrar</button>
     </div>
   </div>

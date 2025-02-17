@@ -31,7 +31,6 @@ export class ReservaTurnoFormComponent implements OnInit {
       descripcion: ['', [Validators.required, Validators.maxLength(this.maxCaracteres)]],
       fecha: ['', [Validators.required, this.validarFechaFutura()]],
       hora: ['', [Validators.required, Validators.pattern(/^(1[3-9]|1[0-9]):[0-5][0-9]$/)]],
-      vehiculo: ['', [Validators.required]]
     });
 
     this.turnoForm.get('descripcion')?.valueChanges.subscribe(value => {
