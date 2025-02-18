@@ -55,6 +55,7 @@ export class ReservaTurnoFormComponent implements OnInit {
       ...this.turnoForm.value,
       idUsuario: user.id,
       userName: user.nombre,
+      vehiculo: user.marca
     };
 
     this.turnoService.verificarTurnoExistente(nuevoTurno.fecha, nuevoTurno.hora).subscribe((turnoExists) => {

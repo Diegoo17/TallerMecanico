@@ -48,7 +48,8 @@ export class UserService {
           nombre: datosActualizados.nombre || usuarioActual.nombre,
           email: datosActualizados.email || usuarioActual.email,
           telefono: datosActualizados.telefono || usuarioActual.telefono,
-          password: datosActualizados.password || usuarioActual.password
+          password: datosActualizados.password || usuarioActual.password,
+          marca: datosActualizados.marca || usuarioActual.marca
         };
         return this.http.put<User>(`${this.urlBase}/${id}`, usuarioActualizado);
       })

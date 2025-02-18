@@ -6,7 +6,8 @@
       "username": "gustavitotaller",
       "email": "gustavitoTaller@gmail.com",
       "password": "Taller1234",
-      "telefono": "2235944445"
+      "telefono": "2235944445",
+      "marca": "Mercedes"
     },
     {
       "id": "u123",
@@ -210,12 +211,12 @@
     },
     {
       "id": "e4ca",
-      "nombre": "nombrecito",
+      "nombre": "nombrecitee",
       "username": "usernamecito",
       "email": "emailcito@gmail.com",
       "telefono": "0000000001",
       "password": "qwAs123@",
-      "marca": "MARCA RARA"
+      "marca": "Marcaza"
     }
   ],
   "products": [
@@ -991,6 +992,80 @@
       "vehiculo": "turnito",
       "idUsuario": "5540",
       "userName": "Nombre del auto"
+    },
+    {
+      "id": "96f6",
+      "titulo": "Turno con auto",
+      "descripcion": "Descripcion de un turno que tiene auto",
+      "fecha": "2025-12-12",
+      "hora": "15:00",
+      "idUsuario": "mec",
+      "userName": "Gustavo Mecánico"
+    },
+    {
+      "id": "546b",
+      "titulo": "dddd",
+      "descripcion": "dddddd",
+      "fecha": "2025-12-12",
+      "hora": "11:00",
+      "idUsuario": "mec",
+      "userName": "Gustavo Mecánico"
+    },
+    {
+      "id": "108d",
+      "titulo": "RESERVA",
+      "descripcion": "RESERVA",
+      "fecha": "2025-03-12",
+      "hora": "15:00",
+      "idUsuario": "mec",
+      "userName": "Gustavo Mecánico"
+    },
+    {
+      "id": "9395",
+      "titulo": "RESERVA ULTIMA",
+      "descripcion": "RESARSEAFD",
+      "fecha": "2025-05-11",
+      "hora": "18:00",
+      "idUsuario": "mec",
+      "userName": "Gustavo Mecánico"
+    },
+    {
+      "id": "c9a3",
+      "titulo": "ddafsfdsdfsafds",
+      "descripcion": "fdsfsdfadsfds1",
+      "fecha": "2025-06-01",
+      "hora": "16:00",
+      "idUsuario": "mec",
+      "userName": "Gustavo Mecánico"
+    },
+    {
+      "id": "9cf8",
+      "titulo": "HOLALAA",
+      "descripcion": "HOALALA",
+      "fecha": "2025-09-12",
+      "hora": "17:00",
+      "idUsuario": "mec",
+      "userName": "Gustavo Mecánico"
+    },
+    {
+      "id": "6db2",
+      "titulo": "THE LAST",
+      "descripcion": "THE LAST",
+      "fecha": "2025-09-09",
+      "hora": "18:00",
+      "idUsuario": "mec",
+      "userName": "Gustavo Mecánico",
+      "vehiculo": "BMW"
+    },
+    {
+      "id": "7d23",
+      "titulo": "Reserva del mercedes",
+      "descripcion": "Mercedessss",
+      "fecha": "2025-09-09",
+      "hora": "17:00",
+      "idUsuario": "mec",
+      "userName": "Gustavo Mecánico",
+      "vehiculo": "Mercedes"
     }
   ]
 }
