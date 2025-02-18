@@ -73,7 +73,9 @@ export class ModificarDatosPerfilComponent implements OnInit {
         password: '',
         marca: this.usuario?.marca || ''
         
-      });
+      }
+    );
+      
     } else {
       this.router.navigate(['/login']);
     }
@@ -158,21 +160,25 @@ export class ModificarDatosPerfilComponent implements OnInit {
   private actualizarPerfil(updatedFields: Partial<User>) {
     this.userService.actualizarDatosPerfil(this.usuario!.id!, updatedFields).subscribe({
       next: (response) => {
+        console.log("Datos actualizados:", updatedFields);
+  
         const updatedUser = {
           ...this.usuario!,
-          ...updatedFields
+          ...updatedFields  
         };
+  
         localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-        this.perfilActualizado()
+  
+        this.perfilActualizado();
         this.router.navigate(['/ver-perfil']);
       },
       error: (error) => {
         console.error('Error al actualizar el perfil:', error);
-        this.perfilNoActualizado()
+        this.perfilNoActualizado();
       }
     });
   }
-
+  
 
   async noHayCambios() {
     await Swal.fire('No hay cambios', 'No existen cambios para guardar', 'question');

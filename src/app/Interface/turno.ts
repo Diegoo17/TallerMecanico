@@ -6,4 +6,5 @@ export interface Turno{
     hora: string,
     idUsuario: string;
     userName: string;
+    vehiculo: string
 }
