@@ -10,213 +10,58 @@
       "marca": "Mercedes"
     },
     {
-      "id": "u123",
-      "nombre": "Juan Pérez",
-      "username": "juanp2024",
-      "email": "juanperez@gmail.com",
-      "telefono": "2235123456",
-      "password": "Juan2024!"
+      "id": "4e24",
+      "nombre": "Pablo Perez",
+      "username": "Pablo123",
+      "email": "pablo123@gmail.com",
+      "telefono": "1234567890",
+      "password": "Pablo123",
+      "marca": "BMW"
     },
     {
-      "id": "u124",
-      "nombre": "María García",
-      "username": "mariag",
-      "email": "mariagarcia@gmail.com",
-      "telefono": "2235789012",
-      "password": "Maria2024!"
+      "id": "ced3",
+      "nombre": "Leticia ",
+      "username": "Leti123",
+      "email": "leti@gmail.com",
+      "telefono": "1231231234",
+      "password": "Leti1234",
+      "marca": "Mercedes"
     },
     {
-      "id": "u125",
-      "nombre": "Carlos Rodríguez",
-      "username": "carlosr",
-      "email": "carlosr@gmail.com",
-      "telefono": "2235345678",
-      "password": "Carlos2024!"
+      "id": "33c1",
+      "nombre": "Diego",
+      "username": "Diego123",
+      "email": "diego@gmail.com",
+      "telefono": "9999999999",
+      "password": "Diego123",
+      "marca": "Honda"
     },
     {
-      "id": "u126",
-      "nombre": "Ana Martínez",
-      "username": "anam2024",
-      "email": "anam@gmail.com",
-      "telefono": "2235901234",
-      "password": "Ana2024!"
-    },
-    {
-      "id": "u127",
-      "nombre": "Roberto Sánchez",
-      "username": "robertos",
-      "email": "roberto.sanchez@gmail.com",
-      "telefono": "2235445566",
-      "password": "Roberto2024!"
-    },
-    {
-      "id": "u128",
-      "nombre": "Laura Fernández",
-      "username": "laufernandez",
-      "email": "lauraf@gmail.com",
-      "telefono": "2235112233",
-      "password": "Laura2024!"
-    },
-    {
-      "id": "u129",
-      "nombre": "Miguel Torres",
-      "username": "miguelt",
-      "email": "miguel.torres@gmail.com",
-      "telefono": "2235667788",
-      "password": "Miguel2024!"
-    },
-    {
-      "id": "u130",
-      "nombre": "Paula Ramírez",
-      "username": "paular",
-      "email": "paula.ramirez@gmail.com",
-      "telefono": "2235998877",
-      "password": "Paula2024!"
-    },
-    {
-      "id": "u131",
-      "nombre": "Federico López",
-      "username": "fedel",
-      "email": "fede.lopez@gmail.com",
-      "telefono": "2235223344",
-      "password": "Fede2024!"
-    },
-    {
-      "id": "u132",
-      "nombre": "Valentina Ruiz",
-      "username": "valruiz",
-      "email": "val.ruiz@gmail.com",
-      "telefono": "2235334455",
-      "password": "Vale2024!"
-    },
-    {
-      "id": "u133",
-      "nombre": "Santiago Morales",
-      "username": "santiagom",
-      "email": "santiago.morales@gmail.com",
-      "telefono": "2235556677",
-      "password": "Santi2024!"
-    },
-    {
-      "id": "u134",
-      "nombre": "Luciana Castro",
-      "username": "lucastro",
-      "email": "lu.castro@gmail.com",
-      "telefono": "2235778899",
-      "password": "Luci2024!"
-    },
-    {
-      "id": "u135",
-      "nombre": "Martín Acosta",
-      "username": "martinac",
-      "email": "martin.acosta@gmail.com",
-      "telefono": "2235990011",
-      "password": "Martin2024!"
-    },
-    {
-      "id": "u136",
-      "nombre": "Camila Vargas",
-      "username": "camivar",
-      "email": "camila.vargas@gmail.com",
-      "telefono": "2235112233",
-      "password": "Cami2024!"
-    },
-    {
-      "id": "u137",
-      "nombre": "Gonzalo Mendoza",
-      "username": "gonzam",
-      "email": "gonzalo.mendoza@gmail.com",
-      "telefono": "2235445599",
-      "password": "Gonza2024!"
-    },
-    {
-      "id": "u138",
-      "nombre": "Florencia Paz",
-      "username": "florpaz",
-      "email": "flor.paz@gmail.com",
-      "telefono": "2235667744",
-      "password": "Flor2024!"
-    },
-    {
-      "id": "u139",
-      "nombre": "Tomás Pereyra",
-      "username": "tomasp",
-      "email": "tomas.pereyra@gmail.com",
-      "telefono": "2235889900",
-      "password": "Tomas2024!"
-    },
-    {
-      "id": "146a",
-      "nombre": "Lucas Hernan Sette",
-      "username": "lucassette",
-      "email": "lucassette49@gmail.com",
-      "telefono": "2235890444",
-      "password": "Hola1234"
-    },
-    {
-      "id": "0a83",
-      "nombre": "Nombre con vehiculo",
-      "username": "Username con vehiculo",
-      "email": "emailconvehiculo@gmail.com",
-      "telefono": "9879879687",
-      "password": "@Vehiculo123",
-      "marca": "Otro",
-      "otramarca": ""
-    },
-    {
-      "id": "7298",
-      "nombre": "marcaa",
-      "username": "marcas",
-      "email": "marcas@gmail.com",
-      "telefono": "1233356674",
-      "password": "@Casdm123",
-      "marca": "Mercedes",
-      "otramarca": ""
-    },
-    {
-      "id": "5a62",
-      "nombre": "marcasdfasd",
-      "username": "adfsfadsfdas",
-      "email": "fdasfds@gmail.com",
-      "telefono": "1231235678",
-      "password": "@CASDL123as",
-      "marca": "Ford"
-    },
-    {
-      "id": "2d1a",
-      "nombre": "fdg",
-      "username": "asdfasdgaas",
-      "email": "ww@gmail.com",
-      "telefono": "2233445566",
-      "password": "@Casd123",
-      "marca": "Otro"
-    },
-    {
-      "id": "5540",
-      "nombre": "Nombre ",
-      "username": "Nombre del auto",
-      "email": "nombreauto@gmail.com",
+      "id": "ca6d",
+      "nombre": "Lucas",
+      "username": "lucas123",
+      "email": "lucas@gmail.com",
       "telefono": "6565656565",
-      "password": "A@123asddd",
-      "marca": "Marca Nueva"
+      "password": "Lucas123",
+      "marca": "Otra marca"
     },
     {
-      "id": "cf5c",
-      "nombre": "Nuevo Nombre",
-      "username": "Nuevo Usuario",
-      "email": "nuevomail@gmail.com",
-      "telefono": "7657565742",
-      "password": "@ASa123n",
-      "marca": "Otra marquita"
+      "id": "c5ba",
+      "nombre": "Federico",
+      "username": "Fede123",
+      "email": "fede@gmail.com",
+      "telefono": "1597532648",
+      "password": "Fede1234a",
+      "marca": "Honda"
     },
     {
-      "id": "e4ca",
-      "nombre": "nombrecitee",
-      "username": "usernamecito",
-      "email": "emailcito@gmail.com",
-      "telefono": "0000000001",
-      "password": "qwAs123@",
-      "marca": "Marcaza"
+      "id": "826b",
+      "nombre": "Matias",
+      "username": "Matias123",
+      "email": "matias@gmail.com",
+      "telefono": "8787878787",
+      "password": "Matias159",
+      "marca": "Renault"
     }
   ],
   "products": [
@@ -944,106 +789,12 @@
       "userName": "lucassette"
     },
     {
-      "id": "ea03",
-      "titulo": "s",
-      "descripcion": "s",
-      "fecha": "2025-12-05",
-      "hora": "15:00",
-      "vehiculo": "s",
-      "idUsuario": "u123",
-      "userName": "Juan Pérez"
-    },
-    {
-      "id": "f1c9",
-      "titulo": "Turnoasd",
-      "descripcion": "descripcionesss",
-      "fecha": "2025-03-12",
-      "hora": "18:00",
-      "vehiculo": "asdf",
-      "idUsuario": "mec",
-      "userName": "Gustavo Mecánico"
-    },
-    {
       "id": "706c",
       "titulo": "Otro turno",
       "descripcion": "Descripcion del turno",
       "fecha": "2025-02-12",
       "hora": "17:00",
       "vehiculo": "Vehiculo",
-      "idUsuario": "mec",
-      "userName": "Gustavo Mecánico"
-    },
-    {
-      "id": "3e15",
-      "titulo": "Titulo del turno",
-      "descripcion": "Descripcion del turno actual",
-      "fecha": "2025-02-22",
-      "hora": "17:00",
-      "vehiculo": "Renault 21",
-      "idUsuario": "mec",
-      "userName": "Gustavo Mecánico"
-    },
-    {
-      "id": "285b",
-      "titulo": "turnito",
-      "descripcion": "sdfadfasdfadf",
-      "fecha": "2025-12-12",
-      "hora": "19:00",
-      "vehiculo": "turnito",
-      "idUsuario": "5540",
-      "userName": "Nombre del auto"
-    },
-    {
-      "id": "96f6",
-      "titulo": "Turno con auto",
-      "descripcion": "Descripcion de un turno que tiene auto",
-      "fecha": "2025-12-12",
-      "hora": "15:00",
-      "idUsuario": "mec",
-      "userName": "Gustavo Mecánico"
-    },
-    {
-      "id": "546b",
-      "titulo": "dddd",
-      "descripcion": "dddddd",
-      "fecha": "2025-12-12",
-      "hora": "11:00",
-      "idUsuario": "mec",
-      "userName": "Gustavo Mecánico"
-    },
-    {
-      "id": "108d",
-      "titulo": "RESERVA",
-      "descripcion": "RESERVA",
-      "fecha": "2025-03-12",
-      "hora": "15:00",
-      "idUsuario": "mec",
-      "userName": "Gustavo Mecánico"
-    },
-    {
-      "id": "9395",
-      "titulo": "RESERVA ULTIMA",
-      "descripcion": "RESARSEAFD",
-      "fecha": "2025-05-11",
-      "hora": "18:00",
-      "idUsuario": "mec",
-      "userName": "Gustavo Mecánico"
-    },
-    {
-      "id": "c9a3",
-      "titulo": "ddafsfdsdfsafds",
-      "descripcion": "fdsfsdfadsfds1",
-      "fecha": "2025-06-01",
-      "hora": "16:00",
-      "idUsuario": "mec",
-      "userName": "Gustavo Mecánico"
-    },
-    {
-      "id": "9cf8",
-      "titulo": "HOLALAA",
-      "descripcion": "HOALALA",
-      "fecha": "2025-09-12",
-      "hora": "17:00",
       "idUsuario": "mec",
       "userName": "Gustavo Mecánico"
     },
@@ -1066,6 +817,56 @@
       "idUsuario": "mec",
       "userName": "Gustavo Mecánico",
       "vehiculo": "Mercedes"
+    },
+    {
+      "id": "f754",
+      "titulo": "Reserva",
+      "descripcion": "Autos",
+      "fecha": "2025-03-12",
+      "hora": "17:00",
+      "idUsuario": "33c1",
+      "userName": "Diego",
+      "vehiculo": "Honda"
+    },
+    {
+      "id": "7a34",
+      "titulo": "Pichadura",
+      "descripcion": "Se pincho la rueda",
+      "fecha": "2025-08-08",
+      "hora": "17:00",
+      "idUsuario": "33c1",
+      "userName": "Diego",
+      "vehiculo": "Honda"
+    },
+    {
+      "id": "3359",
+      "titulo": "Titulo",
+      "descripcion": "DEscripcion de la reserva",
+      "fecha": "2025-09-09",
+      "hora": "12:00",
+      "idUsuario": "33c1",
+      "userName": "Diego",
+      "vehiculo": "Honda"
+    },
+    {
+      "id": "f297",
+      "titulo": "Choque",
+      "descripcion": "Choque el auto",
+      "fecha": "2025-08-08",
+      "hora": "16:00",
+      "idUsuario": "ced3",
+      "userName": "Leticia ",
+      "vehiculo": "Mercedes"
+    },
+    {
+      "id": "c9e7",
+      "titulo": "Auto roto",
+      "descripcion": "Se rompio el auto",
+      "fecha": "2025-08-07",
+      "hora": "12:00",
+      "idUsuario": "4e24",
+      "userName": "Pablo Perez",
+      "vehiculo": "BMW"
     }
   ]
 }
